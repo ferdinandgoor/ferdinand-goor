@@ -14,3 +14,4 @@ jobs:
         server: ftp.cluster027.hosting.ovh.net
         username: ferdink
         password: ${{ secrets.ftp_password }}
+        server-dir: www/
