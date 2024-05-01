@@ -4,6 +4,11 @@ body {
   margin: 0;
   height: 200vh;
   background: #000;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .headline {

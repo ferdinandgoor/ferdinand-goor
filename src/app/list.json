@@ -1,62 +1,86 @@
 [
-    {
-      "artist": "Dissolve",
-      "song": "Efficiency Defiled",
-      "date": "Sep 10, 2023",
-      "youtubeId": "00odCw8P6SI"
-    },
-    {
-      "artist": "HIPSKÖR",
-      "song": "DANSU",
-      "date": "Feb 13, 2022",
-      "youtubeId": "jRqnSQSIcnA"
-    },
-    {
-      "artist": "Kolen.",
-      "song": "Flagless",
-      "date": "Mar 11, 2023",
-      "youtubeId": "gR9IgYqV8Kg"
-    },
-    {
-      "artist": "Obsidian",
-      "song": "A Life to Fail",
-      "date": "Feb 24, 2022",
-      "youtubeId": "Hb8tgfJ73qA"
-    },
-    {
-      "artist": "Obsidian",
-      "song": "Rea(lies)",
-      "date": "Mar 16, 2020",
-      "youtubeId": "hLjNzYgETSg"
-    },
-    {
-      "artist": "Causality",
-      "song": "Introspection",
-      "date": "Jun 9, 2023",
-      "youtubeId": "iZaNqV6_6O0"
-    },
-    {
-      "artist": "Causality",
-      "song": "Overflooded",
-      "date": "Mar 31, 2023",
-      "youtubeId": "-C2ydlfEn5w"
-    },
-    {
-      "artist": "Causality",
-      "song": "Chemicals",
-      "date": "Mar 4, 2022",
-      "youtubeId": "r5IdKc5aU7E"
-    },
-    {
-      "artist": "Causality",
-      "song": "Disbelief",
-      "date": "Feb 2, 2020",
-      "youtubeId": "pcZaO_aWH3I"
-    },
-    {
-      "artist": "Causality",
-      "song": "Icarus",
-      "date": "Dec 8, 2019",
-      "youtubeId": "7Hcxkg9KzGs"
-    }
+  {
+    "artist": "UNSAFE",
+    "song": "ROUGE",
+    "date": "Feb 17, 2023",
+    "youtubeId": "UlUe2H-X-hI"
+  },
+  {
+    "artist": "Causality",
+    "song": "Dead End",
+    "date": "Mar 29, 2024",
+    "youtubeId": "AJwbq285ZNo"
+  },
+  {
+    "artist": "The Dislockers",
+    "song": "Faker",
+    "date": "Jan 19, 2024",
+    "youtubeId": "B-kRcVxlMzE"
+  },
+  {
+    "artist": "Mirizon",
+    "song": "Murphy's Law",
+    "date": "Jan 11, 2024",
+    "youtubeId": "efmoxbqsmaQ"
+  },
+  {
+    "artist": "Dissolve",
+    "song": "Efficiency Defiled",
+    "date": "Sep 10, 2023",
+    "youtubeId": "00odCw8P6SI"
+  },
+  {
+    "artist": "HIPSKÖR",
+    "song": "DANSU",
+    "date": "Feb 13, 2022",
+    "youtubeId": "jRqnSQSIcnA"
+  },
+  {
+    "artist": "Kolen.",
+    "song": "Flagless",
+    "date": "Mar 11, 2023",
+    "youtubeId": "gR9IgYqV8Kg"
+  },
+  {
+    "artist": "Obsidian",
+    "song": "A Life to Fail",
+    "date": "Feb 24, 2022",
+    "youtubeId": "Hb8tgfJ73qA"
+  },
+  {
+    "artist": "Obsidian",
+    "song": "Rea(lies)",
+    "date": "Mar 16, 2020",
+    "youtubeId": "hLjNzYgETSg"
+  },
+  {
+    "artist": "Causality",
+    "song": "Introspection",
+    "date": "Jun 9, 2023",
+    "youtubeId": "iZaNqV6_6O0"
+  },
+  {
+    "artist": "Causality",
+    "song": "Overflooded",
+    "date": "Mar 31, 2023",
+    "youtubeId": "-C2ydlfEn5w"
+  },
+  {
+    "artist": "Causality",
+    "song": "Chemicals",
+    "date": "Mar 4, 2022",
+    "youtubeId": "r5IdKc5aU7E"
+  },
+  {
+    "artist": "Causality",
+    "song": "Disbelief",
+    "date": "Feb 2, 2020",
+    "youtubeId": "pcZaO_aWH3I"
+  },
+  {
+    "artist": "Causality",
+    "song": "Icarus",
+    "date": "Dec 8, 2019",
+    "youtubeId": "7Hcxkg9KzGs"
+  }
 ]
