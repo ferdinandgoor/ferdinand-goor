@@ -21,6 +21,7 @@ const Header = () => (
         muted
         loop
         id="myVideo"
+        playsInline
         style={{
           position: "absolute",
           height: "100%",
