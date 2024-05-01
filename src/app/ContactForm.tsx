@@ -17,13 +17,13 @@ const FieldSet = ({ legend, children }: FieldSetProps) => (
     style={{
       color: "#00ff0d",
       border: "solid 1px",
-      marginBottom: "40px",
-      padding: 0,
+      margin: "0 0 40px",
+      padding: "20px",
     }}
   >
     <legend>{legend}</legend>
     <div style={{
-        margin: "10px",
+        // margin: "10px",
         display: "flex",
         flexDirection: "column",
     }}>
@@ -50,8 +50,7 @@ const Field = ({ label, children, id }: FieldProps) => (
       htmlFor={id}
       style={{
         borderRight: "solid 1px #00ff0d",
-        padding: "10px 20px",
-        // width: "200px",
+        padding: "10px",
         fontSize: "12px",
       }}
     >
