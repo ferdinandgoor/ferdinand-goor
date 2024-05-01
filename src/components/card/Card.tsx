@@ -38,15 +38,26 @@ const Card = ({ artist, song, date, youtubeId }: Video) => (
         {date}
       </h3>
     </div>
-    <iframe
+    <div
       style={{
-        border: "none",
+        position: "relative",
+        paddingBottom: "56.25%",
       }}
-      width="100%"
-      src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1`}
-      title="YouTube video player"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-    ></iframe>
+    >
+      <iframe
+        style={{
+          border: "none",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+        }}
+        src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1`}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
+      ></iframe>
+    </div>
   </div>
   // </a>
 );
