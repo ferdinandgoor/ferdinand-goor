@@ -8,7 +8,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => (
       // backgroundColor: "#00ff341a",
       maxWidth: "600px",
       width: "100%",
-      padding: "20px",
+      padding: "0",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

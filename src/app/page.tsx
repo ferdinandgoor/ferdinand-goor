@@ -79,7 +79,6 @@ const Home = () => (
         style={{
           display: "flex",
           justifyContent: "center",
-          padding: "0 40px",
         }}
       >
         <div
@@ -101,7 +100,7 @@ const Home = () => (
             style={{
               position: "absolute",
               bottom: "20px",
-              right: 0,
+              right: "20px",
               display: "flex",
               flexDirection: "column",
             }}

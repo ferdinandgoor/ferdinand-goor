@@ -17,8 +17,9 @@ const FieldSet = ({ legend, children }: FieldSetProps) => (
     style={{
       color: "#00ff0d",
       border: "solid 1px",
-      padding: "20px",
       marginBottom: "40px",
+      display: "flex",
+      flexDirection: "column"
     }}
   >
     <legend>{legend}</legend>
@@ -224,116 +225,111 @@ const ContactForm = () => {
     <form
       style={{
         padding: "40px",
+        display: "flex",
+        flexDirection: "column"
       }}
       onSubmit={sendEmail}
     >
-      <div
+      <FieldSet legend="Personal Information">
+        <Input
+          id="name"
+          label="name"
+          type="text"
+          value={name}
+          onChange={setName}
+        />
+        <Input
+          id="email"
+          label="email"
+          type="email"
+          value={email}
+          onChange={setEmail}
+        />
+      </FieldSet>
+      <FieldSet legend="Options">
+        <Input
+          id="duration"
+          label="song duration (in minutes)"
+          type="number"
+          value={duration.toString()}
+          onChange={(newValue) => setDuration(parseInt(newValue, 10))}
+        />
+        <Input
+          id="number"
+          label="number of feedback series"
+          type="number"
+          value={feedbackSeries.toString()}
+          onChange={(newValue) => setFeedbackSeries(parseInt(newValue, 10))}
+        />
+        <Toggle
+          id="writing"
+          label="writing"
+          isChecked={withWriting}
+          onClick={() => setWithWriting(!withWriting)}
+        />
+        <Toggle
+          id="short-video"
+          label="short video"
+          isChecked={withShortVideos}
+          onClick={() => setWithShortVideos(!withShortVideos)}
+        />
+        <Toggle
+          id="teaser"
+          label="teaser"
+          isChecked={withTeaser}
+          onClick={() => setWithTeaser(!withTeaser)}
+        />
+        <Toggle
+          id="cgis"
+          label="CGIs"
+          isChecked={withCGIs}
+          onClick={() => setWithCGIs(!withCGIs)}
+        />
+      </FieldSet>
+      <FieldSet legend="Special Request">
+        <textarea
+          id="request"
+          name="w3review"
+          rows={4}
+          cols={50}
+          onChange={(event) => setRequest(event?.target.value)}
+          style={{
+            width: "100%",
+            background: "none",
+            border: "solid 1px #00ff0d",
+            color: "#00ff0d",
+            outline: "none",
+            padding: "10px",
+          }}
+        >
+          {request}
+        </textarea>
+      </FieldSet>
+
+      <p
         style={{
-          border: "solid 1px #00ff0d",
-          padding: "40px",
+          color: "#00ff0d",
         }}
       >
-        <FieldSet legend="Personal Information">
-          <Input
-            id="name"
-            label="name"
-            type="text"
-            value={name}
-            onChange={setName}
-          />
-          <Input
-            id="email"
-            label="email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-          />
-        </FieldSet>
-        <FieldSet legend="Options">
-          <Input
-            id="duration"
-            label="song duration (in minutes)"
-            type="number"
-            value={duration.toString()}
-            onChange={(newValue) => setDuration(parseInt(newValue, 10))}
-          />
-          <Input
-            id="number"
-            label="number of feedback series"
-            type="number"
-            value={feedbackSeries.toString()}
-            onChange={(newValue) => setFeedbackSeries(parseInt(newValue, 10))}
-          />
-          <Toggle
-            id="writing"
-            label="writing"
-            isChecked={withWriting}
-            onClick={() => setWithWriting(!withWriting)}
-          />
-          <Toggle
-            id="short-video"
-            label="short video"
-            isChecked={withShortVideos}
-            onClick={() => setWithShortVideos(!withShortVideos)}
-          />
-          <Toggle
-            id="teaser"
-            label="teaser"
-            isChecked={withTeaser}
-            onClick={() => setWithTeaser(!withTeaser)}
-          />
-          <Toggle
-            id="cgis"
-            label="CGIs"
-            isChecked={withCGIs}
-            onClick={() => setWithCGIs(!withCGIs)}
-          />
-        </FieldSet>
-        <FieldSet legend="Special Request">
-          <textarea
-            id="request"
-            name="w3review"
-            rows={4}
-            cols={50}
-            onChange={(event) => setRequest(event?.target.value)}
-            style={{
-              width: "100%",
-              background: "none",
-              border: "solid 1px #00ff0d",
-              color: "#00ff0d",
-              outline: "none",
-              padding: "10px",
-            }}
-          >
-            {request}
-          </textarea>
-        </FieldSet>
+        Price Estimation : {pricingDetails.totalPrice}€
+      </p>
 
-        <p
-          style={{
-            color: "#00ff0d",
-          }}
-        >
-          Price Estimation : {pricingDetails.totalPrice}€
-        </p>
-
-        <button
-          style={{
-            color: "black",
-            backgroundColor: "#00ff0d",
-            border: "none",
-            outline: "none",
-            padding: "20px",
-            fontSize: "20px",
-            fontFamily: "inherit",
-            cursor: "pointer",
-          }}
-          type="submit"
-          value="request"
-        >
-          Send Request
-        </button>
-      </div>
+      <button
+        style={{
+          color: "black",
+          backgroundColor: "#00ff0d",
+          border: "none",
+          outline: "none",
+          padding: "20px",
+          fontSize: "20px",
+          fontFamily: "inherit",
+          cursor: "pointer",
+        }}
+        type="submit"
+        value="request"
+      >
+        Send Request
+      </button>
     </form>
   );
 };
