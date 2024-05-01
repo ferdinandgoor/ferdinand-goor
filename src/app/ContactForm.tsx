@@ -18,12 +18,17 @@ const FieldSet = ({ legend, children }: FieldSetProps) => (
       color: "#00ff0d",
       border: "solid 1px",
       marginBottom: "40px",
-      display: "flex",
-      flexDirection: "column"
+      padding: 0,
     }}
   >
     <legend>{legend}</legend>
-    {children}
+    <div style={{
+        margin: "10px",
+        display: "flex",
+        flexDirection: "column",
+    }}>
+        {children}
+    </div>
   </fieldset>
 );
 
@@ -38,6 +43,7 @@ const Field = ({ label, children, id }: FieldProps) => (
     style={{
       border: "solid 1px #00ff0d",
       display: "flex",
+      flexGrow: 1
     }}
   >
     <label
@@ -45,7 +51,7 @@ const Field = ({ label, children, id }: FieldProps) => (
       style={{
         borderRight: "solid 1px #00ff0d",
         padding: "10px 20px",
-        width: "30%",
+        // width: "200px",
         fontSize: "12px",
       }}
     >
@@ -106,7 +112,7 @@ const Toggle = ({ label, isChecked, onClick, id }: ToggleProps) => (
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
-        width: "70%",
+        flexGrow: 1
       }}
     >
       <label
@@ -224,7 +230,6 @@ const ContactForm = () => {
   return (
     <form
       style={{
-        padding: "40px",
         display: "flex",
         flexDirection: "column"
       }}
@@ -324,6 +329,7 @@ const ContactForm = () => {
           fontSize: "20px",
           fontFamily: "inherit",
           cursor: "pointer",
+          marginBottom: "40px"
         }}
         type="submit"
         value="request"
