@@ -254,14 +254,14 @@ const ContactForm = () => {
       <FieldSet legend="Options">
         <Input
           id="duration"
-          label="song duration (in minutes)"
+          label="song duration"
           type="number"
           value={duration.toString()}
           onChange={(newValue) => setDuration(parseInt(newValue, 10))}
         />
         <Input
           id="number"
-          label="number of feedback series"
+          label="number of feedback"
           type="number"
           value={feedbackSeries.toString()}
           onChange={(newValue) => setFeedbackSeries(parseInt(newValue, 10))}
