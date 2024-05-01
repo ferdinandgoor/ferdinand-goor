@@ -42,6 +42,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => (
       style={{
         position: "relative",
         paddingBottom: "56.25%",
+        width: "100%"
       }}
     >
       <iframe
