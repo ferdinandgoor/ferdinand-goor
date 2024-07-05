@@ -3,96 +3,112 @@
     "artist": "Dissolve",
     "song": "Ignorance Will Prevail",
     "date": "May 23, 2024",
-    "youtubeId": "nBxre46rVos"
+    "youtubeId": "nBxre46rVos",
+    "price": 400
   },
   {
     "artist": "Mirizon",
-    "song": "ROUGE",
+    "song": "Sleepwalking",
     "date": "Jun 18, 2024",
-    "youtubeId": "4o8mZMNO4Hs"
+    "youtubeId": "4o8mZMNO4Hs",
+    "price": 700
   },
   {
     "artist": "UNSAFE",
     "song": "ROUGE",
     "date": "Feb 17, 2023",
-    "youtubeId": "UlUe2H-X-hI"
+    "youtubeId": "UlUe2H-X-hI",
+    "price": 300
   },
   {
     "artist": "Causality",
     "song": "Dead End",
     "date": "Mar 29, 2024",
-    "youtubeId": "AJwbq285ZNo"
+    "youtubeId": "AJwbq285ZNo",
+    "price": 0
   },
   {
     "artist": "The Dislockers",
     "song": "Faker",
     "date": "Jan 19, 2024",
-    "youtubeId": "B-kRcVxlMzE"
+    "youtubeId": "B-kRcVxlMzE",
+    "price": 0
   },
   {
     "artist": "Mirizon",
     "song": "Murphy's Law",
     "date": "Jan 11, 2024",
-    "youtubeId": "efmoxbqsmaQ"
+    "youtubeId": "efmoxbqsmaQ",
+    "price": 400
   },
   {
     "artist": "Dissolve",
     "song": "Efficiency Defiled",
     "date": "Sep 10, 2023",
-    "youtubeId": "00odCw8P6SI"
+    "youtubeId": "00odCw8P6SI",
+    "price": 400
   },
   {
     "artist": "HIPSKÖR",
     "song": "DANSU",
     "date": "Feb 13, 2022",
-    "youtubeId": "jRqnSQSIcnA"
+    "youtubeId": "jRqnSQSIcnA",
+    "price": 0
   },
   {
     "artist": "Kolen.",
     "song": "Flagless",
     "date": "Mar 11, 2023",
-    "youtubeId": "gR9IgYqV8Kg"
+    "youtubeId": "gR9IgYqV8Kg",
+    "price": 300
   },
   {
     "artist": "Obsidian",
     "song": "A Life to Fail",
     "date": "Feb 24, 2022",
-    "youtubeId": "Hb8tgfJ73qA"
+    "youtubeId": "Hb8tgfJ73qA",
+    "price": 200
   },
   {
     "artist": "Obsidian",
     "song": "Rea(lies)",
     "date": "Mar 16, 2020",
-    "youtubeId": "hLjNzYgETSg"
+    "youtubeId": "hLjNzYgETSg",
+    "price": 0
   },
   {
     "artist": "Causality",
     "song": "Introspection",
     "date": "Jun 9, 2023",
-    "youtubeId": "iZaNqV6_6O0"
+    "youtubeId": "iZaNqV6_6O0",
+    "price": 0
   },
   {
     "artist": "Causality",
     "song": "Overflooded",
     "date": "Mar 31, 2023",
-    "youtubeId": "-C2ydlfEn5w"
+    "youtubeId": "-C2ydlfEn5w",
+    "price": 0
   },
   {
     "artist": "Causality",
     "song": "Chemicals",
     "date": "Mar 4, 2022",
-    "youtubeId": "r5IdKc5aU7E"
+    "youtubeId": "r5IdKc5aU7E",
+    "price": 0
   },
   {
     "artist": "Causality",
     "song": "Disbelief",
     "date": "Feb 2, 2020",
-    "youtubeId": "pcZaO_aWH3I"
+    "youtubeId": "pcZaO_aWH3I",
+    "price": 0
   },
   {
     "artist": "Causality",
     "song": "Icarus",
     "date": "Dec 8, 2019",
-    "youtubeId": "7Hcxkg9KzGs"
+    "youtubeId": "7Hcxkg9KzGs",
+    "price": 0
   }
 ]
