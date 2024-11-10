@@ -22,7 +22,7 @@ const Home = () => (
       }}
       id="my-work"
     >
-      <List data={myWorkData} maxSize={20} />
+      <List data={myWorkData} maxSize={15} />
     </div>
     <div
       style={{
