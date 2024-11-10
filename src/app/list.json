@@ -1,5 +1,26 @@
 [
   {
+    "artist": "Mirizon",
+    "song": "NPC",
+    "date": "Nov 14, 2024",
+    "youtubeId": "TGmQsYXYC7kCveXa",
+    "price": 550
+  },
+  {
+    "artist": "Graphyt",
+    "song": "Castle Of Fire Ft. Vigilante",
+    "date": "Oct 13, 2024",
+    "youtubeId": "mYPXsRFGRHwiAZZp",
+    "price": 200
+  },
+  {
+    "artist": "The Dislockers",
+    "song": "JUST TELL YOURSELF",
+    "date": "Oct 18, 2024 ",
+    "youtubeId": "YsDCG7qxstkVThz4",
+    "price": 0
+  },
+  {
     "artist": "Dissolve",
     "song": "Ignorance Will Prevail",
     "date": "May 23, 2024",
@@ -29,7 +50,7 @@
   },
   {
     "artist": "The Dislockers",
-    "song": "Faker",
+    "song": "FAKER",
     "date": "Jan 19, 2024",
     "youtubeId": "B-kRcVxlMzE",
     "price": 0
