@@ -109,6 +109,8 @@ const Header = () => (
               I make music videos
               <br />
               for cool artists
+              <br />
+              ferdinand.goor@gmail.com
             </p>
             <div
               style={{
