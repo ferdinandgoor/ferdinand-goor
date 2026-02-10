@@ -1,8 +1,21 @@
 import Youtube from "@/icons/Youtube";
 import Instagram from "@/icons/Instagram";
 import Ferd from "@/icons/Ferd";
+import Select from "@/components/select";
+import { ReactNode, useState } from "react";
 
-const Header = () => (
+interface HeaderProps {
+  items: {
+    id: number;
+    label: string;
+    icon: ReactNode;
+    video: string;
+  }[];
+  onChangePanel: (id: number) => void;
+  selectedPanel: number;
+}
+
+const Header = ({ items, onChangePanel, selectedPanel }: HeaderProps) => (
   <div
     style={{
       position: "relative",
@@ -16,21 +29,24 @@ const Header = () => (
         overflow: "hidden",
       }}
     >
-      <video
-        autoPlay
-        muted
-        loop
-        id="myVideo"
-        playsInline
-        style={{
-          position: "absolute",
-          height: "100%",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <source src="overfloodedLight.mp4" type="video/mp4" />
-      </video>
+      {items.map((item) => (
+        <video
+          autoPlay
+          muted
+          loop
+          id="myVideo"
+          playsInline
+          style={{
+            position: "absolute",
+            height: "100%",
+            left: "50%",
+            transform: `translateX(${((item.id - selectedPanel) * 100) -50}%)`,
+            transition: "transform 333ms ease",
+          }}
+        >
+          <source src={item.video} type="video/mp4" />
+        </video>
+      ))}
     </div>
     <div
       style={{
@@ -124,7 +140,7 @@ const Header = () => (
                   height: "48px",
                   color: "#00ff0d",
                 }}
-                href="https://www.youtube.com/@ferdinandgoor7574/shorts"
+                href="https://www.youtube.com/@ferdinandgoor"
               >
                 <Youtube />
               </a>
@@ -144,12 +160,17 @@ const Header = () => (
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
-          padding: "20px",
-          color: "#00ff0d",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          padding: "16px",
         }}
       >
-        Open for work
+        <Select
+          items={items}
+          selectedPanel={selectedPanel}
+          onChangePanel={onChangePanel}
+        />
       </div>
     </div>
   </div>
