@@ -139,10 +139,17 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
             }}
           >
             {icon}
-            {label}
+            <span className="tab-label">{label}</span>
           </a>
         );
       })}
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .tab-label {
+            display: none;
+          }
+        }
+      `}</style>
     </div>
   );
 };
