@@ -27,7 +27,7 @@ const items = [
           }}
           id="my-work"
         >
-          <List data={videoList} maxSize={15} />
+          <List data={videoList} maxSize={10} />
         </div>
         {/* <div
           style={{
@@ -58,7 +58,7 @@ const items = [
           }}
           id="my-work"
         >
-          <List data={musicList} maxSize={15} />
+          <List data={musicList} maxSize={10} />
         </div>
         {/* <div
           style={{
@@ -88,7 +88,7 @@ const items = [
         }}
         id="my-work"
       >
-        <List data={youtubeList} maxSize={15} />
+        <List data={youtubeList} maxSize={10} />
       </div>
     ),
   },
