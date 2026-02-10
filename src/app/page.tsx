@@ -94,8 +94,13 @@ const items = [
   },
 ];
 
+const defaultActive =
+  items.find((item) => item.label.toLowerCase().includes("video"))?.id ??
+  items[0]?.id ??
+  0;
+
 const Home = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(defaultActive);
 
   return (
     <div
