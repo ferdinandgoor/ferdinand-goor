@@ -31,6 +31,7 @@ const Header = ({ items, onChangePanel, selectedPanel }: HeaderProps) => (
     >
       {items.map((item) => (
         <video
+          key={item.id}
           autoPlay
           muted
           loop
