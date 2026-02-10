@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useLayoutEffect, useRef, useState } from "react";
 
 interface PanelsProps {
@@ -12,7 +14,7 @@ interface PanelsProps {
 
 const Panels = ({ items, activeId }: PanelsProps) => {
   const activeIndex = items.findIndex((it) => it.id === activeId);
-  const panelRefs = useRef([]);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [h, setH] = useState(0);
 
   useLayoutEffect(() => {

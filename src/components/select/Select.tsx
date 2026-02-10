@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   ReactNode,
   useEffect,
@@ -17,8 +19,8 @@ interface SelectProps {
 }
 
 const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
-  const containerRef = useRef<HTMLButtonElement>(null);
-  const itemRefs = useRef([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
 
   const measure = () => {
@@ -51,7 +53,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
     onChangePanel?.(id);
   };
 
-  const onKeyDown = (e) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "ArrowRight") {
       e.preventDefault();
       setActiveAndNotify(Math.min(selectedPanel + 1, items.length - 1));
