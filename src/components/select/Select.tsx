@@ -102,6 +102,7 @@ const Select = () => {
               background: "transparent",
               padding: "10px 14px",
               borderRadius: 999,
+              textDecoration: "none",
               color: "rgba(255,255,255,0.8)",
               fontSize: 14,
               fontWeight: 600,
