@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
-import Home from "./app/Page";
+import Home from "./app/page";
 import videoList from "./data/videoList.json";
 import musicList from "./data/musicList.json";
 import youtubeList from "./data/youtubeList.json";
