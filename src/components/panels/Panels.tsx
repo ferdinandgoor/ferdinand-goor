@@ -47,7 +47,7 @@ const Panels = () => {
         position: "relative",
         width: "100%",
         borderTop: "solid 2px #00ff0d",
-        backdropFilter: "blur(50px) brightness(0.2)",
+        // backdropFilter: "blur(50px) brightness(0.2)",
         minHeight: "100vh",
       }}
     >

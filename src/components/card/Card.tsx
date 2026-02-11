@@ -10,16 +10,12 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
       <div
         className="list-item"
         style={{
-          // boxShadow: `0 0 8px #fff, inset 0 0 8px #fff, 0 0 24px #00ff347a, inset 0 0 24px #00ff34b0, 0 0 48px #00ff343b, inset 0 0 48px #00ff3426`,
-          // backgroundColor: "#00ff341a",
           maxWidth: "600px",
           width: "100%",
           padding: "0",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          backdropFilter: "blur(50px)",
-          // WebkitBackdropFilter: "blur(50px)",
           borderRadius: "8px",
         }}
       >

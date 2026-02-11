@@ -9,7 +9,7 @@ const Header = () => (
       position: "relative",
     }}
   >
-    <div
+    {/* <div
       style={{
         position: "absolute",
         height: "100vh",
@@ -31,7 +31,7 @@ const Header = () => (
       >
         <source src={"overfloodedLight.mp4"} type="video/mp4" />
       </video>
-    </div>
+    </div> */}
     <div
       style={{
         // height: "100vh",
@@ -39,7 +39,7 @@ const Header = () => (
         flexDirection: "column",
         justifyContent: "space-between",
         position: "relative",
-        backdropFilter: "blur(10px) brightness(0.5) saturate(50%)",
+        // backdropFilter: "blur(10px) brightness(0.5) saturate(50%)",
       }}
     >
       <div

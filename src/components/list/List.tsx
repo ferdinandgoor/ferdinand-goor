@@ -15,7 +15,7 @@ const List = ({ data, maxSize }: ListProps) => (
   <div
     style={{
       padding: "20px",
-      backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
+      // backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
     }}
     id="my-work"
   >
