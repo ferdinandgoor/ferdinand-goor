@@ -20,7 +20,7 @@ interface SelectProps {
 
 const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
 
   const measure = () => {
@@ -105,8 +105,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
       {items.map(({ label, icon, id }) => {
         const isActive = id === selectedPanel;
         return (
-          <a
-            href="#my-work"
+          <button
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
             type="button"
@@ -140,7 +139,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
           >
             {icon}
             <span className="tab-label">{label}</span>
-          </a>
+          </button>
         );
       })}
       <style jsx>{`

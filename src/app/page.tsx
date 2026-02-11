@@ -6,15 +6,17 @@ import musicList from "./musicList.json";
 import youtubeList from "./youtubeList.json";
 import ContactForm from "./ContactForm";
 import Header from "./Header";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { VideoCamera, MusicNote, YoutubeLogo } from "phosphor-react";
 import Panels from "@/components/panels";
+import { usePathname, useRouter } from "next/navigation";
 
 const items = [
   {
     id: 0,
     icon: <VideoCamera size={24} />,
     label: "Video Production",
+    path: "/video",
     video: "overfloodedLight.mp4",
     content: (
       <>
@@ -46,6 +48,7 @@ const items = [
     id: 1,
     icon: <MusicNote size={24} />,
     label: "Music Production",
+    path: "/music",
     video: "overfloodedLight.mp4",
     content: (
       <>
@@ -77,6 +80,7 @@ const items = [
     id: 2,
     icon: <YoutubeLogo size={24} />,
     label: "Youtube",
+    path: "/youtube",
     video: "artificialafter.mp4",
     content: (
       <div
@@ -100,7 +104,30 @@ const defaultActive =
   0;
 
 const Home = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [active, setActive] = useState(defaultActive);
+
+  const pathToId = useMemo(() => {
+    const map = new Map<string, number>();
+    items.forEach((item) => map.set(item.path, item.id));
+    return map;
+  }, []);
+
+  useEffect(() => {
+    const id = pathToId.get(pathname);
+    if (id !== undefined && id !== active) {
+      setActive(id);
+    }
+  }, [active, pathname, pathToId]);
+
+  const handleChangePanel = (id: number) => {
+    setActive(id);
+    const path = items.find((item) => item.id === id)?.path;
+    if (path && path !== pathname) {
+      router.push(path);
+    }
+  };
 
   return (
     <div
@@ -109,7 +136,11 @@ const Home = () => {
         borderTop: "solid 2px #00ff0d",
       }}
     >
-      <Header items={items} selectedPanel={active} onChangePanel={setActive} />
+      <Header
+        items={items}
+        selectedPanel={active}
+        onChangePanel={handleChangePanel}
+      />
       <Panels activeId={active} items={items} />
     </div>
   );
