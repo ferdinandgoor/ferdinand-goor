@@ -21,6 +21,7 @@ const Header = () => {
     }}
   >
     <div
+      className="header-bg"
       style={{
         position: "absolute",
         height: "100%",
@@ -29,6 +30,7 @@ const Header = () => {
       }}
     >
       <div
+        className="header-bg-image"
         style={{
           position: "absolute",
           inset: 0,
@@ -37,6 +39,7 @@ const Header = () => {
           backgroundPosition: "center",
           filter: "brightness(0.75)",
           transform: "scale(1.02)",
+          transition: "background-image 300ms ease",
         }}
       />
       <div
@@ -166,6 +169,15 @@ const Header = () => {
       >
         <Select />
       </div>
+      <style>{`
+        .header-bg-image {
+          animation: bgSlide 6s ease-in-out infinite alternate;
+        }
+        @keyframes bgSlide {
+          from { transform: scale(1.02) translateX(-1.5%); }
+          to { transform: scale(1.06) translateX(1.5%); }
+        }
+      `}</style>
     </div>
   </div>
   );
