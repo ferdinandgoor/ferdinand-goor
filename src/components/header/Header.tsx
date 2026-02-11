@@ -2,36 +2,52 @@ import Youtube from "@/icons/Youtube";
 import Instagram from "@/icons/Instagram";
 import Ferd from "@/icons/Ferd";
 import Select from "@/components/select";
+import useCurrentTab from "@/hooks/useCurrentTab";
+import { tabs } from "@/router";
 
-const Header = () => (
+const Header = () => {
+  const currentTab = useCurrentTab();
+  const fallback = tabs[0];
+  const image = currentTab?.headerImage ?? fallback?.headerImage ?? "/video.png";
+  const subtitle =
+    currentTab?.headerSubtitle ??
+    fallback?.headerSubtitle ??
+    "I make music videos\nfor cool artists";
+
+  return (
   <div
     style={{
       position: "relative",
     }}
   >
-    {/* <div
+    <div
       style={{
         position: "absolute",
-        height: "100vh",
+        height: "100%",
         width: "100%",
         overflow: "hidden",
       }}
     >
-      <video
-        autoPlay
-        muted
-        loop
-        id="myVideo"
-        playsInline
+      <div
         style={{
-          position: "fixed",
-          height: "100%",
-          left: "50%",
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url("${image}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "brightness(0.75)",
+          transform: "scale(1.02)",
         }}
-      >
-        <source src={"overfloodedLight.mp4"} type="video/mp4" />
-      </video>
-    </div> */}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backdropFilter: "blur(10px)",
+          background: "rgba(0,0,0,0.35)",
+        }}
+      />
+    </div>
     <div
       style={{
         // height: "100vh",
@@ -39,7 +55,6 @@ const Header = () => (
         flexDirection: "column",
         justifyContent: "space-between",
         position: "relative",
-        // backdropFilter: "blur(10px) brightness(0.5) saturate(50%)",
       }}
     >
       <div
@@ -65,7 +80,7 @@ const Header = () => (
             textTransform: "uppercase",
             textDecoration: "none",
           }}
-          href="#contact"
+          href="mailto:ferdofficial@gmail.com"
         >
           contact
         </a>
@@ -104,11 +119,10 @@ const Header = () => (
               style={{
                 color: "white",
                 textAlign: "end",
+                whiteSpace: "pre-line",
               }}
             >
-              I make music videos
-              <br />
-              for cool artists
+              {subtitle}
               <br />
               ferdofficial@gmail.com
             </p>
@@ -154,6 +168,7 @@ const Header = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default Header;

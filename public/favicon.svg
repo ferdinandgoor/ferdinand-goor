@@ -1,0 +1,23 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#000000"/>
+  <!-- Aggressive angular F -->
+  <path
+    d="
+      M12 10
+      L22 10
+      L22 26
+      L50 26
+      L46 36
+      L22 36
+      L22 54
+      L12 54
+      Z
+      M22 10
+      L54 10
+      L50 20
+      L22 20
+      Z
+    "
+    fill="#00ff0d"
+  />
+</svg>

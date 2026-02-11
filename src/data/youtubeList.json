@@ -5,5 +5,26 @@
     "date": "Jan 8, 2026",
     "youtubeId": "ZjYpB4lzSW4",
     "price": 250
+  },
+  {
+    "artist": "FERD",
+    "song": "PZK - Chui Bo (Metal Cover)",
+    "date": "Feb 20, 2025",
+    "youtubeId": "OfY2Fs9ku0E",
+    "price": 250
+  },
+  {
+    "artist": "FERD",
+    "song": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",
+    "date": "Jan 17, 2025",
+    "youtubeId": "QiPXZwJDoFY",
+    "price": 250
+  },
+  {
+    "artist": "FERD",
+    "song": "Modern Hardcore made with Headrush and BSD",
+    "date": "Sep 18, 2024",
+    "youtubeId": "Nm4eX1_C-Kk",
+    "price": 250
   }
 ]

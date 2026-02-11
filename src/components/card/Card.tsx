@@ -57,7 +57,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
                 width: "100%",
                 height: "100%",
               }}
-              src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1`}
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
               loading="lazy"

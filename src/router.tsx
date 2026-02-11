@@ -12,6 +12,8 @@ export type TabHandle = {
   icon: ReactNode;
   video: string;
   path: string;
+  headerImage: string;
+  headerSubtitle: string;
 };
 
 export const tabs: TabHandle[] = [
@@ -21,6 +23,8 @@ export const tabs: TabHandle[] = [
     icon: <VideoCamera size={24} />,
     video: "overfloodedLight.mp4",
     path: "/video",
+    headerImage: "/video.png",
+    headerSubtitle: "I make music videos\nfor cool artists",
   },
   {
     id: 1,
@@ -28,6 +32,8 @@ export const tabs: TabHandle[] = [
     icon: <MusicNote size={24} />,
     video: "overfloodedLight.mp4",
     path: "/music",
+    headerImage: "/music.png",
+    headerSubtitle: "I produce music\nfor cool artists",
   },
   {
     id: 2,
@@ -35,6 +41,8 @@ export const tabs: TabHandle[] = [
     icon: <YoutubeLogo size={24} />,
     video: "artificialafter.mp4",
     path: "/youtube",
+    headerImage: "/youtube.png",
+    headerSubtitle: "I make content\nfor YouTube",
   },
 ];
 
