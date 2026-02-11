@@ -32,7 +32,7 @@ const List = ({ data, maxSize }: ListProps) => (
       }}
     >
       {/* Gain total : {data.reduce((total, current) => total += current.price, 0)} */}
-      {data
+      {[...data]
         .sort((a, b) => {
           const dateA = new Date(a.date);
           const dateB = new Date(b.date);

@@ -5,7 +5,6 @@ const Home = () => (
   <div
     style={{
       position: "relative",
-      borderTop: "solid 2px #00ff0d",
     }}
   >
     <Header />
