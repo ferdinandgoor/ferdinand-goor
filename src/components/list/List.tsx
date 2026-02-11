@@ -14,7 +14,7 @@ interface ListProps {
 const List = ({ data, maxSize }: ListProps) => (
   <div
     style={{
-      padding: "20px",
+      padding: "16px",
       // backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
     }}
     id="my-work"
@@ -25,7 +25,7 @@ const List = ({ data, maxSize }: ListProps) => (
         padding: 0,
         listStyle: "none",
         display: "grid",
-        gap: "28px",
+        gap: "16px",
         gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
         alignItems: "start",
         justifyItems: "center",

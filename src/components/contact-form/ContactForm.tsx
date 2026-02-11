@@ -18,7 +18,7 @@ const FieldSet = ({ legend, children }: FieldSetProps) => (
       color: "#00ff0d",
       border: "solid 1px",
       margin: "0 0 40px",
-      padding: "20px",
+      padding: "16px",
     }}
   >
     <legend>{legend}</legend>
@@ -324,7 +324,7 @@ const ContactForm = () => {
           backgroundColor: "#00ff0d",
           border: "none",
           outline: "none",
-          padding: "20px",
+          padding: "16px",
           fontSize: "20px",
           fontFamily: "inherit",
           cursor: "pointer",

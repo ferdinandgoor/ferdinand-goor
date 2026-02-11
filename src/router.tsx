@@ -37,7 +37,7 @@ export const tabs: TabHandle[] = [
   },
   {
     id: 2,
-    label: "Youtube",
+    label: "Youtube Content",
     icon: <YoutubeLogo size={24} />,
     video: "artificialafter.mp4",
     path: "/youtube",
