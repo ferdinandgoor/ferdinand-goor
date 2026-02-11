@@ -10,6 +10,7 @@ interface HeaderProps {
     label: string;
     icon: ReactNode;
     video: string;
+    path: string;
   }[];
   onChangePanel: (id: number) => void;
   selectedPanel: number;

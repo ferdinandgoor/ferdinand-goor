@@ -13,6 +13,7 @@ interface SelectProps {
     id: number;
     label: string;
     icon: ReactNode;
+    path: string;
   }[];
   onChangePanel: (id: number) => void;
   selectedPanel: number;
@@ -20,7 +21,7 @@ interface SelectProps {
 
 const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
 
   const measure = () => {
@@ -102,13 +103,13 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
         }}
       />
 
-      {items.map(({ label, icon, id }) => {
+      {items.map(({ label, icon, id, path }) => {
         const isActive = id === selectedPanel;
         return (
-          <button
+          <a
+            href={`${path}#my-work`}
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
-            type="button"
             onClick={() => setActiveAndNotify(id)}
             style={{
               position: "relative",
@@ -139,7 +140,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
           >
             {icon}
             <span className="tab-label">{label}</span>
-          </button>
+          </a>
         );
       })}
       <style jsx>{`
