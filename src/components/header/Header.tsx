@@ -39,7 +39,7 @@ const Header = () => (
         flexDirection: "column",
         justifyContent: "space-between",
         position: "relative",
-        backdropFilter: "blur(10px) brightness(0.5) saturate(20%)",
+        backdropFilter: "blur(10px) brightness(0.5) saturate(50%)",
       }}
     >
       <div

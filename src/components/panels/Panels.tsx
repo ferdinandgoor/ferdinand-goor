@@ -14,7 +14,10 @@ const Panels = () => {
     const currentIndex = tabs.findIndex((tab) => tab.path === pathname);
     if (currentIndex === -1) return;
 
-    if (prevIndexRef.current !== null && prevIndexRef.current !== currentIndex) {
+    if (
+      prevIndexRef.current !== null &&
+      prevIndexRef.current !== currentIndex
+    ) {
       const direction =
         currentIndex > prevIndexRef.current ? "animate-next" : "animate-prev";
       setAnimClass(direction);
@@ -44,14 +47,14 @@ const Panels = () => {
         position: "relative",
         width: "100%",
         borderTop: "solid 2px #00ff0d",
+        backdropFilter: "blur(50px) brightness(0.2)",
+        minHeight: "100vh",
       }}
     >
       <div className={`panel-slide ${animClass}`}>
         <div
           style={{
             borderTop: "solid 2px #00ff0d",
-            backgroundColor: "#090909",
-            backgroundImage: 'url("/topography.svg")',
           }}
         >
           <List key={pathname} data={list} maxSize={100} />

@@ -40,20 +40,10 @@ const List = ({ data, maxSize }: ListProps) => (
         })
         .slice(0, maxSize || data.length)
         .map((item) => (
-          <li key={item.artist} className="list-item" style={{ width: "100%" }}>
+          <li key={item.artist} style={{ width: "100%" }}>
             <Card {...item} />
           </li>
         ))}
-      <style>{`
-      .list-item {
-        transition: transform 180ms ease, filter 180ms ease;
-        will-change: transform, filter;
-      }
-      .list-item:hover {
-        transform: scale(1.02);
-        filter: brightness(1.08);
-      }
-    `}</style>
     </ul>
   </div>
 );
