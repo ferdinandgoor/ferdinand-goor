@@ -124,12 +124,11 @@ const Home = () => {
   const handleChangePanel = (id: number) => {
     setActive(id);
     const path = items.find((item) => item.id === id)?.path;
-    const anchor = "#my-work";
     if (path && path !== pathname) {
-      router.push(`${path}${anchor}`);
+      router.push(path);
       return;
     }
-    router.push(`${pathname}${anchor}`);
+    router.push(pathname);
   };
 
   return (

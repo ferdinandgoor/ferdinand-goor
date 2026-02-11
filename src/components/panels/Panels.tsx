@@ -34,26 +34,24 @@ const Panels = ({ items, activeId }: PanelsProps) => {
       style={{
         position: "relative",
         width: "100%",
-        overflow: "hidden",
         height: h, // ✅ la page suit
         transition: "height 250ms ease",
       }}
     >
-      {items.map((item, index) => (
-        <div
-          key={item.id}
-          ref={(el) => (panelRefs.current[index] = el)}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            transform: `translateX(${(index - activeIndex) * 100}%)`,
-            transition: "transform 250ms cubic-bezier(.2,.9,.2,1)",
-            willChange: "transform",
-          }}
-        >{item.content}</div>
-      ))}
+      {items.map((item, index) => {
+        if (index !== activeIndex) return null;
+        return (
+          <div
+            key={item.id}
+            ref={(el) => (panelRefs.current[index] = el)}
+            style={{
+              width: "100%",
+            }}
+          >
+            {item.content}
+          </div>
+        );
+      })}
     </div>
   );
 };

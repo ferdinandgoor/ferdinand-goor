@@ -107,7 +107,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
         const isActive = id === selectedPanel;
         return (
           <a
-            href={`${path}#my-work`}
+            href={path}
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
             onClick={() => setActiveAndNotify(id)}
