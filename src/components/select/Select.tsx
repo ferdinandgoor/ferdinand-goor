@@ -1,23 +1,14 @@
-import Panel from "@/types/Panel";
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import { Link, useLocation } from "react-router-dom";
+import useCurrentTab from "@/hooks/useCurrentTab";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { tabs as items } from "@/router";
 
-interface SelectProps {
-  items: Panel[];
-}
-
-const Select = ({ items }: SelectProps) => {
+const Select = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
-  const { pathname } = useLocation();
-  const selectedId =
-    items.find((item) => item.path === pathname)?.id ?? 0;
+  const currentTab = useCurrentTab();
+  const selectedId = currentTab?.id ?? 0;
 
   const measure = () => {
     const el = itemRefs.current[selectedId];
@@ -84,7 +75,7 @@ const Select = ({ items }: SelectProps) => {
         const isActive = id === selectedId;
         return (
           <Link
-            to={path}
+            to={`${path}#my-work`}
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
             style={{
