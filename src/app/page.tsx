@@ -23,9 +23,8 @@ const items = [
         <div
           style={{
             borderTop: "solid 2px #00ff0d",
-            backgroundColor: "#090909",
-            backgroundImage: 'url("/topography.svg")',
             padding: "20px",
+            backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
           }}
           id="my-work"
         >
@@ -55,9 +54,8 @@ const items = [
         <div
           style={{
             borderTop: "solid 2px #00ff0d",
-            backgroundColor: "#090909",
-            backgroundImage: 'url("/topography.svg")',
             padding: "20px",
+            backdropFilter: "blur(50px) brightness(0.2) saturate(10%)",
           }}
           id="my-work"
         >
@@ -86,8 +84,7 @@ const items = [
       <div
         style={{
           borderTop: "solid 2px #00ff0d",
-          backgroundColor: "#090909",
-          backgroundImage: 'url("/topography.svg")',
+          backdropFilter: "blur(50px) brightness(0.2) saturate(10%)",
           padding: "20px",
         }}
         id="my-work"

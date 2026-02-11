@@ -39,7 +39,7 @@ const Header = ({ items, onChangePanel, selectedPanel }: HeaderProps) => (
           id="myVideo"
           playsInline
           style={{
-            position: "absolute",
+            position: "fixed",
             height: "100%",
             left: "50%",
             transform: `translateX(${((item.id - selectedPanel) * 100) -50}%)`,
@@ -52,7 +52,7 @@ const Header = ({ items, onChangePanel, selectedPanel }: HeaderProps) => (
     </div>
     <div
       style={{
-        height: "100vh",
+        // height: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

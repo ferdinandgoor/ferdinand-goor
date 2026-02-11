@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useLayoutEffect, useRef, useState } from "react";
+import { ReactNode, useRef } from "react";
 
 interface PanelsProps {
   items: {
@@ -15,26 +15,12 @@ interface PanelsProps {
 const Panels = ({ items, activeId }: PanelsProps) => {
   const activeIndex = items.findIndex((it) => it.id === activeId);
   const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [h, setH] = useState(0);
-
-  useLayoutEffect(() => {
-    const el = panelRefs.current[activeIndex];
-    if (!el) return;
-
-    const measure = () => setH(el.offsetHeight);
-    measure();
-
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [activeIndex]);
 
   return (
     <div
       style={{
         position: "relative",
         width: "100%",
-        height: h, // ✅ la page suit
         transition: "height 250ms ease",
       }}
     >
