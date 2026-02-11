@@ -127,7 +127,7 @@ const Header = ({ items, onChangePanel, selectedPanel }: HeaderProps) => (
               <br />
               for cool artists
               <br />
-              ferdinand.goor@gmail.com
+              ferdofficial@gmail.com
             </p>
             <div
               style={{
