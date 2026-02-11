@@ -1,15 +1,10 @@
-"use client";
-
 import List from "./List";
-import videoList from "./videoList.json";
-import musicList from "./musicList.json";
-import youtubeList from "./youtubeList.json";
-import ContactForm from "./ContactForm";
+import videoList from "../data/videoList.json";
+import musicList from "../data/musicList.json";
+import youtubeList from "../data/youtubeList.json";
 import Header from "./Header";
-import { useEffect, useMemo, useState } from "react";
 import { VideoCamera, MusicNote, YoutubeLogo } from "phosphor-react";
 import Panels from "@/components/panels";
-import { usePathname, useRouter } from "next/navigation";
 
 const items = [
   {
@@ -95,54 +90,16 @@ const items = [
   },
 ];
 
-const defaultActive =
-  items.find((item) => item.label.toLowerCase().includes("video"))?.id ??
-  items[0]?.id ??
-  0;
-
-const Home = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [active, setActive] = useState(defaultActive);
-
-  const pathToId = useMemo(() => {
-    const map = new Map<string, number>();
-    items.forEach((item) => map.set(item.path, item.id));
-    return map;
-  }, []);
-
-  useEffect(() => {
-    const id = pathToId.get(pathname);
-    if (id !== undefined && id !== active) {
-      setActive(id);
-    }
-  }, [active, pathname, pathToId]);
-
-  const handleChangePanel = (id: number) => {
-    setActive(id);
-    const path = items.find((item) => item.id === id)?.path;
-    if (path && path !== pathname) {
-      router.push(path);
-      return;
-    }
-    router.push(pathname);
-  };
-
-  return (
-    <div
-      style={{
-        position: "relative",
-        borderTop: "solid 2px #00ff0d",
-      }}
-    >
-      <Header
-        items={items}
-        selectedPanel={active}
-        onChangePanel={handleChangePanel}
-      />
-      <Panels activeId={active} items={items} />
-    </div>
-  );
-};
+const Home = () => (
+  <div
+    style={{
+      position: "relative",
+      borderTop: "solid 2px #00ff0d",
+    }}
+  >
+    <Header items={items} />
+    <Panels items={items} />
+  </div>
+);
 
 export default Home;

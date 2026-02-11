@@ -37,7 +37,7 @@ const List = ({ data, maxSize }: ListProps) => (
           <Card {...item} />
         </li>
       ))}
-    <style jsx>{`
+    <style>{`
       .list-item {
         transition: transform 180ms ease, filter 180ms ease;
         will-change: transform, filter;

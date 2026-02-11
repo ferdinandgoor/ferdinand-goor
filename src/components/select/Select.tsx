@@ -1,31 +1,26 @@
-"use client";
-
-import React, {
-  ReactNode,
+import Panel from "@/types/Panel";
+import {
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
 } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 interface SelectProps {
-  items: {
-    id: number;
-    label: string;
-    icon: ReactNode;
-    path: string;
-  }[];
-  onChangePanel: (id: number) => void;
-  selectedPanel: number;
+  items: Panel[];
 }
 
-const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
+const Select = ({ items }: SelectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
+  const { pathname } = useLocation();
+  const selectedId =
+    items.find((item) => item.path === pathname)?.id ?? 0;
 
   const measure = () => {
-    const el = itemRefs.current[selectedPanel];
+    const el = itemRefs.current[selectedId];
     const root = containerRef.current;
     if (!el || !root) return;
 
@@ -41,7 +36,7 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
   useLayoutEffect(() => {
     measure();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPanel]);
+  }, [selectedId]);
 
   useEffect(() => {
     const onResize = () => measure();
@@ -50,29 +45,11 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const setActiveAndNotify = (id: number) => {
-    onChangePanel?.(id);
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      setActiveAndNotify(Math.min(selectedPanel + 1, items.length - 1));
-    }
-    if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      setActiveAndNotify(Math.max(selectedPanel - 1, 0));
-    }
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-    }
-  };
-
   return (
     <div
+      className="select-tabs"
       ref={containerRef}
       tabIndex={0}
-      onKeyDown={onKeyDown}
       style={{
         position: "relative",
         display: "flex",
@@ -104,13 +81,12 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
       />
 
       {items.map(({ label, icon, id, path }) => {
-        const isActive = id === selectedPanel;
+        const isActive = id === selectedId;
         return (
-          <a
-            href={path}
+          <Link
+            to={path}
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
-            onClick={() => setActiveAndNotify(id)}
             style={{
               position: "relative",
               zIndex: 1,
@@ -140,15 +116,15 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
           >
             {icon}
             <span className="tab-label">{label}</span>
-          </a>
+          </Link>
         );
       })}
-      <style jsx>{`
-        .tab-label {
+      <style>{`
+        .select-tabs .tab-label {
           display: none;
         }
         @media (min-width: 641px) {
-          .tab-label {
+          .select-tabs .tab-label {
             display: inline;
           }
         }
