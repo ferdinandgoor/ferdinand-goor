@@ -47,10 +47,11 @@ const Panels = () => {
         position: "relative",
         width: "100%",
         borderTop: "solid 2px #00ff0d",
+        backgroundColor: "#111111",
         // backdropFilter: "blur(50px) brightness(0.2)",
         minHeight: "100vh",
       }}
-    >
+    > 
       <div className={`panel-slide ${animClass}`}>
         <div
           style={{
