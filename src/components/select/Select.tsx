@@ -1,5 +1,5 @@
 import useCurrentTab from "@/hooks/useCurrentTab";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { tabs as items } from "@/router";
 
@@ -25,7 +25,31 @@ const Select = () => {
   };
 
   useLayoutEffect(() => {
-    measure();
+    requestAnimationFrame(measure);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
+
+  useEffect(() => {
+    const onResize = () => requestAnimationFrame(measure);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const root = containerRef.current;
+    const el = itemRefs.current[selectedId];
+    if (!root || !el) return;
+
+    const ro = new ResizeObserver(() => requestAnimationFrame(measure));
+    ro.observe(root);
+    ro.observe(el);
+
+    if (document?.fonts?.ready) {
+      document.fonts.ready.then(() => requestAnimationFrame(measure));
+    }
+
+    return () => ro.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId]);
 
