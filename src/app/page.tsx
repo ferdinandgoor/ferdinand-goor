@@ -21,13 +21,13 @@ const items = [
         <div
           style={{
             borderTop: "solid 2px #00ff0d",
-            backgroundColor: "#131313",
+            backgroundColor: "#090909",
             backgroundImage: 'url("/topography.svg")',
             padding: "20px",
           }}
           id="my-work"
         >
-          <List data={videoList} maxSize={10} />
+          <List data={videoList} maxSize={100} />
         </div>
         {/* <div
           style={{
@@ -52,13 +52,13 @@ const items = [
         <div
           style={{
             borderTop: "solid 2px #00ff0d",
-            backgroundColor: "#131313",
+            backgroundColor: "#090909",
             backgroundImage: 'url("/topography.svg")',
             padding: "20px",
           }}
           id="my-work"
         >
-          <List data={musicList} maxSize={10} />
+          <List data={musicList} maxSize={100} />
         </div>
         {/* <div
           style={{
@@ -82,13 +82,13 @@ const items = [
       <div
         style={{
           borderTop: "solid 2px #00ff0d",
-          backgroundColor: "#131313",
+          backgroundColor: "#090909",
           backgroundImage: 'url("/topography.svg")',
           padding: "20px",
         }}
         id="my-work"
       >
-        <List data={youtubeList} maxSize={10} />
+        <List data={youtubeList} maxSize={100} />
       </div>
     ),
   },

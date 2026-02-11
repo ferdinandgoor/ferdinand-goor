@@ -144,9 +144,12 @@ const Select = ({ items, onChangePanel, selectedPanel }: SelectProps) => {
         );
       })}
       <style jsx>{`
-        @media (max-width: 640px) {
+        .tab-label {
+          display: none;
+        }
+        @media (min-width: 641px) {
           .tab-label {
-            display: none;
+            display: inline;
           }
         }
       `}</style>
