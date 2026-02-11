@@ -29,13 +29,6 @@ const Select = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId]);
 
-  useEffect(() => {
-    const onResize = () => measure();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div
       className="select-tabs"
