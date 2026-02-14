@@ -92,7 +92,7 @@ const Select = () => {
         const isActive = id === selectedId;
         return (
           <Link
-            to={`${path}#my-work`}
+            to={path}
             key={label}
             ref={(el) => (itemRefs.current[id] = el)}
             style={{

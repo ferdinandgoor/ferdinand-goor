@@ -21,13 +21,7 @@ const Panels = () => {
       const direction =
         currentIndex > prevIndexRef.current ? "animate-next" : "animate-prev";
       setAnimClass(direction);
-      const timeout = window.setTimeout(() => setAnimClass(""), 420);
-      requestAnimationFrame(() => {
-        document
-          .getElementById("my-work")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-      return () => window.clearTimeout(timeout);
+      const timeout = window.setTimeout(() => setAnimClass(""), 420);      return () => window.clearTimeout(timeout);
     }
 
     prevIndexRef.current = currentIndex;
