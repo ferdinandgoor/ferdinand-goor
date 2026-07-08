@@ -35,14 +35,31 @@ type ArtistProfile = {
   alt: string;
 };
 
+type FeaturedVideo = {
+  label: string;
+  title: string;
+  embedUrl: string;
+};
+
 const release = {
   artist: "Ferd x Romain Gamain",
   title: "Djadja - Aya Nakamura Version Korn",
   kicker: "Mashup release",
-  subtitle: "Le mashup metal/pop par Ferd et Romain Gamain, avec le clip complet et les liens streaming.",
-  videoEmbedUrl: "https://www.youtube-nocookie.com/embed/wgUIkQ0wJR0?rel=0",
-  videoTitle: "Djadja - Aya Nakamura Version Korn",
+  subtitle:
+    "Le mashup metal/pop par Ferd et Romain Gamain, avec le clip complet, le behind the scenes et les liens streaming.",
   backgroundImage: imageAyaKorn,
+  videos: [
+    {
+      label: "Clip officiel",
+      title: "Djadja - Aya Nakamura Version Korn",
+      embedUrl: "https://www.youtube-nocookie.com/embed/wgUIkQ0wJR0?rel=0",
+    },
+    {
+      label: "Behind the scenes",
+      title: "Behind the scenes par Romain Gamain",
+      embedUrl: "https://www.youtube-nocookie.com/embed/jQEJ8EPNPog?rel=0",
+    },
+  ] satisfies FeaturedVideo[],
   links: [
     {
       label: "Voir le clip complet",
@@ -67,8 +84,9 @@ const release = {
     },
     {
       label: "Behind the scenes",
-      href: "https://youtu.be/todo",
+      href: "https://www.youtube.com/watch?v=jQEJ8EPNPog",
       platform: "youtube",
+      isPrimary: true,
     },
   ] satisfies ReleaseLink[],
   socials: [
@@ -259,14 +277,21 @@ const MashupLanding = () => {
         </header>
 
         <section className="mashup-release-card" aria-label="Release video and links">
-          <div className="mashup-video">
-            <iframe
-              loading="lazy"
-              src={release.videoEmbedUrl}
-              title={release.videoTitle}
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+          <div className="mashup-featured-videos">
+            {release.videos.map((video) => (
+              <article className="mashup-video-feature" key={video.embedUrl}>
+                <p>{video.label}</p>
+                <div className="mashup-video">
+                  <iframe
+                    loading="lazy"
+                    src={video.embedUrl}
+                    title={video.title}
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </article>
+            ))}
           </div>
 
           <div className="mashup-links" aria-label="Streaming links">
