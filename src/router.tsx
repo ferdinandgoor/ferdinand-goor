@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
 import Home from "./app/page";
+import MashupLanding from "./app/mashup-landing/MashupLanding";
 import videoList from "./data/videoList.json";
 import musicList from "./data/musicList.json";
 import youtubeList from "./data/youtubeList.json";
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
     element: <Home />,
     loader: () => ({ list: youtubeList }),
     handle: tabs[2],
+  },
+  {
+    path: "/aya-korn",
+    element: <MashupLanding />,
   },
   {
     path: "*",

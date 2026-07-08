@@ -4,6 +4,7 @@ import Ferd from "@/icons/Ferd";
 import Select from "@/components/select";
 import useCurrentTab from "@/hooks/useCurrentTab";
 import { tabs } from "@/router";
+import { TiktokLogo } from "phosphor-react";
 
 const Header = () => {
   const currentTab = useCurrentTab();
@@ -145,7 +146,10 @@ const Header = () => {
                     height: "48px",
                     color: "#00ff0d",
                   }}
-                  href="https://www.youtube.com/@ferdinandgoor"
+                  href="https://www.youtube.com/@ferd.process"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ferd YouTube"
                 >
                   <Youtube />
                 </a>
@@ -154,9 +158,25 @@ const Header = () => {
                     height: "48px",
                     color: "#00ff0d",
                   }}
-                  href="https://www.instagram.com/ferdinandgoor"
+                  href="https://www.instagram.com/ferd.process"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ferd Instagram"
                 >
                   <Instagram />
+                </a>
+                <a
+                  style={{
+                    height: "48px",
+                    width: "48px",
+                    color: "#00ff0d",
+                  }}
+                  href="https://www.tiktok.com/@ferd.process"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ferd TikTok"
+                >
+                  <TiktokLogo size="100%" weight="regular" />
                 </a>
               </div>
             </div>
