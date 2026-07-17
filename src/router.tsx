@@ -2,10 +2,13 @@ import type { ReactNode } from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
 import Home from "./app/page";
+import LinksLanding from "./app/links-landing/LinksLanding";
 import MashupLanding from "./app/mashup-landing/MashupLanding";
-import videoList from "./data/videoList.json";
-import musicList from "./data/musicList.json";
-import youtubeList from "./data/youtubeList.json";
+import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
+import funnyMashupList from "./data/funnyMashupList.json";
+import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
+import musicVideoList from "./data/musicVideoList.json";
+import musicProductionList from "./data/musicProductionList.json";
 
 export type TabHandle = {
   id: number;
@@ -20,10 +23,10 @@ export type TabHandle = {
 export const tabs: TabHandle[] = [
   {
     id: 0,
-    label: "Video Production",
+    label: "Music Videos",
     icon: <VideoCamera size={24} />,
     video: "overfloodedLight.mp4",
-    path: "/video",
+    path: "/music-videos",
     headerImage: "/video.png",
     headerSubtitle: "I make music videos\nfor cool artists",
   },
@@ -32,16 +35,16 @@ export const tabs: TabHandle[] = [
     label: "Music Production",
     icon: <MusicNote size={24} />,
     video: "overfloodedLight.mp4",
-    path: "/music",
+    path: "/music-production",
     headerImage: "/music.png",
     headerSubtitle: "I produce music\nfor cool artists",
   },
   {
     id: 2,
-    label: "Youtube Content",
+    label: "YouTube Videos",
     icon: <YoutubeLogo size={24} />,
     video: "artificialafter.mp4",
-    path: "/youtube",
+    path: "/youtube-videos",
     headerImage: "/youtube.png",
     headerSubtitle: "I make content\nfor YouTube",
   },
@@ -50,24 +53,51 @@ export const tabs: TabHandle[] = [
 export const router = createBrowserRouter([
   {
     path: "/",
-    loader: () => redirect("/video"),
+    loader: () => redirect("/music-videos"),
   },
   {
     path: "/video",
-    element: <Home />,
-    loader: () => ({ list: videoList }),
-    handle: tabs[0],
+    loader: () => redirect("/music-videos"),
   },
   {
     path: "/music",
-    element: <Home />,
-    loader: () => ({ list: musicList }),
-    handle: tabs[1],
+    loader: () => redirect("/music-production"),
   },
   {
     path: "/youtube",
+    loader: () => redirect("/youtube-videos"),
+  },
+  {
+    path: "/music-videos",
     element: <Home />,
-    loader: () => ({ list: youtubeList }),
+    loader: () => ({ list: musicVideoList }),
+    handle: tabs[0],
+  },
+  {
+    path: "/music-production",
+    element: <Home />,
+    loader: () => ({ list: musicProductionList }),
+    handle: tabs[1],
+  },
+  {
+    path: "/youtube-videos",
+    element: <Home />,
+    loader: () => ({
+      sections: [
+        {
+          title: "Videos a pousser",
+          list: bigYoutubeVideoList,
+        },
+        {
+          title: "Mashups fun",
+          list: funnyMashupList,
+        },
+        {
+          title: "Matos et production",
+          list: gearYoutubeVideoList,
+        },
+      ],
+    }),
     handle: tabs[2],
   },
   {
@@ -75,7 +105,11 @@ export const router = createBrowserRouter([
     element: <MashupLanding />,
   },
   {
+    path: "/links",
+    element: <LinksLanding />,
+  },
+  {
     path: "*",
-    loader: () => redirect("/video"),
+    loader: () => redirect("/music-videos"),
   },
 ]);

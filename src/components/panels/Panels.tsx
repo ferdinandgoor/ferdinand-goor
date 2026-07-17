@@ -4,9 +4,20 @@ import Video from "@/types/Video";
 import List from "../list/List";
 import { tabs } from "@/router";
 
+type PanelSection = {
+  title: string;
+  list: Video[];
+};
+
 const Panels = () => {
   const { pathname } = useLocation();
-  const { list } = useLoaderData() as { list: Video[] };
+  const loaderData = useLoaderData() as { list?: Video[]; sections?: PanelSection[] };
+  const sections = loaderData.sections ?? [
+    {
+      title: "",
+      list: loaderData.list ?? [],
+    },
+  ];
   const [animClass, setAnimClass] = useState("");
   const prevIndexRef = useRef<number | null>(null);
 
@@ -53,7 +64,14 @@ const Panels = () => {
             borderTop: "solid 2px #00ff0d",
           }}
         >
-          <List key={pathname} data={list} maxSize={100} />
+          {sections.map((section) => (
+            <List
+              key={`${pathname}-${section.title || "default"}`}
+              title={section.title}
+              data={section.list}
+              maxSize={100}
+            />
+          ))}
         </div>
       </div>
       <style>{`

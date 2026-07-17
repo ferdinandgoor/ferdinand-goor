@@ -1,6 +1,7 @@
 import Card from "@/components/card";
 
 interface ListProps {
+  title?: string;
   data: {
     artist: string;
     date: string;
@@ -11,7 +12,7 @@ interface ListProps {
   maxSize: number;
 }
 
-const List = ({ data, maxSize }: ListProps) => (
+const List = ({ title, data, maxSize }: ListProps) => (
   <div
     style={{
       padding: "16px",
@@ -19,6 +20,21 @@ const List = ({ data, maxSize }: ListProps) => (
     }}
     id="my-work"
   >
+    {title ? (
+      <h2
+        style={{
+          color: "#00ff0d",
+          fontSize: "clamp(0.95rem, 2.4vw, 1.35rem)",
+          fontWeight: 600,
+          letterSpacing: 0,
+          lineHeight: 1.2,
+          margin: "4px 0 12px",
+          textTransform: "uppercase",
+        }}
+      >
+        {title}
+      </h2>
+    ) : null}
     <ul
       style={{
         margin: 0,
@@ -40,7 +56,7 @@ const List = ({ data, maxSize }: ListProps) => (
         })
         .slice(0, maxSize || data.length)
         .map((item) => (
-          <li key={item.artist} style={{ width: "100%" }}>
+          <li key={item.youtubeId} style={{ width: "100%" }}>
             <Card {...item} />
           </li>
         ))}

@@ -1,9 +1,16 @@
 [
   {
     "artist": "FERD",
-    "song": "J’ai créé un studio de musique pour moins de 100€",
-    "date": "Jan 8, 2026",
-    "youtubeId": "ZjYpB4lzSW4",
+    "song": "Metallica + K.Maro Mashup",
+    "date": "Jul 17, 2026",
+    "youtubeId": "nWQvi1fTAxg",
+    "price": 250
+  },
+  {
+    "artist": "FERD",
+    "song": "Aya Nakamura – Djadja (Version Korn)",
+    "date": "Jul 8, 2026",
+    "youtubeId": "wgUIkQ0wJR0",
     "price": 250
   },
   {
@@ -18,13 +25,6 @@
     "song": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",
     "date": "Jan 17, 2025",
     "youtubeId": "QiPXZwJDoFY",
-    "price": 250
-  },
-  {
-    "artist": "FERD",
-    "song": "Modern Hardcore made with Headrush and BSD",
-    "date": "Sep 18, 2024",
-    "youtubeId": "Nm4eX1_C-Kk",
     "price": 250
   }
 ]
