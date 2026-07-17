@@ -1,9 +1,14 @@
 [
   {
     "artist": "FERD",
-    "song": "J’ai créé un studio de musique pour moins de 100€",
+    "song": "Making of de Aya NaKORNura",
+    "date": "Jul 8, 2026",
+    "youtubeId": "jQEJ8EPNPog"
+  },
+  {
+    "artist": "FERD",
+    "song": "Studio à 100€",
     "date": "Jan 8, 2026",
-    "youtubeId": "ZjYpB4lzSW4",
-    "price": 250
+    "youtubeId": "ZjYpB4lzSW4"
   }
 ]

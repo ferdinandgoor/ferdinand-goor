@@ -51,7 +51,6 @@ type MashupItem = {
   slug: string;
   date: string;
   youtubeId: string;
-  price: number;
   landing?: {
     artist?: string;
     title?: string;

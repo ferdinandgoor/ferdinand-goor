@@ -7,7 +7,6 @@ interface ListProps {
     date: string;
     song: string;
     youtubeId: string;
-    price: number;
   }[];
   maxSize: number;
 }
@@ -47,7 +46,6 @@ const List = ({ title, data, maxSize }: ListProps) => (
         justifyItems: "center",
       }}
     >
-      {/* Gain total : {data.reduce((total, current) => total += current.price, 0)} */}
       {[...data]
         .sort((a, b) => {
           const dateA = new Date(a.date);

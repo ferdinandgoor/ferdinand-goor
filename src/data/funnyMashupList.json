@@ -1,21 +1,20 @@
 [
   {
     "artist": "FERD",
-    "song": "Metallica + K.Maro Mashup",
+    "song": "K.Maro Version Metallica",
     "slug": "metallica-kmaro",
     "date": "Jul 17, 2026",
     "youtubeId": "nWQvi1fTAxg",
-    "price": 250,
     "landing": {
       "artist": "Ferd",
-      "title": "Metallica + K.Maro Mashup",
+      "title": "K.Maro Version Metallica",
       "kicker": "Mashup",
       "subtitle": "Le dernier mashup fun publié sur ma chaîne.",
       "profileIds": ["ferd"],
       "videos": [
         {
           "label": "Mashup",
-          "title": "Metallica + K.Maro Mashup",
+          "title": "K.Maro Version Metallica",
           "youtubeId": "nWQvi1fTAxg"
         }
       ],
@@ -31,21 +30,20 @@
   },
   {
     "artist": "FERD",
-    "song": "Aya Nakamura – Djadja (Version Korn)",
+    "song": "Aya Nakamura + Korn",
     "slug": "aya-korn",
     "date": "Jul 8, 2026",
     "youtubeId": "wgUIkQ0wJR0",
-    "price": 250,
     "landing": {
       "artist": "Ferd x Romain Gamain",
-      "title": "Djadja - Aya Nakamura Version Korn",
+      "title": "Aya Nakamura Version Korn",
       "kicker": "Mashup release",
       "subtitle": "Le mashup metal/pop par Ferd et Romain Gamain, avec le clip complet, le behind the scenes et les liens streaming.",
       "profileIds": ["ferd", "romain"],
       "videos": [
         {
           "label": "Clip officiel",
-          "title": "Djadja - Aya Nakamura Version Korn",
+          "title": "Aya Nakamura Version Korn",
           "youtubeId": "wgUIkQ0wJR0"
         },
         {
@@ -91,7 +89,6 @@
     "slug": "pzk-chui-bo-metal-cover",
     "date": "Feb 20, 2025",
     "youtubeId": "OfY2Fs9ku0E",
-    "price": 250,
     "landing": {
       "artist": "Ferd",
       "title": "PZK - Chui Bo (Metal Cover)",
@@ -121,7 +118,6 @@
     "slug": "fatal-bazouka-fous-ta-cagoule-metal-cover",
     "date": "Jan 17, 2025",
     "youtubeId": "QiPXZwJDoFY",
-    "price": 250,
     "landing": {
       "artist": "Ferd",
       "title": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",

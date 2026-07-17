@@ -28,13 +28,13 @@
 .links-page::before {
   z-index: -2;
   background: var(--links-bg-image) center 18% / cover no-repeat;
-  filter: blur(26px) saturate(0.86) brightness(0.62);
+  filter: blur(20px) saturate(0.98) brightness(0.95);
   transform: scale(1.12);
 }
 
 .links-page::after {
   z-index: -1;
-  background: linear-gradient(180deg, rgba(3, 3, 3, 0.56), rgba(3, 3, 3, 0.9) 72%, #030303);
+  background: linear-gradient(180deg, rgba(3, 3, 3, 0.22), rgba(3, 3, 3, 0.68) 72%, rgba(3, 3, 3, 0.86));
 }
 
 .links-shell {
@@ -56,8 +56,7 @@
 .links-kicker,
 .links-subtitle,
 .links-section-label,
-.links-feature-copy h2,
-.links-feature-copy p {
+.links-feature-copy h2 {
   margin: 0;
 }
 
@@ -257,11 +256,10 @@
   text-wrap: balance;
 }
 
-.links-feature-copy p:not(.links-section-label) {
-  color: var(--links-muted);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.45;
+.links-feature-secondary {
+  display: grid;
+  gap: 10px;
+  padding-top: 2px;
 }
 
 .links-artwork,
@@ -393,6 +391,10 @@
   width: fit-content;
 }
 
+.links-feature-more {
+  width: fit-content;
+}
+
 .links-socials,
 .links-mashup-pages,
 .links-music-videos {
@@ -444,6 +446,10 @@
 
 .links-social-tiktok > svg:first-child {
   color: #25f4ee;
+}
+
+.links-social-spotify > svg:first-child {
+  color: #1ed760;
 }
 
 .links-page-link {
@@ -574,6 +580,15 @@
 
   .links-feature-video .links-feature-copy {
     grid-column: 2;
+  }
+
+  .links-feature-secondary {
+    grid-column: 1 / -1;
+    padding-top: 2px;
+  }
+
+  .links-feature-more {
+    grid-column: 1 / -1;
   }
 
   .links-social-grid {
