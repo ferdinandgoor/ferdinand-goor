@@ -102,6 +102,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/aya-korn",
+    loader: () => redirect("/mashups/aya-korn"),
+  },
+  {
+    path: "/mashups/:slug",
     element: <MashupLanding />,
   },
   {

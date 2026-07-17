@@ -2,29 +2,147 @@
   {
     "artist": "FERD",
     "song": "Metallica + K.Maro Mashup",
+    "slug": "metallica-kmaro",
     "date": "Jul 17, 2026",
     "youtubeId": "nWQvi1fTAxg",
-    "price": 250
+    "price": 250,
+    "landing": {
+      "artist": "Ferd",
+      "title": "Metallica + K.Maro Mashup",
+      "kicker": "Mashup",
+      "subtitle": "Le dernier mashup fun publié sur ma chaîne.",
+      "profileIds": ["ferd"],
+      "videos": [
+        {
+          "label": "Mashup",
+          "title": "Metallica + K.Maro Mashup",
+          "youtubeId": "nWQvi1fTAxg"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir sur YouTube",
+          "href": "https://www.youtube.com/watch?v=nWQvi1fTAxg",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
   },
   {
     "artist": "FERD",
     "song": "Aya Nakamura – Djadja (Version Korn)",
+    "slug": "aya-korn",
     "date": "Jul 8, 2026",
     "youtubeId": "wgUIkQ0wJR0",
-    "price": 250
+    "price": 250,
+    "landing": {
+      "artist": "Ferd x Romain Gamain",
+      "title": "Djadja - Aya Nakamura Version Korn",
+      "kicker": "Mashup release",
+      "subtitle": "Le mashup metal/pop par Ferd et Romain Gamain, avec le clip complet, le behind the scenes et les liens streaming.",
+      "profileIds": ["ferd", "romain"],
+      "videos": [
+        {
+          "label": "Clip officiel",
+          "title": "Djadja - Aya Nakamura Version Korn",
+          "youtubeId": "wgUIkQ0wJR0"
+        },
+        {
+          "label": "Behind the scenes",
+          "title": "Behind the scenes par Romain Gamain",
+          "youtubeId": "jQEJ8EPNPog"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir le clip complet",
+          "href": "https://youtu.be/wgUIkQ0wJR0",
+          "platform": "youtube",
+          "isPrimary": true
+        },
+        {
+          "label": "Ecouter sur Spotify",
+          "href": "https://open.spotify.com/album/14uJMMjwiQeKTBi0QeWPso",
+          "platform": "spotify"
+        },
+        {
+          "label": "Ecouter sur Apple Music",
+          "href": "http://itunes.apple.com/album/id/6787368672",
+          "platform": "apple"
+        },
+        {
+          "label": "Ecouter sur Deezer",
+          "href": "https://www.deezer.com/fr/album/1020834781",
+          "platform": "deezer"
+        },
+        {
+          "label": "Behind the scenes",
+          "href": "https://www.youtube.com/watch?v=jQEJ8EPNPog",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
   },
   {
     "artist": "FERD",
     "song": "PZK - Chui Bo (Metal Cover)",
+    "slug": "pzk-chui-bo-metal-cover",
     "date": "Feb 20, 2025",
     "youtubeId": "OfY2Fs9ku0E",
-    "price": 250
+    "price": 250,
+    "landing": {
+      "artist": "Ferd",
+      "title": "PZK - Chui Bo (Metal Cover)",
+      "kicker": "Metal cover",
+      "subtitle": "Une reprise metal fun publiée sur ma chaîne.",
+      "profileIds": ["ferd"],
+      "videos": [
+        {
+          "label": "Cover",
+          "title": "PZK - Chui Bo (Metal Cover)",
+          "youtubeId": "OfY2Fs9ku0E"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir sur YouTube",
+          "href": "https://www.youtube.com/watch?v=OfY2Fs9ku0E",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
   },
   {
     "artist": "FERD",
     "song": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",
+    "slug": "fatal-bazouka-fous-ta-cagoule-metal-cover",
     "date": "Jan 17, 2025",
     "youtubeId": "QiPXZwJDoFY",
-    "price": 250
+    "price": 250,
+    "landing": {
+      "artist": "Ferd",
+      "title": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",
+      "kicker": "Metal cover",
+      "subtitle": "Une reprise metal fun publiée sur ma chaîne.",
+      "profileIds": ["ferd"],
+      "videos": [
+        {
+          "label": "Cover",
+          "title": "Fatal Bazouka - Fous Ta Cagoule (Metal Cover)",
+          "youtubeId": "QiPXZwJDoFY"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir sur YouTube",
+          "href": "https://www.youtube.com/watch?v=QiPXZwJDoFY",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
   }
 ]

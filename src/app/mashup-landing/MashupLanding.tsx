@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   FacebookLogo,
   InstagramLogo,
@@ -8,6 +9,7 @@ import {
   TiktokLogo,
   YoutubeLogo,
 } from "phosphor-react";
+import funnyMashupList from "@/data/funnyMashupList.json";
 import ferdPhoto from "./ferd.jpg";
 import imageAyaKorn from "./imageAyaKorn.png";
 import roroPhoto from "./roro.jpg";
@@ -30,121 +32,127 @@ type SocialLink = {
 };
 
 type ArtistProfile = {
+  id: string;
   name: string;
   photo: string;
   alt: string;
+  socials: SocialLink[];
 };
 
 type FeaturedVideo = {
   label: string;
   title: string;
-  embedUrl: string;
+  youtubeId: string;
 };
 
-const release = {
-  artist: "Ferd x Romain Gamain",
-  title: "Djadja - Aya Nakamura Version Korn",
-  kicker: "Mashup release",
-  subtitle:
-    "Le mashup metal/pop par Ferd et Romain Gamain, avec le clip complet, le behind the scenes et les liens streaming.",
-  backgroundImage: imageAyaKorn,
-  videos: [
+type MashupItem = {
+  artist: string;
+  song: string;
+  slug: string;
+  date: string;
+  youtubeId: string;
+  price: number;
+  landing?: {
+    artist?: string;
+    title?: string;
+    kicker?: string;
+    subtitle?: string;
+    profileIds?: string[];
+    videos?: FeaturedVideo[];
+    links?: ReleaseLink[];
+  };
+};
+
+const mashups = funnyMashupList as MashupItem[];
+
+const profileRegistry: Record<string, ArtistProfile> = {
+  ferd: {
+    id: "ferd",
+    name: "Ferd",
+    photo: ferdPhoto,
+    alt: "Portrait de Ferd",
+    socials: [
+      {
+        owner: "Ferd",
+        label: "YouTube",
+        href: "https://www.youtube.com/@ferd.process",
+        icon: "youtube",
+      },
+      {
+        owner: "Ferd",
+        label: "Instagram",
+        href: "https://www.instagram.com/ferd.process",
+        icon: "instagram",
+      },
+      {
+        owner: "Ferd",
+        label: "TikTok",
+        href: "https://www.tiktok.com/@ferd.process",
+        icon: "tiktok",
+      },
+    ],
+  },
+  romain: {
+    id: "romain",
+    name: "Romain",
+    photo: roroPhoto,
+    alt: "Portrait de Romain Gamain",
+    socials: [
+      {
+        owner: "Romain",
+        label: "YouTube",
+        href: "https://www.youtube.com/@romaingamain",
+        icon: "youtube",
+      },
+      {
+        owner: "Romain",
+        label: "Instagram",
+        href: "https://www.instagram.com/chezgamain/",
+        icon: "instagram",
+      },
+      {
+        owner: "Romain",
+        label: "TikTok",
+        href: "https://www.tiktok.com/@chezgamain",
+        icon: "tiktok",
+      },
+    ],
+  },
+};
+
+const backgroundImages: Record<string, string> = {
+  "aya-korn": imageAyaKorn,
+};
+
+const youtubeWatchUrl = (youtubeId: string) => `https://www.youtube.com/watch?v=${youtubeId}`;
+const youtubeEmbedUrl = (youtubeId: string) => `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`;
+const youtubeThumbnailUrl = (youtubeId: string) => `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
+
+const getRelease = (slug?: string) => mashups.find((mashup) => mashup.slug === slug) ?? mashups[0];
+
+const getReleaseLinks = (release: MashupItem): ReleaseLink[] =>
+  release.landing?.links ?? [
     {
-      label: "Clip officiel",
-      title: "Djadja - Aya Nakamura Version Korn",
-      embedUrl: "https://www.youtube-nocookie.com/embed/wgUIkQ0wJR0?rel=0",
-    },
-    {
-      label: "Behind the scenes",
-      title: "Behind the scenes par Romain Gamain",
-      embedUrl: "https://www.youtube-nocookie.com/embed/jQEJ8EPNPog?rel=0",
-    },
-  ] satisfies FeaturedVideo[],
-  links: [
-    {
-      label: "Voir le clip complet",
-      href: "https://youtu.be/wgUIkQ0wJR0",
+      label: "Voir sur YouTube",
+      href: youtubeWatchUrl(release.youtubeId),
       platform: "youtube",
       isPrimary: true,
     },
-    {
-      label: "Ecouter sur Spotify",
-      href: "https://open.spotify.com/album/14uJMMjwiQeKTBi0QeWPso",
-      platform: "spotify",
-    },
-    {
-      label: "Ecouter sur Apple Music",
-      href: "http://itunes.apple.com/album/id/6787368672",
-      platform: "apple",
-    },
-    {
-      label: "Ecouter sur Deezer",
-      href: "https://www.deezer.com/fr/album/1020834781",
-      platform: "deezer",
-    },
-    {
-      label: "Behind the scenes",
-      href: "https://www.youtube.com/watch?v=jQEJ8EPNPog",
-      platform: "youtube",
-      isPrimary: true,
-    },
-  ] satisfies ReleaseLink[],
-  socials: [
-    {
-      owner: "Ferd",
-      label: "YouTube",
-      href: "https://www.youtube.com/@ferd.process",
-      icon: "youtube",
-    },
-    {
-      owner: "Ferd",
-      label: "Instagram",
-      href: "https://www.instagram.com/ferd.process",
-      icon: "instagram",
-    },
-    {
-      owner: "Ferd",
-      label: "TikTok",
-      href: "https://www.tiktok.com/@ferd.process",
-      icon: "tiktok",
-    },
-    {
-      owner: "Romain",
-      label: "YouTube",
-      href: "https://www.youtube.com/@romaingamain",
-      icon: "youtube",
-    },
-    {
-      owner: "Romain",
-      label: "Instagram",
-      href: "https://www.instagram.com/chezgamain/",
-      icon: "instagram",
-    },
-    {
-      owner: "Romain",
-      label: "TikTok",
-      href: "https://www.tiktok.com/@chezgamain",
-      icon: "tiktok",
-    },
-  ] satisfies SocialLink[],
-  profiles: [
-    {
-      name: "Ferd",
-      photo: ferdPhoto,
-      alt: "Portrait de Ferd",
-    },
-    {
-      name: "Romain",
-      photo: roroPhoto,
-      alt: "Portrait de Romain Gamain",
-    },
-  ] satisfies ArtistProfile[],
-};
+  ];
 
-const socialGroups = release.socials.reduce<Record<string, SocialLink[]>>((groups, social) => {
-  groups[social.owner] = [...(groups[social.owner] ?? []), social];
-  return groups;
-}, {});
+const getReleaseVideos = (release: MashupItem): FeaturedVideo[] =>
+  release.landing?.videos ?? [
+    {
+      label: "Video",
+      title: release.song,
+      youtubeId: release.youtubeId,
+    },
+  ];
+
+const getProfiles = (release: MashupItem) =>
+  (release.landing?.profileIds ?? ["ferd"])
+    .map((profileId) => profileRegistry[profileId])
+    .filter(Boolean);
 
 const platformIcon = (platform: Platform) => {
   switch (platform) {
@@ -259,32 +267,42 @@ const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
 };
 
 const MashupLanding = () => {
+  const { slug } = useParams();
+  const release = getRelease(slug);
+  const releaseTitle = release.landing?.title ?? release.song;
+  const releaseArtist = release.landing?.artist ?? release.artist;
+  const releaseSubtitle = release.landing?.subtitle ?? "Le mashup complet et les liens utiles.";
+  const backgroundImage = backgroundImages[release.slug] ?? youtubeThumbnailUrl(release.youtubeId);
+  const profiles = getProfiles(release);
+  const links = getReleaseLinks(release);
+  const videos = getReleaseVideos(release);
+
   useEffect(() => {
-    document.title = `${release.title} | ${release.artist}`;
-  }, []);
+    document.title = `${releaseTitle} | ${releaseArtist}`;
+  }, [releaseArtist, releaseTitle]);
 
   return (
     <main
       className="mashup-page"
-      style={{ "--mashup-bg-image": `url(${release.backgroundImage})` } as React.CSSProperties}
+      style={{ "--mashup-bg-image": `url(${backgroundImage})` } as React.CSSProperties}
     >
-      <section className="mashup-shell" aria-label={release.title}>
+      <section className="mashup-shell" aria-label={releaseTitle}>
         <header className="mashup-hero">
-          <p className="mashup-kicker">{release.kicker}</p>
-          <h1>{release.title}</h1>
-          <p className="mashup-artist">{release.artist}</p>
-          <p className="mashup-subtitle">{release.subtitle}</p>
+          <p className="mashup-kicker">{release.landing?.kicker ?? "Mashup"}</p>
+          <h1>{releaseTitle}</h1>
+          <p className="mashup-artist">{releaseArtist}</p>
+          <p className="mashup-subtitle">{releaseSubtitle}</p>
         </header>
 
         <section className="mashup-release-card" aria-label="Release video and links">
           <div className="mashup-featured-videos">
-            {release.videos.map((video) => (
-              <article className="mashup-video-feature" key={video.embedUrl}>
+            {videos.map((video) => (
+              <article className="mashup-video-feature" key={video.youtubeId}>
                 <p>{video.label}</p>
                 <div className="mashup-video">
                   <iframe
                     loading="lazy"
-                    src={video.embedUrl}
+                    src={youtubeEmbedUrl(video.youtubeId)}
                     title={video.title}
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -295,19 +313,19 @@ const MashupLanding = () => {
           </div>
 
           <div className="mashup-links" aria-label="Streaming links">
-            {release.links.map((link) => (
-              <ReleaseButton key={`${link.platform}-${link.label}`} link={link} />
+            {links.map((link) => (
+              <ReleaseButton key={`${link.platform}-${link.href}`} link={link} />
             ))}
           </div>
         </section>
 
         <section className="mashup-socials" aria-label="Social links">
-          {release.profiles.map((profile) => (
-            <div className="mashup-social-group" key={profile.name}>
+          {profiles.map((profile) => (
+            <div className="mashup-social-group" key={profile.id}>
               <img src={profile.photo} alt={profile.alt} loading="lazy" />
               <p>{profile.name}</p>
               <div>
-                {(socialGroups[profile.name] ?? []).map((social) => (
+                {profile.socials.map((social) => (
                   <a
                     key={`${social.owner}-${social.label}`}
                     className={`mashup-social mashup-social-${social.icon}`}
