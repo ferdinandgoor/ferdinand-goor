@@ -85,6 +85,10 @@ const VideoFeature = ({ label, description, video, buttonLabel, moreHref, moreLa
 
   return (
     <section className="links-feature links-feature-video" aria-label={label}>
+      <div className="links-feature-heading">
+        <p className="links-section-label">{label}</p>
+        <h2>{video.song}</h2>
+      </div>
       <a
         className="links-thumbnail"
         href={href}
@@ -98,8 +102,6 @@ const VideoFeature = ({ label, description, video, buttonLabel, moreHref, moreLa
         </span>
       </a>
       <div className="links-feature-copy">
-        <p className="links-section-label">{label}</p>
-        <h2>{video.song}</h2>
         <p>{description}</p>
         <a className="links-button links-button-primary" href={href} target="_blank" rel="noopener noreferrer">
           <YoutubeLogo weight="fill" aria-hidden="true" />
