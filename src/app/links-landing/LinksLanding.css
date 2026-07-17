@@ -315,7 +315,8 @@
 .links-button,
 .links-social,
 .links-page-link,
-.links-more-link {
+.links-more-link,
+.links-main-page-link {
   color: var(--links-ink);
   text-decoration: none;
   transition:
@@ -383,6 +384,31 @@
 }
 
 .links-more-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.links-main-page-link {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 4px 0 10px;
+  display: grid;
+  grid-template-columns: max-content 16px;
+  align-items: center;
+  gap: 8px;
+  color: var(--links-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.links-main-page-link:hover {
+  color: var(--links-ink);
+}
+
+.links-main-page-link svg {
   width: 16px;
   height: 16px;
 }

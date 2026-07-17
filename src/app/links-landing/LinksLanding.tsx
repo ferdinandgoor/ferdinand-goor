@@ -289,6 +289,11 @@ const LinksLanding = () => {
             <ArrowSquareOut weight="bold" aria-hidden="true" />
           </Link>
         </section>
+
+        <Link className="links-main-page-link" to="/">
+          <span>Tout mon univers</span>
+          <ArrowSquareOut weight="bold" aria-hidden="true" />
+        </Link>
       </section>
     </main>
   );

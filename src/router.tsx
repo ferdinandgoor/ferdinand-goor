@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { useEffect, type ReactNode } from "react";
+import { createBrowserRouter, redirect, useLocation } from "react-router-dom";
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
 import Home from "./app/page";
 import LinksLanding from "./app/links-landing/LinksLanding";
@@ -18,6 +18,16 @@ export type TabHandle = {
   path: string;
   headerImage: string;
   headerSubtitle: string;
+};
+
+const ScrollToTop = ({ children }: { children: ReactNode }) => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [pathname]);
+
+  return children;
 };
 
 export const tabs: TabHandle[] = [
@@ -69,23 +79,35 @@ export const router = createBrowserRouter([
   },
   {
     path: "/music-videos",
-    element: <Home />,
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
     loader: () => ({ list: musicVideoList }),
     handle: tabs[0],
   },
   {
     path: "/music-production",
-    element: <Home />,
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
     loader: () => ({ list: musicProductionList }),
     handle: tabs[1],
   },
   {
     path: "/youtube-videos",
-    element: <Home />,
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
     loader: () => ({
       sections: [
         {
-          title: "Videos a pousser",
+          title: "Grosses vidéos",
           list: bigYoutubeVideoList,
         },
         {
@@ -106,11 +128,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/mashups/:slug",
-    element: <MashupLanding />,
+    element: (
+      <ScrollToTop>
+        <MashupLanding />
+      </ScrollToTop>
+    ),
   },
   {
     path: "/links",
-    element: <LinksLanding />,
+    element: (
+      <ScrollToTop>
+        <LinksLanding />
+      </ScrollToTop>
+    ),
   },
   {
     path: "*",

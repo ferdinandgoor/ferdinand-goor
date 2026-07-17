@@ -5,6 +5,7 @@ import Select from "@/components/select";
 import useCurrentTab from "@/hooks/useCurrentTab";
 import { tabs } from "@/router";
 import { TiktokLogo } from "phosphor-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const currentTab = useCurrentTab();
@@ -71,16 +72,16 @@ const Header = () => {
             width: "100%",
           }}
         >
-          <a
+          <Link
             style={{
               color: "white",
               textTransform: "uppercase",
               textDecoration: "none",
             }}
-            href="#my-work"
+            to="/links"
           >
-            My Work
-          </a>
+            Links
+          </Link>
           <a
             style={{
               color: "white",
