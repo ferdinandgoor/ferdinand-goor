@@ -39,9 +39,9 @@ type VideoFeatureProps = {
 
 const youtubeChannelUrl = "https://www.youtube.com/@ferd.process";
 const spotifyArtistUrl = "https://open.spotify.com/artist/15Z2HnTByQHjpyLZrHB3vs";
-const mashupPlaylistUrl = "https://www.youtube.com/watch?v=QiPXZwJDoFY&list=PLTGarG5bkXoA";
-const longVideosPlaylistUrl = "https://www.youtube.com/watch?v=jQEJ8EPNPog&list=PLOGfm0l52k3g";
-const gearPlaylistUrl = "https://www.youtube.com/watch?v=Nm4eX1_C-Kk&list=PLOvnmxmjrjv4";
+const mashupPlaylistUrl = "https://www.youtube.com/playlist?list=PLTGarG5bkXoA";
+const longVideosPlaylistUrl = "https://www.youtube.com/playlist?list=PLOGfm0l52k3g";
+const gearPlaylistUrl = "https://www.youtube.com/playlist?list=PLOvnmxmjrjv4";
 
 const youtubeWatchUrl = (youtubeId: string) => `https://www.youtube.com/watch?v=${youtubeId}`;
 

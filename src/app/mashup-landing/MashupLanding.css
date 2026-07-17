@@ -35,8 +35,7 @@
 }
 
 .mashup-kicker,
-.mashup-artist,
-.mashup-subtitle {
+.mashup-artist {
   margin: 0;
 }
 
@@ -64,15 +63,6 @@
   font-size: 0.76rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-.mashup-subtitle {
-  color: rgba(245, 243, 238, 0.82);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  max-width: 34rem;
-  margin-inline: auto;
 }
 
 .mashup-release-card {

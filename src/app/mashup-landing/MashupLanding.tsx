@@ -55,7 +55,6 @@ type MashupItem = {
     artist?: string;
     title?: string;
     kicker?: string;
-    subtitle?: string;
     profileIds?: string[];
     videos?: FeaturedVideo[];
     links?: ReleaseLink[];
@@ -270,7 +269,6 @@ const MashupLanding = () => {
   const release = getRelease(slug);
   const releaseTitle = release.landing?.title ?? release.song;
   const releaseArtist = release.landing?.artist ?? release.artist;
-  const releaseSubtitle = release.landing?.subtitle ?? "Le mashup complet et les liens utiles.";
   const backgroundImage = backgroundImages[release.slug] ?? youtubeThumbnailUrl(release.youtubeId);
   const profiles = getProfiles(release);
   const links = getReleaseLinks(release);
@@ -290,7 +288,6 @@ const MashupLanding = () => {
           <p className="mashup-kicker">{release.landing?.kicker ?? "Mashup"}</p>
           <h1>{releaseTitle}</h1>
           <p className="mashup-artist">{releaseArtist}</p>
-          <p className="mashup-subtitle">{releaseSubtitle}</p>
         </header>
 
         <section className="mashup-release-card" aria-label="Release video and links">
