@@ -29,6 +29,34 @@
   },
   {
     "artist": "FERD",
+    "song": "Rise Of La Boulette",
+    "slug": "rise-of-la-boulette",
+    "date": "Apr 21, 2026",
+    "youtubeId": "Mhi2tiJHBiM",
+    "landing": {
+      "artist": "Ferd",
+      "title": "Rise Of La Boulette",
+      "kicker": "Mashup",
+      "profileIds": ["ferd"],
+      "videos": [
+        {
+          "label": "Mashup",
+          "title": "Rise Of La Boulette",
+          "youtubeId": "Mhi2tiJHBiM"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir sur YouTube",
+          "href": "https://www.youtube.com/watch?v=Mhi2tiJHBiM",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
+  },
+  {
+    "artist": "FERD",
     "song": "Aya Nakamura + Korn",
     "slug": "aya-korn",
     "date": "Jul 8, 2026",
