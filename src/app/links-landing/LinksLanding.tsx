@@ -1,10 +1,9 @@
-import { Fragment, ReactNode, useEffect } from "react";
+import { useEffect } from "react";
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowSquareOut,
-  Bell,
   InstagramLogo,
-  Play,
   SpotifyLogo,
   TiktokLogo,
   YoutubeLogo,
@@ -14,27 +13,16 @@ import funnyMashupList from "@/data/funnyMashupList.json";
 import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
 import musicVideoList from "@/data/musicVideoList.json";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
+import LinksVideoBlock from "./LinksVideoBlock";
+import type {
+  LinksVideo,
+  LinksVideoBlockProps,
+} from "./LinksVideoBlock";
 import "./LinksLanding.css";
 
-type YoutubeVideo = {
-  artist: string;
-  song: string;
-  slug?: string;
-  date: string;
-  youtubeId: string;
-  landing?: {
-    artist?: string;
-    title?: string;
-  };
-};
-
-type VideoFeatureProps = {
-  label: string;
-  video: YoutubeVideo;
-  buttonLabel: string;
-  moreHref: string;
-  moreLabel: string;
-  children?: ReactNode;
+type VideoBlock = Omit<LinksVideoBlockProps, "primaryVideo" | "secondaryVideos"> & {
+  key: string;
+  videos: LinksVideo[];
 };
 
 const youtubeChannelUrl = "https://www.youtube.com/@ferd.process";
@@ -43,28 +31,54 @@ const mashupPlaylistUrl = "https://www.youtube.com/playlist?list=PLTGarG5bkXoA";
 const longVideosPlaylistUrl = "https://www.youtube.com/playlist?list=PLOGfm0l52k3g";
 const gearPlaylistUrl = "https://www.youtube.com/playlist?list=PLOvnmxmjrjv4";
 
-const youtubeWatchUrl = (youtubeId: string) => `https://www.youtube.com/watch?v=${youtubeId}`;
-
-const getVideoTimestamp = (video?: YoutubeVideo) =>
+const getVideoTimestamp = (video?: LinksVideo) =>
   video ? new Date(video.date).getTime() : 0;
 
-const getLatestVideo = (videos: YoutubeVideo[]) =>
-  [...videos].sort((a, b) => getVideoTimestamp(b) - getVideoTimestamp(a))[0];
+const getRecentVideos = (videos: LinksVideo[]) =>
+  [...videos]
+    .sort((a, b) => getVideoTimestamp(b) - getVideoTimestamp(a))
+    .slice(0, 3);
 
-const latestFeaturedVideo = getLatestVideo(bigYoutubeVideoList);
-const latestMashup = getLatestVideo(funnyMashupList);
-const latestGearVideo = getLatestVideo(gearYoutubeVideoList);
-const nextFeaturedVideos = [...(bigYoutubeVideoList as YoutubeVideo[])]
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(1, 3);
-const latestMashupPages = [...(funnyMashupList as YoutubeVideo[])]
-  .filter((mashup) => mashup.slug)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(1, 3);
-const latestMusicVideos = [...(musicVideoList as YoutubeVideo[])]
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0, 2);
-const latestMusicVideo = latestMusicVideos[0];
+const videoBlocks: VideoBlock[] = [
+  {
+    key: "mashups",
+    label: "Dernier mashup",
+    secondaryLabel: "Autres mashups metal",
+    buttonLabel: "Voir le mashup",
+    moreHref: mashupPlaylistUrl,
+    moreLabel: "Voir plus de mashups",
+    videos: getRecentVideos(funnyMashupList),
+  },
+  {
+    key: "long-videos",
+    label: "À voir aussi",
+    secondaryLabel: "Autres vidéos longues",
+    buttonLabel: "Voir la vidéo",
+    moreHref: longVideosPlaylistUrl,
+    moreLabel: "Voir plus de vidéos longues",
+    videos: getRecentVideos(bigYoutubeVideoList),
+  },
+  {
+    key: "gear",
+    label: "Matos et prod",
+    secondaryLabel: "Autres vidéos matos et prod",
+    buttonLabel: "Voir la vidéo",
+    moreHref: gearPlaylistUrl,
+    moreLabel: "Voir plus de tests matos",
+    videos: getRecentVideos(gearYoutubeVideoList),
+  },
+  {
+    key: "music-videos",
+    label: "Dernier clip réalisé",
+    secondaryLabel: "Autres clips réalisés",
+    buttonLabel: "Voir le clip",
+    moreHref: "/music-videos",
+    moreLabel: "Voir plus de clips",
+    videos: getRecentVideos(musicVideoList),
+  },
+].sort(
+  (a, b) => getVideoTimestamp(b.videos[0]) - getVideoTimestamp(a.videos[0]),
+);
 
 const socials = [
   {
@@ -93,197 +107,16 @@ const socials = [
   },
 ];
 
-const VideoFeature = ({
-  label,
-  video,
-  buttonLabel,
-  moreHref,
-  moreLabel,
-  children,
-}: VideoFeatureProps) => {
-  const href = youtubeWatchUrl(video.youtubeId);
-  const isExternalMoreLink = moreHref.startsWith("http");
-
-  return (
-    <section className="links-feature links-feature-video" aria-label={label}>
-      <div className="links-feature-heading">
-        <p className="links-section-label">{label}</p>
-        <h2>{video.song}</h2>
-      </div>
-      <a
-        className="links-thumbnail"
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Regarder ${video.song} sur YouTube`}
-      >
-        <img src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" />
-        <span>
-          <Play weight="fill" aria-hidden="true" />
-        </span>
-      </a>
-      <div className="links-feature-copy">
-        <a className="links-button links-button-primary" href={href} target="_blank" rel="noopener noreferrer">
-          <YoutubeLogo weight="fill" aria-hidden="true" />
-          <span>{buttonLabel}</span>
-        </a>
-      </div>
-      {children}
-      {isExternalMoreLink ? (
-        <a className="links-more-link links-feature-more" href={moreHref} target="_blank" rel="noopener noreferrer">
-          <span>{moreLabel}</span>
-          <ArrowSquareOut weight="bold" aria-hidden="true" />
-        </a>
-      ) : (
-        <Link className="links-more-link links-feature-more" to={moreHref}>
-          <span>{moreLabel}</span>
-          <ArrowSquareOut weight="bold" aria-hidden="true" />
-        </Link>
-      )}
-    </section>
-  );
-};
-
 const LinksLanding = () => {
   useEffect(() => {
     document.title = "Ferd | Links";
   }, []);
 
-  const contentSections = [
-    {
-      key: "mashups",
-      latestTimestamp: getVideoTimestamp(latestMashup),
-      content: latestMashup ? (
-        <VideoFeature
-          label="Dernier mashup"
-          video={latestMashup}
-          buttonLabel="Voir le mashup"
-          moreHref={mashupPlaylistUrl}
-          moreLabel="Voir plus de mashups"
-        >
-          <div className="links-feature-secondary" aria-label="Autres mashups metal">
-            <p className="links-section-label">Autres mashups metal</p>
-            <div className="links-page-list">
-              {latestMashupPages.map((page) => (
-                <a
-                  className="links-page-link"
-                  href={youtubeWatchUrl(page.youtubeId)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={page.slug}
-                >
-                  <img
-                    src={`https://i.ytimg.com/vi/${page.youtubeId}/hqdefault.jpg`}
-                    alt=""
-                    loading="lazy"
-                  />
-                  <span>
-                    <strong>{page.landing?.title ?? page.song}</strong>
-                    <small>{page.landing?.artist ?? page.artist}</small>
-                  </span>
-                  <YoutubeLogo weight="fill" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </VideoFeature>
-      ) : null,
-    },
-    {
-      key: "long-videos",
-      latestTimestamp: getVideoTimestamp(latestFeaturedVideo),
-      content: latestFeaturedVideo ? (
-        <VideoFeature
-          label="À voir aussi"
-          video={latestFeaturedVideo}
-          buttonLabel="Voir la vidéo"
-          moreHref={longVideosPlaylistUrl}
-          moreLabel="Voir plus de vidéos longues"
-        >
-          {nextFeaturedVideos.length > 0 ? (
-            <div className="links-feature-secondary" aria-label="Autres vidéos longues">
-              <p className="links-section-label">Autres vidéos longues</p>
-              <div className="links-page-list">
-                {nextFeaturedVideos.map((video) => (
-                  <a
-                    className="links-page-link"
-                    href={youtubeWatchUrl(video.youtubeId)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={video.youtubeId}
-                  >
-                    <img
-                      src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
-                      alt=""
-                      loading="lazy"
-                    />
-                    <span>
-                      <strong>{video.song}</strong>
-                      <small>{video.artist}</small>
-                    </span>
-                    <YoutubeLogo weight="fill" aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          ) : null}
-        </VideoFeature>
-      ) : null,
-    },
-    {
-      key: "gear",
-      latestTimestamp: getVideoTimestamp(latestGearVideo),
-      content: latestGearVideo ? (
-        <VideoFeature
-          label="Matos et prod"
-          video={latestGearVideo}
-          buttonLabel="Voir la vidéo"
-          moreHref={gearPlaylistUrl}
-          moreLabel="Voir plus de tests matos"
-        />
-      ) : null,
-    },
-    {
-      key: "music-videos",
-      latestTimestamp: getVideoTimestamp(latestMusicVideo),
-      content: latestMusicVideo ? (
-        <section className="links-music-videos" aria-label="Derniers clips réalisés">
-          <p className="links-section-label">Derniers clips réalisés</p>
-          <div className="links-video-list">
-            {latestMusicVideos.map((video) => (
-              <a
-                className="links-video-link"
-                href={youtubeWatchUrl(video.youtubeId)}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={video.youtubeId}
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
-                  alt=""
-                  loading="lazy"
-                />
-                <span>
-                  <strong>{video.song}</strong>
-                  <small>{video.artist}</small>
-                </span>
-                <YoutubeLogo weight="fill" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <Link className="links-more-link links-section-more" to="/music-videos">
-            <span>Voir plus de clips</span>
-            <ArrowSquareOut weight="bold" aria-hidden="true" />
-          </Link>
-        </section>
-      ) : null,
-    },
-  ]
-    .filter((section) => section.content)
-    .sort((a, b) => b.latestTimestamp - a.latestTimestamp);
-
   return (
-    <main className="links-page" style={{ "--links-bg-image": `url(${ferdPhoto})` } as React.CSSProperties}>
+    <main
+      className="links-page"
+      style={{ "--links-bg-image": `url(${ferdPhoto})` } as CSSProperties}
+    >
       <section className="links-shell" aria-label="Ferd links">
 
         <section className="links-profile" aria-label="Profil Ferd">
@@ -313,11 +146,16 @@ const LinksLanding = () => {
           </div>
         </section>
 
-        {contentSections.map((section) => (
-          <Fragment key={section.key}>
-            {section.content}
-          </Fragment>
-        ))}
+        {videoBlocks.map(({ key, videos, ...blockProps }) =>
+          videos[0] ? (
+            <LinksVideoBlock
+              key={key}
+              {...blockProps}
+              primaryVideo={videos[0]}
+              secondaryVideos={videos.slice(1)}
+            />
+          ) : null,
+        )}
 
         <Link className="links-main-page-link" to="/">
           <span>Tout mon univers</span>
