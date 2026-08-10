@@ -60,6 +60,8 @@ const LinksVideoBlock = ({
         <img
           src={`https://i.ytimg.com/vi/${primaryVideo.youtubeId}/hqdefault.jpg`}
           alt=""
+          width="480"
+          height="360"
           loading="lazy"
         />
         <span>
@@ -94,6 +96,8 @@ const LinksVideoBlock = ({
                 <img
                   src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
                   alt=""
+                  width="480"
+                  height="360"
                   loading="lazy"
                 />
                 <span>

@@ -1,9 +1,23 @@
 RewriteEngine On
 Options -MultiViews
 
-# Force HTTPS
-RewriteCond %{ENV:HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# Force HTTPS and keep a single canonical host in one redirect.
+RewriteCond %{ENV:HTTPS} !on [OR]
+RewriteCond %{HTTP_HOST} ^www\.ferd\.fr$ [NC]
+RewriteRule ^ https://ferd.fr%{REQUEST_URI} [R=301,L]
+
+# Cache immutable Vite assets for one year and public media for one month.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+</IfModule>
 
 # SPA fallback: routes to index.html
 RewriteCond %{REQUEST_FILENAME} !-f

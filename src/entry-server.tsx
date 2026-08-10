@@ -6,6 +6,7 @@ import {
   StaticRouterProvider,
 } from "react-router-dom/server";
 import { routes } from "./router";
+export { absoluteUrl, getSeoData, getStructuredData, siteConfig } from "./seo";
 
 export async function render(url: string) {
   const { query, dataRoutes } = createStaticHandler(routes);

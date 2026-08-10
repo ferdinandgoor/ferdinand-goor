@@ -11,18 +11,21 @@ const Header = () => {
   const currentTab = useCurrentTab();
   const fallback = tabs[0];
   const image =
-    currentTab?.headerImage ?? fallback?.headerImage ?? "/video.png";
+    currentTab?.headerImage ?? fallback?.headerImage ?? "/video.webp";
   const subtitle =
     currentTab?.headerSubtitle ??
     fallback?.headerSubtitle ??
     "I make music videos\nfor cool artists";
 
   return (
-    <div
+    <header
       style={{
         position: "relative",
       }}
     >
+      <a className="skip-link" href="#main-work">
+        Aller au contenu principal
+      </a>
       <div
         className="header-bg"
         style={{
@@ -106,13 +109,15 @@ const Header = () => {
             }}
           >
             <h1
-              aria-label="Ferd"
               style={{
                 height: "200px",
                 color: "#00ff0d",
                 margin: 0,
               }}
             >
+              <span className="visually-hidden">
+                {currentTab?.label ?? fallback.label} par Ferd
+              </span>
               <Ferd />
             </h1>
             <div
@@ -207,7 +212,7 @@ const Header = () => {
         }
       `}</style>
       </div>
-    </div>
+    </header>
   );
 };
 

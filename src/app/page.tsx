@@ -2,14 +2,15 @@ import Header from "../components/header/Header";
 import Panels from "@/components/panels";
 
 const Home = () => (
-  <div
+  <main
+    id="main-content"
     style={{
       position: "relative",
     }}
   >
     <Header />
     <Panels />
-  </div>
+  </main>
 );
 
 export default Home;

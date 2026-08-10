@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { tabs as items } from "@/router";
 
 const Select = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
   const currentTab = useCurrentTab();
@@ -51,7 +51,8 @@ const Select = () => {
   }, [selectedId]);
 
   return (
-    <div
+    <nav
+      aria-label="Catégories du portfolio"
       className="select-tabs"
       ref={containerRef}
       tabIndex={0}
@@ -135,7 +136,7 @@ const Select = () => {
           }
         }
       `}</style>
-    </div>
+    </nav>
   );
 };
 

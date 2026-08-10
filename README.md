@@ -1,38 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ferd
 
-## Getting Started
+Portfolio React 18 construit avec Vite 5 et React Router. Les routes publiques sont pré-rendues au build, puis hydratées dans le navigateur. La production reste un hébergement statique : seul `dist/` doit être publié.
 
-First, run the development server:
+## Développement
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Validation et build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run verify:prerender
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Le build client est écrit dans `dist/`. Le bundle SSR temporaire `dist-ssr/` sert uniquement au pré-rendu et ne doit jamais être déployé.
 
-## Learn More
+## SEO et Google Search Console
 
-To learn more about Next.js, take a look at the following resources:
+Le domaine canonique est `https://ferd.fr`. Les métadonnées partagées et les données structurées sont centralisées dans `src/seo.ts`. Les routes indexables sont déclarées dans `public/sitemap.xml` et référencées par `public/robots.txt`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Pour ajouter la balise de validation Search Console, copier `.env.example` vers `.env.local` puis renseigner :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```dotenv
+VITE_GOOGLE_SITE_VERIFICATION=jeton_fourni_par_google
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-force deploy
+Après déploiement, soumettre `https://ferd.fr/sitemap.xml` dans Search Console.

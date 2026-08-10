@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   FacebookLogo,
@@ -11,7 +10,7 @@ import {
 } from "phosphor-react";
 import funnyMashupList from "@/data/funnyMashupList.json";
 import ferdPhoto from "./ferd.jpg";
-import imageAyaKorn from "./imageAyaKorn.png";
+import imageAyaKorn from "./imageAyaKorn.webp";
 import roroPhoto from "./roro.jpg";
 import "./MashupLanding.css";
 
@@ -274,12 +273,9 @@ const MashupLanding = () => {
   const links = getReleaseLinks(release);
   const videos = getReleaseVideos(release);
 
-  useEffect(() => {
-    document.title = `${releaseTitle} | ${releaseArtist}`;
-  }, [releaseArtist, releaseTitle]);
-
   return (
     <main
+      id="main-content"
       className="mashup-page"
       style={{ "--mashup-bg-image": `url(${backgroundImage})` } as React.CSSProperties}
     >

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -108,12 +107,9 @@ const socials = [
 ];
 
 const LinksLanding = () => {
-  useEffect(() => {
-    document.title = "Ferd | Links";
-  }, []);
-
   return (
     <main
+      id="main-content"
       className="links-page"
       style={{ "--links-bg-image": `url(${ferdPhoto})` } as CSSProperties}
     >

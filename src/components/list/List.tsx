@@ -17,7 +17,7 @@ const List = ({ title, data, maxSize }: ListProps) => (
       padding: "16px",
       // backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
     }}
-    id="my-work"
+    id="main-work"
   >
     {title ? (
       <h2

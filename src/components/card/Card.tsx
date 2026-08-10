@@ -7,7 +7,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
 
   return (
     <>
-      <div
+      <article
         className="list-item"
         style={{
           maxWidth: "600px",
@@ -79,6 +79,8 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
               <img
                 src={thumbnail}
                 alt={`${artist} - ${song}`}
+                width="480"
+                height="360"
                 loading="lazy"
                 style={{
                   position: "absolute",
@@ -127,7 +129,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
             </button>
           )}
         </div>
-      </div>
+      </article>
       <style>{`
       .list-item {
         transition: transform 180ms ease, filter 180ms ease;

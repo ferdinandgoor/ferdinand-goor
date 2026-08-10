@@ -14,6 +14,7 @@ import funnyMashupList from "./data/funnyMashupList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
 import musicVideoList from "./data/musicVideoList.json";
 import musicProductionList from "./data/musicProductionList.json";
+import SeoManager from "./components/SeoManager";
 
 export type TabHandle = {
   id: number;
@@ -32,7 +33,12 @@ const ScrollToTop = ({ children }: { children: ReactNode }) => {
     window.scrollTo({ top: 0, left: 0 });
   }, [pathname]);
 
-  return children;
+  return (
+    <>
+      <SeoManager />
+      {children}
+    </>
+  );
 };
 
 export const tabs: TabHandle[] = [
@@ -42,7 +48,7 @@ export const tabs: TabHandle[] = [
     icon: <VideoCamera size={24} />,
     video: "overfloodedLight.mp4",
     path: "/music-videos",
-    headerImage: "/video.png",
+    headerImage: "/video.webp",
     headerSubtitle: "I make music videos\nfor cool artists",
   },
   {
@@ -51,7 +57,7 @@ export const tabs: TabHandle[] = [
     icon: <MusicNote size={24} />,
     video: "overfloodedLight.mp4",
     path: "/music-production",
-    headerImage: "/music.png",
+    headerImage: "/music.webp",
     headerSubtitle: "I produce music\nfor cool artists",
   },
   {
@@ -60,7 +66,7 @@ export const tabs: TabHandle[] = [
     icon: <YoutubeLogo size={24} />,
     video: "artificialafter.mp4",
     path: "/youtube-videos",
-    headerImage: "/youtube.png",
+    headerImage: "/youtube.webp",
     headerSubtitle: "I make content\nfor YouTube",
   },
 ];

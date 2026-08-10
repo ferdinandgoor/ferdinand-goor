@@ -487,6 +487,7 @@
 
 .links-page-link img {
   width: 104px;
+  height: auto;
   aspect-ratio: 16 / 9;
   display: block;
   object-fit: cover;
