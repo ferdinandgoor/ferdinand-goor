@@ -1,11 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./router";
+import { createRouter } from "./router";
 import "./globals.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root");
+
+if (!root) {
+  throw new Error('React mount point "#root" was not found.');
+}
+
+hydrateRoot(
+  root,
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={createRouter()} />
   </React.StrictMode>
 );

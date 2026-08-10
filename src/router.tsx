@@ -1,5 +1,10 @@
 import { useEffect, type ReactNode } from "react";
-import { createBrowserRouter, redirect, useLocation } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  useLocation,
+  type RouteObject,
+} from "react-router-dom";
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
 import Home from "./app/page";
 import LinksLanding from "./app/links-landing/LinksLanding";
@@ -60,10 +65,16 @@ export const tabs: TabHandle[] = [
   },
 ];
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
-    loader: () => redirect("/music-videos"),
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
+    loader: () => ({ list: musicVideoList }),
+    handle: tabs[0],
   },
   {
     path: "/video",
@@ -146,4 +157,6 @@ export const router = createBrowserRouter([
     path: "*",
     loader: () => redirect("/music-videos"),
   },
-]);
+];
+
+export const createRouter = () => createBrowserRouter(routes);

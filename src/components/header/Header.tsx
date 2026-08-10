@@ -105,14 +105,16 @@ const Header = () => {
               position: "relative",
             }}
           >
-            <div
+            <h1
+              aria-label="Ferd"
               style={{
                 height: "200px",
                 color: "#00ff0d",
+                margin: 0,
               }}
             >
               <Ferd />
-            </div>
+            </h1>
             <div
               style={{
                 position: "absolute",

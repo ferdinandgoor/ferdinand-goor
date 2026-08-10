@@ -123,7 +123,7 @@ const LinksLanding = () => {
           <img src={ferdPhoto} alt="Portrait de Ferd" loading="lazy" />
           <div className="links-profile-copy">
             <p className="links-section-label">Ferd</p>
-            <h2>@ferd.process</h2>
+            <h1>@ferd.process</h1>
             <p className="links-profile-bio">
               Salut, je m'appelle FERD. Je fais des mashups débiles, des vidéos YouTube marrantes,
               des clips et de la production musicale metal. Je suis aussi développeur web freelance
