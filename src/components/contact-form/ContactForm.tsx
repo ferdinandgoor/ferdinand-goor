@@ -2,7 +2,6 @@ import {
   FormEvent,
   HTMLInputTypeAttribute,
   ReactNode,
-  useRef,
   useState,
 } from "react";
 import emailjs from "@emailjs/browser";
@@ -160,12 +159,6 @@ const ContactForm = () => {
     } else {
       priceByDuration = 200 + (duration - 3) * 100;
     }
-
-    let optionsPrice = 0;
-    if (withWriting) optionsPrice += 100;
-    if (withShortVideos) optionsPrice += 100;
-    if (withTeaser) optionsPrice += 50;
-    if (withCGIs) optionsPrice += 200;
 
     const priceByFeedback = feedbackSeries <= 1 ? 100 : feedbackSeries * 100;
 

@@ -13,9 +13,12 @@ jobs:
       with:
         node-version: '18.x'
 
-    - run: npm install
+    - run: npm ci
 
     - run: npm run build
+
+    - name: Verify prerendered HTML
+      run: npm run verify:prerender
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
