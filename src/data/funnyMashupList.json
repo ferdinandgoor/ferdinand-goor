@@ -1,6 +1,34 @@
 [
   {
     "artist": "FERD",
+    "song": "Jul - Tchikita Version Slipknot",
+    "slug": "jul-tchikita-version-slipknot",
+    "date": "Aug 13, 2026",
+    "youtubeId": "uoePLdDEYuY",
+    "landing": {
+      "artist": "Ferd",
+      "title": "Jul - Tchikita Version Slipknot",
+      "kicker": "Mashup",
+      "profileIds": ["ferd"],
+      "videos": [
+        {
+          "label": "Mashup",
+          "title": "Jul - Tchikita Version Slipknot",
+          "youtubeId": "uoePLdDEYuY"
+        }
+      ],
+      "links": [
+        {
+          "label": "Voir sur YouTube",
+          "href": "https://www.youtube.com/watch?v=uoePLdDEYuY",
+          "platform": "youtube",
+          "isPrimary": true
+        }
+      ]
+    }
+  },
+  {
+    "artist": "FERD",
     "song": "K.Maro Version Metallica",
     "slug": "metallica-kmaro",
     "date": "Jul 17, 2026",
