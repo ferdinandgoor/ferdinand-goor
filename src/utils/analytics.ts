@@ -3,6 +3,7 @@ const consentKey = "ferd-analytics-consent";
 
 type Gtag = (...args: unknown[]) => void;
 type AnalyticsWindow = Window & { dataLayer?: unknown[]; gtag?: Gtag };
+let consentDefaultsSet = false;
 
 export type AnalyticsConsent = "accepted" | "refused" | null;
 
@@ -16,18 +17,44 @@ export const setAnalyticsConsent = (consent: Exclude<AnalyticsConsent, null>) =>
   window.localStorage.setItem(consentKey, consent);
 };
 
+export const initializeConsentMode = () => {
+  if (typeof window === "undefined") return;
+  const analyticsWindow = window as AnalyticsWindow;
+  analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+  analyticsWindow.gtag ||= (...args: unknown[]) => analyticsWindow.dataLayer?.push(args);
+  if (consentDefaultsSet) return;
+  analyticsWindow.gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+  });
+  consentDefaultsSet = true;
+};
+
+export const updateGoogleConsent = (analyticsGranted: boolean) => {
+  initializeConsentMode();
+  (window as AnalyticsWindow).gtag?.("consent", "update", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: analyticsGranted ? "granted" : "denied",
+  });
+};
+
 export const initializeGoogleAnalytics = () => {
   if (typeof window === "undefined" || getAnalyticsConsent() !== "accepted") return;
+  initializeConsentMode();
   const analyticsWindow = window as AnalyticsWindow;
-  if (analyticsWindow.gtag) return;
+  updateGoogleConsent(true);
+  if (document.querySelector(`script[data-google-analytics="${measurementId}"]`)) return;
 
-  analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-  analyticsWindow.gtag = (...args: unknown[]) => analyticsWindow.dataLayer?.push(args);
-  analyticsWindow.gtag("js", new Date());
-  analyticsWindow.gtag("config", measurementId, { anonymize_ip: true });
+  analyticsWindow.gtag?.("js", new Date());
+  analyticsWindow.gtag?.("config", measurementId, { anonymize_ip: true });
 
   const script = document.createElement("script");
   script.async = true;
+  script.dataset.googleAnalytics = measurementId;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
   document.head.append(script);
 };

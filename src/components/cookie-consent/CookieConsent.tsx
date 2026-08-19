@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { getAnalyticsConsent, initializeGoogleAnalytics, setAnalyticsConsent } from "@/utils/analytics";
+import { getAnalyticsConsent, initializeConsentMode, initializeGoogleAnalytics, setAnalyticsConsent, updateGoogleConsent } from "@/utils/analytics";
 import "./CookieConsent.scss";
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    initializeConsentMode();
     const consent = getAnalyticsConsent();
     if (consent === "accepted") initializeGoogleAnalytics();
+    if (consent === "refused") updateGoogleConsent(false);
     if (consent === null) setVisible(true);
   }, []);
 
@@ -16,6 +18,7 @@ const CookieConsent = () => {
   const choose = (accepted: boolean) => {
     setAnalyticsConsent(accepted ? "accepted" : "refused");
     if (accepted) initializeGoogleAnalytics();
+    else updateGoogleConsent(false);
     setVisible(false);
   };
 
