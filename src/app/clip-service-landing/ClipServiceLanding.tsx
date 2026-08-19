@@ -57,7 +57,7 @@ const ClipContactForm = () => {
       <label>Nom / groupe<input name="name" autoComplete="name" required /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required /></label>
       <label>Lien vers la musique<input name="music_link" type="url" inputMode="url" /></label>
-      <label>Budget approximatif<select name="budget" defaultValue="À définir"><option>Moins de 900 €</option><option>900 – 1 500 €</option><option>1 500 – 2 500 €</option><option>2 500 €+</option><option>À définir</option></select></label>
+      <label>Budget approximatif<select name="budget" defaultValue="À définir"><option>Moins de 850 €</option><option>850 – 1 500 €</option><option>1 500 – 2 500 €</option><option>2 500 €+</option><option>À définir</option></select></label>
       <label className="clip-form-wide">Message<textarea name="request" rows={6} required /></label>
       <button className="clip-cta clip-form-wide" type="submit" disabled={status === "sending"}>
         {status === "sending" ? "ENVOI…" : "ENVOYER MON PROJET"}<ArrowRight weight="bold" aria-hidden="true" />
@@ -106,7 +106,7 @@ const ClipServiceLanding = () => {
           <h1>Des clips qui ont<br />quelque chose à dire.</h1>
           <p>Réalisation de clips musicaux à Nantes et partout en France.<br />Du concept à l’image finale.</p>
           <div className="clip-actions"><ContactLink>Parler de mon projet</ContactLink><a className="clip-text-link" href="#showreel">Voir le showreel <ArrowDown aria-hidden="true" /></a></div>
-          <small>Clips à partir de 900 €</small>
+          <small>Clips à partir de 850 €</small>
         </div>
       </section>
 
@@ -136,7 +136,7 @@ const ClipServiceLanding = () => {
       </section>
 
       <section className="clip-section clip-pricing">
-        <p className="clip-index">05 / Budget</p><h2>Combien coûte un clip ?</h2><p className="clip-price">À partir de <strong>900 €</strong></p>
+        <p className="clip-index">05 / Budget</p><h2>Combien coûte un clip ?</h2><p className="clip-price">À partir de <strong>850 €</strong></p>
         <div className="clip-pricing-copy"><p>Chaque projet est différent. Le budget dépend notamment du concept, du nombre de lieux, de la durée du tournage et des besoins de production.</p><p>Les éventuels frais de location de lieu, matériel spécifique, décors, comédiens, déplacements ou équipe supplémentaire sont estimés séparément lorsque le projet en nécessite.</p><ContactLink>Me parler du projet</ContactLink></div>
       </section>
 
