@@ -1,5 +1,18 @@
-import { ArrowSquareOut, Play, YoutubeLogo } from "phosphor-react";
+import {
+  ArrowSquareOut,
+  MusicNotes,
+  Play,
+  SpotifyLogo,
+  YoutubeLogo,
+} from "phosphor-react";
 import { Link } from "react-router-dom";
+
+type ListeningLink = {
+  label: string;
+  href: string;
+  platform: string;
+  isPrimary?: boolean;
+};
 
 export type LinksVideo = {
   artist: string;
@@ -9,6 +22,7 @@ export type LinksVideo = {
   landing?: {
     artist?: string;
     title?: string;
+    links?: ListeningLink[];
   };
 };
 
@@ -25,6 +39,14 @@ export type LinksVideoBlockProps = {
 const youtubeWatchUrl = (youtubeId: string) =>
   `https://www.youtube.com/watch?v=${youtubeId}`;
 
+const listeningLinkIcon = (platform: string) => {
+  if (platform === "spotify") {
+    return <SpotifyLogo weight="fill" aria-hidden="true" />;
+  }
+
+  return <MusicNotes weight="fill" aria-hidden="true" />;
+};
+
 const LinksVideoBlock = ({
   label,
   primaryVideo,
@@ -35,6 +57,9 @@ const LinksVideoBlock = ({
   moreLabel,
 }: LinksVideoBlockProps) => {
   const primaryHref = youtubeWatchUrl(primaryVideo.youtubeId);
+  const listeningLinks = (primaryVideo.landing?.links ?? []).filter(
+    (link) => link.platform !== "youtube",
+  );
   const isExternalMoreLink = moreHref.startsWith("http");
   const moreLinkContent = (
     <>
@@ -79,6 +104,18 @@ const LinksVideoBlock = ({
           <YoutubeLogo weight="fill" aria-hidden="true" />
           <span>{buttonLabel}</span>
         </a>
+        {listeningLinks.map((link) => (
+          <a
+            className="links-button"
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={`${link.platform}-${link.href}`}
+          >
+            {listeningLinkIcon(link.platform)}
+            <span>{link.label}</span>
+          </a>
+        ))}
       </div>
 
       {secondaryVideos.length > 0 && secondaryLabel ? (

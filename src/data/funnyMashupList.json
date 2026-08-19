@@ -23,6 +23,16 @@
           "href": "https://www.youtube.com/watch?v=uoePLdDEYuY",
           "platform": "youtube",
           "isPrimary": true
+        },
+        {
+          "label": "Ecouter sur Spotify",
+          "href": "https://open.spotify.com/album/36xCyLRawR32stEF8FXioU",
+          "platform": "spotify"
+        },
+        {
+          "label": "Ecouter sur Apple Music",
+          "href": "http://itunes.apple.com/album/id/6801435520",
+          "platform": "apple"
         }
       ]
     }
