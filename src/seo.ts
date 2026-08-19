@@ -61,6 +61,13 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     image: "/ferd_logo_3.png",
     type: "website",
   },
+  "/realisateur-clip-nantes": {
+    title: "Réalisateur Clip Musical Nantes | FERD FILMS",
+    description:
+      "Réalisation de clips musicaux à Nantes et partout en France. Concept, tournage et post-production pour artistes et groupes indépendants.",
+    image: "/video.webp",
+    type: "website",
+  },
 };
 
 const normalizePath = (pathname: string) => {
