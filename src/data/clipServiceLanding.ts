@@ -1,8 +1,8 @@
 export const clipProjects = [
-  { artist: "HIPSKÖR", title: "Belzebeat", youtubeId: "jf5zgE9MIIk", year: "2025", role: "Réalisation" },
-  { artist: "Mirizon", title: "NPC", youtubeId: "HIjAeokm2Vk", year: "2024", role: "Réalisation" },
-  { artist: "DTAYL", title: "Wake Up", youtubeId: "EGQuI82wow0", year: "2026", role: "Réalisation" },
-  { artist: "The Dislockers", title: "Iconify", youtubeId: "v_Hb8w4xKlM", year: "2026", role: "Réalisation" },
+  { artist: "HIPSKÖR", title: "Belzebeat", styles: ["Metalcore"], youtubeId: "jf5zgE9MIIk", year: "2025", role: "Réalisation" },
+  { artist: "Mirizon", title: "NPC", styles: ["Metalcore"], youtubeId: "HIjAeokm2Vk", year: "2024", role: "Réalisation" },
+  { artist: "DTAYL", title: "Wake Up", styles: ["Pop Punk"], youtubeId: "EGQuI82wow0", year: "2026", role: "Réalisation" },
+  { artist: "The Dislockers", title: "Iconify", styles: ["Hardcore"], youtubeId: "v_Hb8w4xKlM", year: "2026", role: "Réalisation" },
 ] as const;
 
 export const clipProcess = [

@@ -103,7 +103,7 @@ const ClipServiceLanding = () => {
 
       <section className="clip-section clip-work" id="realisations">
         <p className="clip-index">02 / Selected work</p><h2>Quelques univers</h2>
-        <div className="clip-projects">{clipProjects.map((project, index) => <a className={`clip-project clip-project-${index + 1}`} href={youtubeUrl(project.youtubeId)} target="_blank" rel="noopener noreferrer" key={project.youtubeId} onClick={() => trackEvent("project_view", { project: project.title })}><img src={thumbnailUrl(project.youtubeId)} alt={`${project.artist} — ${project.title}`} width="1280" height="720" loading="lazy" /><span><strong>{project.artist}</strong><b>{project.title}</b><small>{project.role} · {project.year}</small></span></a>)}</div>
+        <div className="clip-projects">{clipProjects.map((project, index) => <a className={`clip-project clip-project-${index + 1}`} href={youtubeUrl(project.youtubeId)} target="_blank" rel="noopener noreferrer" key={project.youtubeId} onClick={() => trackEvent("project_view", { project: project.title })}><img src={thumbnailUrl(project.youtubeId)} alt={`${project.artist} — ${project.title}`} width="1280" height="720" loading="lazy" /><span className="clip-project-play" aria-hidden="true"><Play weight="fill" /></span><span className="clip-project-info"><strong>{project.artist}</strong><b>{project.title}</b><small>{project.role} · {project.styles.join(" · ")} · {project.year}</small></span></a>)}</div>
         <Link className="clip-text-link clip-all-work" to="/realisations">Voir toutes les réalisations <ArrowRight aria-hidden="true" /></Link>
       </section>
 
@@ -131,7 +131,7 @@ const ClipServiceLanding = () => {
         <div><p className="clip-index">07 / Contact</p><h2>Ton prochain morceau<br />mérite des images.</h2><p>Parle-moi du morceau, de ton idée et de ton budget. Même si le projet n’est encore qu’une envie.</p><small>Pas besoin d’avoir déjà un scénario ou un dossier de production.</small><div className="clip-direct-contact"><a href="tel:+33651609666"><Phone weight="bold" aria-hidden="true" /><span><small>Appeler</small>+33 6 51 60 96 66</span></a><a href="mailto:ferdofficial@gmail.com"><Envelope weight="bold" aria-hidden="true" /><span><small>Écrire</small>ferdofficial@gmail.com</span></a></div></div><ClipContactForm />
       </section>
 
-      <footer className="clip-footer"><div><strong>FERD FILMS</strong><p>Réalisation de clips musicaux<br />Nantes — France</p></div><div><a href="https://www.instagram.com/ferd.films" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_click")}><InstagramLogo /> @ferd.films</a><a href="https://www.youtube.com/@ferd.process" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("youtube_click")}><YoutubeLogo /> YouTube</a><Link to="/realisations">Portfolio complet</Link></div><small>© {new Date().getFullYear()} FERD FILMS</small></footer>
+      <footer className="clip-footer"><div><strong>FERD FILMS</strong><p>Réalisation de clips musicaux<br />Nantes — France</p></div><div><a href="https://www.instagram.com/ferd.films" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_click")}><InstagramLogo /> @ferd.films</a><a href="https://www.youtube.com/@ferd.process" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("youtube_click")}><YoutubeLogo /> YouTube</a><Link to="/realisations">Portfolio complet</Link><Link to="/cgv">CGV</Link></div><small>© {new Date().getFullYear()} FERD FILMS</small></footer>
     </main>
   );
 };

@@ -25,6 +25,7 @@ Read `docs/design-system.md` before changing UI. All new visual work must use th
 - `/music-production` and `/youtube-videos` are FERD Process content pages. Link them from Process navigation, never as primary FERD Films navigation items.
 - `/process` is the FERD Process creative/editorial homepage. `/links` redirects there for backwards compatibility.
 - `/mashups/:slug` contains individual mashup releases.
+- `/cgv` contains the FERD Films sales terms. Do not remove its incomplete-information notice until consumer mediator details are supplied.
 
 Do not replace or redirect the complete portfolio when improving the commercial landing page.
 

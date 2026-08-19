@@ -10,6 +10,7 @@ import Home from "./app/page";
 import LinksLanding from "./app/links-landing/LinksLanding";
 import MashupLanding from "./app/mashup-landing/MashupLanding";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
+import TermsPage from "./app/legal/TermsPage";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import funnyMashupList from "./data/funnyMashupList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
@@ -171,6 +172,14 @@ export const routes: RouteObject[] = [
     element: (
       <ScrollToTop>
         <ClipServiceLanding />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/cgv",
+    element: (
+      <ScrollToTop>
+        <TermsPage />
       </ScrollToTop>
     ),
   },

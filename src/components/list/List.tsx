@@ -8,6 +8,7 @@ interface ListProps {
     date: string;
     song: string;
     youtubeId: string;
+    styles?: string[];
   }[];
   maxSize: number;
 }

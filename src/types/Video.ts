@@ -3,6 +3,7 @@ interface Video {
     song: string;
     date: string;
     youtubeId: string;
+    styles?: string[];
 }
 
 export default Video;

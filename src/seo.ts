@@ -69,6 +69,13 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     image: "/video.webp",
     type: "website",
   },
+  "/cgv": {
+    title: "Conditions générales de vente | FERD FILMS",
+    description:
+      "Consultez les conditions générales applicables aux prestations de réalisation et de production audiovisuelle FERD FILMS.",
+    image: "/ferd_logo_3.png",
+    type: "website",
+  },
 };
 
 const normalizePath = (pathname: string) => {

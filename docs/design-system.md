@@ -17,6 +17,7 @@ The source of truth is the `:root` block in `src/globals.scss`. Page-level custo
 | --- | --- |
 | `--text-label` | labels, eyebrow text, metadata, buttons |
 | `--text-body` | paragraphs and form content |
+| `--text-card-title` | compact titles inside cards and media overlays |
 | `--text-title-sm` | card and section-list titles |
 | `--text-title-md` | regular page section headings |
 | `--text-title-lg` | one primary hero heading per page |
