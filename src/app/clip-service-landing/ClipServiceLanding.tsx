@@ -1,10 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { ArrowDown, ArrowRight, Envelope, InstagramLogo, List, Phone, Play, X, YoutubeLogo } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { clipFaq, clipProcess, clipProjects, googleBusiness } from "@/data/clipServiceLanding";
 import { trackEvent } from "@/utils/tracking";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { web3FormsAccessKey } from "@/config/contact";
 import "./ClipServiceLanding.css";
 
 const showreelId = "ZE8c0QD2IVM";
@@ -25,9 +25,17 @@ const ClipContactForm = () => {
     event.preventDefault();
     setStatus("sending");
     const form = event.currentTarget;
-    const values = Object.fromEntries(new FormData(form));
     try {
-      await emailjs.send("service_28iexb2", "template_8quxtii", values, { publicKey: "QRqHcTUCJJwm2raxT" });
+      const formData = new FormData(form);
+      formData.append("access_key", web3FormsAccessKey);
+      formData.append("subject", "Nouvelle demande de clip — FERD FILMS");
+      formData.append("from_name", "Landing FERD FILMS");
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json() as { success?: boolean };
+      if (!response.ok || !result.success) throw new Error("Web3Forms submission failed");
       setStatus("sent");
       form.reset();
       trackEvent("contact_form_submit");
@@ -45,6 +53,7 @@ const ClipContactForm = () => {
 
   return (
     <form className="clip-form" onSubmit={handleSubmit} onFocus={markStarted}>
+      <input className="clip-botcheck" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
       <label>Nom / groupe<input name="name" autoComplete="name" required /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required /></label>
       <label>Lien vers la musique<input name="music_link" type="url" inputMode="url" /></label>

@@ -62,3 +62,6 @@ Heroes are image/video-led, dark and readable. Use `--hero-overlay`, the large t
 4. Test keyboard focus, reduced motion and responsive widths around 390, 430, 768 and 1440 px.
 5. Run the repository verification commands described in `AGENTS.md`.
 
+## Contact delivery
+
+The commercial landing submits to Web3Forms. Its public access key is centralized in `src/config/contact.ts`; never duplicate it inside components. The form must preserve its loading, success, error, bot-check and analytics behavior when fields are changed.

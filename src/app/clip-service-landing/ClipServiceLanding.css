@@ -79,6 +79,7 @@
 .clip-direct-contact span { display:grid; gap:3px; }
 .clip-direct-contact small { color:var(--clip-muted); font-size:.55rem; letter-spacing:.12em; text-transform:uppercase; }
 .clip-form { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-content:start; }
+.clip-botcheck { display:none!important; }
 .clip-form label { display:grid; gap:9px; color:var(--clip-muted); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
 .clip-form input,.clip-form select,.clip-form textarea { width:100%; min-height:52px; padding:13px; color:var(--clip-ink); background:#050505; border:1px solid #3b3b3b; border-radius:0; font:1rem "Helvetica Neue",Arial,sans-serif; }
 .clip-form textarea { resize:vertical; }
