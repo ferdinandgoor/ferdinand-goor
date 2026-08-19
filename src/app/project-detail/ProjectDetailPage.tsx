@@ -59,7 +59,7 @@ const ProjectDetailPage = () => {
         ) : null}
 
         {project.behindTheScenesYoutubeId ? (
-          <section className="project-detail__bts">
+          <section className="project-detail__bts" id="coulisses">
             <p className="project-detail__label">Behind the scenes</p>
             <h2>Dans les coulisses</h2>
             <div className="project-detail__video"><iframe src={`https://www.youtube-nocookie.com/embed/${project.behindTheScenesYoutubeId}?rel=0&modestbranding=1`} title={`Coulisses de ${project.artist} — ${project.song}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>

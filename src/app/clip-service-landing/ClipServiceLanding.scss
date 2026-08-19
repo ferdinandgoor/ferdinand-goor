@@ -37,12 +37,33 @@
 .clip-project small { grid-column:2; grid-row:1/3; align-self:end; color:#ccc; }
 .clip-project:hover img { transform:scale(1.035); filter:brightness(.75); }
 .clip-all-work { margin-top:45px; margin-left:auto; width:max-content; }
+.clip-case-study { display:grid; grid-template-columns:minmax(220px,.55fr) minmax(0,1.45fr); gap:clamp(35px,6vw,90px); margin-top:clamp(80px,12vw,160px); padding-top:clamp(35px,5vw,70px); border-top:1px solid var(--clip-line); }
+.clip-case-study__intro h3 { margin:0 0 var(--space-5); font-size:clamp(1.8rem,3.8vw,3.8rem); font-weight:500; line-height:.95; text-transform:uppercase; }
+.clip-case-study__intro>p:last-child { color:var(--clip-muted); font-family:var(--font-body); line-height:1.6; }
+.clip-case-study__videos { display:grid; grid-template-columns:1fr; gap:var(--space-5); }
+.clip-case-study__videos article>span { display:block; margin-bottom:var(--space-3); color:var(--clip-green); font-size:var(--text-label); letter-spacing:var(--tracking-label); text-transform:uppercase; }
+.clip-case-study__videos article>div { position:relative; overflow:hidden; aspect-ratio:16/9; background:var(--color-bg-elevated); }
+.clip-case-study__videos iframe,.clip-case-study__videos button,.clip-case-study__videos img { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.clip-case-study__videos button { padding:0; cursor:pointer; background:transparent; }
+.clip-case-study__videos img { object-fit:cover; transition:transform var(--duration-medium) var(--ease-standard),filter var(--duration-medium) var(--ease-standard); }
+.clip-case-study__videos i { position:absolute; inset:50% auto auto 50%; width:52px; height:52px; display:grid; place-items:center; color:var(--color-on-accent); background:var(--color-accent); border-radius:50%; transform:translate(-50%,-50%); }
+.clip-case-study__videos i svg { width:20px; height:20px; }
+.clip-case-study__videos button:hover img { filter:brightness(.72); transform:scale(1.035); }
+.clip-case-study>.clip-text-link { grid-column:2; width:max-content; }
 .clip-manifesto { background:var(--clip-green); color:#050505; scroll-margin-top:72px; }
 .clip-manifesto .clip-index { color:#050505; }
 .clip-manifesto .clip-intro { color:#111; }
 .clip-principles { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:80px; border-top:1px solid #050505; }
 .clip-principles article { padding:28px 30px 0 0; border-right:1px solid #050505; }
 .clip-principles article+article { padding-left:30px; }
+.clip-extras { display:grid; grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr); gap:clamp(40px,8vw,120px); margin-top:clamp(70px,10vw,140px); padding-top:clamp(35px,5vw,70px); border-top:1px solid #050505; }
+.clip-extras h3 { margin:0; font-size:clamp(1.8rem,4vw,4rem); font-weight:500; line-height:.95; text-transform:uppercase; }
+.clip-extras>div:last-child { display:grid; align-content:start; gap:var(--space-5); }
+.clip-extras>div:last-child>p { margin:0; font-family:var(--font-body); font-size:clamp(1.05rem,1.6vw,1.35rem); line-height:1.55; }
+.clip-extras ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-3) var(--space-6); margin:0; padding:var(--space-5) 0; border-block:1px solid #050505; list-style:none; }
+.clip-extras li { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+.clip-extras small { font-family:var(--font-body); }
+.clip-extras .clip-text-link { width:max-content; color:#050505; }
 .clip-principles h3,.clip-process h3 { margin:0 0 14px; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; }
 .clip-principles p,.clip-process p,.clip-pricing-copy p,.clip-contact p { font-family:var(--font-body); font-size:1.05rem; line-height:1.55; }
 .clip-process { display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,8vw,120px); scroll-margin-top:72px; }
@@ -102,7 +123,10 @@
   .clip-project,.clip-project-2,.clip-project-3,.clip-project-4 { grid-column:auto; aspect-ratio:4/3; }
   .clip-project-info { padding:18px; }
   .clip-project small { display:none; }
-  .clip-principles,.clip-process,.clip-pricing,.clip-contact { grid-template-columns:1fr; }
+  .clip-principles,.clip-process,.clip-pricing,.clip-contact,.clip-extras,.clip-case-study { grid-template-columns:1fr; }
+  .clip-case-study__videos { grid-template-columns:1fr; }
+  .clip-case-study>.clip-text-link { grid-column:auto; }
+  .clip-extras ul { grid-template-columns:1fr; }
   .clip-principles article,.clip-principles article+article { padding:24px 0; border-right:0; border-bottom:1px solid #050505; }
   .clip-pricing-copy { padding-top:20px; }
   .clip-form { grid-template-columns:1fr; }

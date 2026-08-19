@@ -2,6 +2,7 @@ type TrackingEvent =
   | "cta_contact_click"
   | "showreel_play"
   | "project_view"
+  | "project_video_play"
   | "contact_form_start"
   | "contact_form_submit"
   | "instagram_click"
@@ -13,4 +14,3 @@ export const trackEvent = (event: TrackingEvent, data: Record<string, string> = 
   const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer;
   dataLayer?.push({ event, ...data });
 };
-

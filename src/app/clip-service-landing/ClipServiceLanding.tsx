@@ -81,6 +81,7 @@ const ClipContactForm = () => {
 
 const ClipServiceLanding = () => {
   const [showreelPlaying, setShowreelPlaying] = useState(false);
+  const [wakeUpPlaying, setWakeUpPlaying] = useState<string | null>(null);
   useScrollReveal(
     ".clip-section, .clip-project, .clip-principles article, .clip-process li, .clip-faq details",
   );
@@ -113,12 +114,30 @@ const ClipServiceLanding = () => {
         <p className="clip-index">02 / Selected work</p><h2>Quelques univers</h2>
         <div className="clip-projects">{clipProjects.map((project, index) => <Link className={`clip-project clip-project-${index + 1}`} to={projectPath(project.youtubeId)} key={project.youtubeId} onClick={() => trackEvent("project_view", { project: project.title })}><img src={thumbnailUrl(project.youtubeId)} alt={`${project.artist} — ${project.title}`} width="1280" height="720" loading="lazy" /><span className="clip-project-play" aria-hidden="true"><ArrowUpRight /></span><span className="clip-project-info"><strong>{project.artist}</strong><b>{project.title}</b><small>{project.role} · {project.styles.join(" · ")} · {project.year}</small></span></Link>)}</div>
         <Link className="clip-text-link clip-all-work" to="/projets">Voir tous les projets <ArrowRight aria-hidden="true" /></Link>
+        <aside className="clip-case-study">
+          <div className="clip-case-study__intro"><p className="clip-index">Behind the scenes</p><p>Un aperçu de ce qui se passe derrière la caméra pendant un tournage.</p></div>
+          <div className="clip-case-study__videos">
+            {[{ id: "uzz4Izr4b0Q", label: "BTS — DTAYL · Wake Up" }].map((video) => (
+              <article key={video.id}>
+                <span>{video.label}</span>
+                <div>
+                  {wakeUpPlaying === video.id ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={`${video.label} de DTAYL — Wake Up`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <button type="button" onClick={() => { setWakeUpPlaying(video.id); trackEvent("project_video_play", { project: "Wake Up", video: video.label }); }} aria-label={`Lire ${video.label.toLowerCase()} de Wake Up`}><img src={thumbnailUrl(video.id)} alt={`${video.label} de DTAYL — Wake Up`} width="1280" height="720" loading="lazy" /><i aria-hidden="true"><Play weight="fill" /></i></button>}
+                </div>
+              </article>
+            ))}
+          </div>
+          <Link className="clip-text-link" to="/projets/dtayl-wake-up-feat-dimi">Découvrir le projet <ArrowRight aria-hidden="true" /></Link>
+        </aside>
       </section>
 
       <section className="clip-section clip-manifesto" id="services">
         <p className="clip-index">03 / Positionnement</p><h2>Pas besoin d’un budget Netflix<br />pour avoir une identité.</h2>
         <p className="clip-intro">Je travaille principalement avec des artistes et groupes indépendants. L’objectif est de trouver l’idée et les choix visuels qui auront le plus d’impact avec le budget disponible, plutôt que de multiplier inutilement le matériel et les journées de tournage.</p>
         <div className="clip-principles"><article><h3>Concept</h3><p>On part du morceau et de l’identité du projet, pas d’un template de clip.</p></article><article><h3>Production</h3><p>On construit une production réaliste autour du budget disponible.</p></article><article><h3>Image</h3><p>Lumière, optiques, décors, montage et étalonnage sont pensés comme un seul univers.</p></article></div>
+        <aside className="clip-extras">
+          <div><p className="clip-index">Contenus complémentaires</p><h3>Faire vivre le morceau<br />au-delà du clip.</h3></div>
+          <div><p>Un tournage peut aussi produire du contenu supplémentaire pour accompagner la sortie : making-of, teasers, formats verticaux et extraits pour les réseaux sociaux.</p><ul><li>Making-of / BTS</li><li>Teasers de sortie</li><li>Reels, Shorts et TikTok</li><li>Extraits promotionnels</li></ul><small>Prestations optionnelles, estimées selon le projet.</small><Link className="clip-text-link" to="/projets/dtayl-wake-up-feat-dimi#coulisses">Voir un exemple de making-of <ArrowRight aria-hidden="true" /></Link></div>
+        </aside>
       </section>
 
       <section className="clip-section clip-process" id="process">
