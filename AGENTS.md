@@ -4,7 +4,7 @@ These instructions apply to the whole repository, including AI-assisted changes.
 
 ## Design system is mandatory
 
-Read `docs/design-system.md` before changing UI. All new visual work must use the tokens declared in `src/globals.css`.
+Read `docs/design-system.md` before changing UI. All new visual work must use the tokens declared in `src/globals.scss`.
 
 - Do not introduce a new accent color. FERD green is `var(--color-accent)`.
 - Do not hard-code colors, font stacks, title scales, spacing, radii, shadows, transition durations, easing curves, content widths, or hero overlays when a token exists.
@@ -26,7 +26,13 @@ Read `docs/design-system.md` before changing UI. All new visual work must use th
 
 Do not replace or redirect the complete portfolio when improving the commercial landing page.
 
+## Styling architecture
+
+- Use SCSS only; do not add `.css` files.
+- Each component owns and imports a colocated `<ComponentName>.scss` file.
+- Avoid JSX inline styles. They are allowed only for genuinely dynamic runtime values passed through CSS custom properties.
+- Prefer shallow SCSS nesting for component elements, states and responsive variants.
+
 ## Verification
 
 For UI changes, run at least `npm run typecheck` and `npm run lint`. For routes, SEO, content architecture or shared styling changes, also run `npm run build` and `npm run verify:prerender`.
-

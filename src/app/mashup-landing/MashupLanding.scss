@@ -98,7 +98,7 @@
 .mashup-video {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(245, 243, 238, 0.2);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--mashup-card);
   aspect-ratio: 16 / 9;
@@ -121,8 +121,8 @@
   min-height: 56px;
   padding: 0 18px;
   color: var(--mashup-ink);
-  background: rgba(245, 243, 238, 0.07);
-  border: 1px solid rgba(245, 243, 238, 0.17);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   display: inline-grid;
   grid-template-columns: 24px minmax(0, 1fr);
@@ -142,8 +142,8 @@
 
 .mashup-button:hover {
   transform: translateY(-2px);
-  border-color: rgba(245, 243, 238, 0.42);
-  background: rgba(245, 243, 238, 0.12);
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-soft);
 }
 
 .mashup-button-primary {
@@ -183,8 +183,8 @@
   gap: 10px;
   justify-items: center;
   padding: 14px;
-  background: rgba(245, 243, 238, 0.05);
-  border: 1px solid rgba(245, 243, 238, 0.13);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
@@ -193,7 +193,7 @@
   aspect-ratio: 1;
   display: block;
   object-fit: cover;
-  border: 1px solid rgba(245, 243, 238, 0.18);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   filter: contrast(1.04) saturate(0.92);
 }
@@ -217,8 +217,8 @@
   width: 46px;
   height: 46px;
   color: var(--mashup-ink);
-  background: rgba(245, 243, 238, 0.07);
-  border: 1px solid rgba(245, 243, 238, 0.18);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -232,8 +232,8 @@
 
 .mashup-social:hover {
   transform: translateY(-2px);
-  border-color: rgba(245, 243, 238, 0.42);
-  background: rgba(245, 243, 238, 0.12);
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-soft);
 }
 
 .mashup-social-instagram {

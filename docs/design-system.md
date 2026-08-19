@@ -1,6 +1,6 @@
 # FERD visual system
 
-The source of truth is the `:root` block in `src/globals.css`. Page-level custom properties may alias global tokens for backwards compatibility, but they must not redefine the identity.
+The source of truth is the `:root` block in `src/globals.scss`. Page-level custom properties may alias global tokens for backwards compatibility, but they must not redefine the identity.
 
 ## Identity
 

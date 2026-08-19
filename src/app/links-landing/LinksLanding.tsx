@@ -18,7 +18,7 @@ import type {
   LinksVideo,
   LinksVideoBlockProps,
 } from "./LinksVideoBlock";
-import "./LinksLanding.css";
+import "./LinksLanding.scss";
 
 type VideoBlock = Omit<LinksVideoBlockProps, "primaryVideo" | "secondaryVideos"> & {
   key: string;

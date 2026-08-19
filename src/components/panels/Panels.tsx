@@ -4,6 +4,7 @@ import Video from "@/types/Video";
 import List from "../list/List";
 import { tabs } from "@/router";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import "./Panels.scss";
 
 type PanelSection = {
   title: string;
@@ -50,22 +51,9 @@ const Panels = () => {
   }, [pathname]);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        borderTop: "solid 2px var(--color-accent)",
-        backgroundColor: "var(--color-bg-elevated)",
-        // backdropFilter: "blur(50px) brightness(0.2)",
-        minHeight: "100vh",
-      }}
-    > 
+    <div className="portfolio-panels"> 
       <div className={`panel-slide ${animClass}`}>
-        <div
-          style={{
-            borderTop: "solid 2px var(--color-accent)",
-          }}
-        >
+        <div className="portfolio-panels__inner">
           {sections.map((section) => (
             <List
               key={`${pathname}-${section.title || "default"}`}
@@ -76,25 +64,6 @@ const Panels = () => {
           ))}
         </div>
       </div>
-      <style>{`
-        .panel-slide {
-          will-change: transform, opacity;
-        }
-        .panel-slide.animate-next {
-          animation: slideInNext var(--duration-reveal) var(--ease-standard);
-        }
-        .panel-slide.animate-prev {
-          animation: slideInPrev var(--duration-reveal) var(--ease-standard);
-        }
-        @keyframes slideInNext {
-          from { transform: translateX(28px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideInPrev {
-          from { transform: translateX(-28px); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-      `}</style>
     </div>
   );
 };

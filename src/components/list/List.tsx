@@ -1,4 +1,5 @@
 import Card from "@/components/card";
+import "./List.scss";
 
 interface ListProps {
   title?: string;
@@ -12,40 +13,13 @@ interface ListProps {
 }
 
 const List = ({ title, data, maxSize }: ListProps) => (
-  <div
-    style={{
-      padding: "var(--space-4)",
-      // backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
-    }}
-    id="main-work"
-  >
+  <div className="portfolio-list" id="main-work">
     {title ? (
-      <h2
-        style={{
-          color: "var(--color-accent)",
-          fontSize: "var(--text-title-sm)",
-          fontWeight: 600,
-          letterSpacing: 0,
-          lineHeight: 1.2,
-          margin: "var(--space-1) 0 var(--space-3)",
-          textTransform: "uppercase",
-        }}
-      >
+      <h2>
         {title}
       </h2>
     ) : null}
-    <ul
-      style={{
-        margin: 0,
-        padding: 0,
-        listStyle: "none",
-        display: "grid",
-        gap: "var(--space-4)",
-        gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-        alignItems: "start",
-        justifyItems: "center",
-      }}
-    >
+    <ul>
       {[...data]
         .sort((a, b) => {
           const dateA = new Date(a.date);
@@ -54,7 +28,7 @@ const List = ({ title, data, maxSize }: ListProps) => (
         })
         .slice(0, maxSize || data.length)
         .map((item) => (
-          <li key={item.youtubeId} style={{ width: "100%" }}>
+          <li key={item.youtubeId}>
             <Card {...item} />
           </li>
         ))}

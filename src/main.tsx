@@ -2,7 +2,7 @@ import React from "react";
 import { hydrateRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { createRouter } from "./router";
-import "./globals.css";
+import "./globals.scss";
 
 const root = document.getElementById("root");
 

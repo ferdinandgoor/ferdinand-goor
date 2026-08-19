@@ -13,6 +13,9 @@
   --color-accent: #00ff0d;
   --color-accent-hover: #8dff93;
   --color-on-accent: #050505;
+  --color-black-60: rgba(0, 0, 0, 0.6);
+  --color-black-92: rgba(0, 0, 0, 0.92);
+  --color-overlay-soft: rgba(0, 0, 0, 0.4);
 
   --font-display: "Orbitron", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -45,6 +48,7 @@
   --radius-lg: 8px;
   --radius-pill: 999px;
   --shadow-panel: 0 22px 70px rgba(0, 0, 0, 0.36);
+  --shadow-control: 0 8px 24px rgba(0, 0, 0, 0.25);
   --hero-overlay: linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.36) 65%), linear-gradient(0deg, var(--color-bg), transparent 35%);
 
   --ease-standard: cubic-bezier(0.2, 0.75, 0.25, 1);

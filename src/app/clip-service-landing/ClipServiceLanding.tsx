@@ -5,7 +5,7 @@ import { clipFaq, clipProcess, clipProjects, googleBusiness } from "@/data/clipS
 import { trackEvent } from "@/utils/tracking";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { web3FormsAccessKey } from "@/config/contact";
-import "./ClipServiceLanding.css";
+import "./ClipServiceLanding.scss";
 
 const showreelId = "ZE8c0QD2IVM";
 const youtubeUrl = (id: string) => `https://www.youtube.com/watch?v=${id}`;

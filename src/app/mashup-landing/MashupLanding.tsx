@@ -13,7 +13,7 @@ import useScrollReveal from "@/hooks/useScrollReveal";
 import ferdPhoto from "./ferd.jpg";
 import imageAyaKorn from "./imageAyaKorn.webp";
 import roroPhoto from "./roro.jpg";
-import "./MashupLanding.css";
+import "./MashupLanding.scss";
 
 type Platform = "spotify" | "apple" | "deezer" | "youtubeMusic" | "youtube";
 
