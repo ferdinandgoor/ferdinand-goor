@@ -6,6 +6,7 @@ import {
   getStructuredData,
   siteConfig,
 } from "../seo";
+import { trackPageView } from "@/utils/analytics";
 
 const setMeta = (selector: string, attribute: "name" | "property", key: string, content: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -54,6 +55,7 @@ const SeoManager = () => {
       document.head.append(jsonLd);
     }
     jsonLd.text = JSON.stringify(getStructuredData(pathname, seo)).replace(/</g, "\\u003c");
+    trackPageView(pathname);
   }, [pathname]);
 
   return null;

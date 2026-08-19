@@ -18,6 +18,7 @@ import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
 import musicVideoList from "./data/musicVideoList.json";
 import musicProductionList from "./data/musicProductionList.json";
 import SeoManager from "./components/SeoManager";
+import CookieConsent from "./components/cookie-consent/CookieConsent";
 
 export type TabHandle = {
   id: number;
@@ -52,6 +53,7 @@ const ScrollToTop = ({ children }: { children: ReactNode }) => {
     <>
       <SeoManager />
       {children}
+      <CookieConsent />
     </>
   );
 };

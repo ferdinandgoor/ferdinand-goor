@@ -11,6 +11,6 @@ type TrackingEvent =
 
 export const trackEvent = (event: TrackingEvent, data: Record<string, string> = {}) => {
   if (typeof window === "undefined") return;
-  const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer;
-  dataLayer?.push({ event, ...data });
+  trackGoogleEvent(event, data);
 };
+import { trackGoogleEvent } from "./analytics";
