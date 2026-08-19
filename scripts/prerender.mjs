@@ -7,17 +7,21 @@ const clientDir = path.join(rootDir, "dist");
 const templatePath = path.join(clientDir, "index.html");
 const serverEntry = path.join(rootDir, "dist-ssr", "entry-server.js");
 const mashupDataPath = path.join(rootDir, "src", "data", "funnyMashupList.json");
+const projectDataPath = path.join(rootDir, "src", "data", "musicVideoList.json");
 const mountPattern = /(<div\s+id=["']root["'][^>]*>)\s*(<\/div>)/;
 const funnyMashupList = JSON.parse(await readFile(mashupDataPath, "utf8"));
+const musicVideoList = JSON.parse(await readFile(projectDataPath, "utf8"));
+const slugifyProject = (value) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const routes = [
   "/",
-  "/realisations",
+  "/projets",
   "/music-production",
   "/youtube-videos",
   "/process",
   "/realisateur-clip-nantes",
   "/cgv",
+  ...musicVideoList.map((item) => `/projets/${slugifyProject(`${item.artist}-${item.song}`)}`),
   ...funnyMashupList
     .map((item) => item.slug)
     .filter(Boolean)
@@ -100,3 +104,7 @@ for (const route of routes) {
   await writeFile(outputPath, html);
   console.log(`prerendered ${route} -> ${path.relative(rootDir, outputPath)}`);
 }
+
+const sitemapRoutes = routes.filter((route) => route !== "/realisateur-clip-nantes");
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => `  <url><loc>https://ferd.fr${route === "/" ? "/" : route}</loc></url>`).join("\n")}\n</urlset>\n`;
+await writeFile(path.join(clientDir, "sitemap.xml"), sitemap);

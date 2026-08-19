@@ -72,7 +72,7 @@ const videoBlocks: VideoBlock[] = [
     label: "Dernier clip réalisé",
     secondaryLabel: "Autres clips réalisés",
     buttonLabel: "Voir le clip",
-    moreHref: "/realisations",
+    moreHref: "/projets",
     moreLabel: "Voir plus de clips",
     videos: getRecentVideos(musicVideoList),
   },

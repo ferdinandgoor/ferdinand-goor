@@ -11,6 +11,7 @@ import LinksLanding from "./app/links-landing/LinksLanding";
 import MashupLanding from "./app/mashup-landing/MashupLanding";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
 import TermsPage from "./app/legal/TermsPage";
+import ProjectDetailPage from "./app/project-detail/ProjectDetailPage";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import funnyMashupList from "./data/funnyMashupList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
@@ -58,10 +59,10 @@ const ScrollToTop = ({ children }: { children: ReactNode }) => {
 export const tabs: TabHandle[] = [
   {
     id: 0,
-    label: "Music Videos",
+    label: "Projets",
     icon: <VideoCamera size={24} />,
     video: "overfloodedLight.mp4",
-    path: "/realisations",
+    path: "/projets",
     headerImage: "/video.webp",
     headerSubtitle: "I make music videos\nfor cool artists",
   },
@@ -96,11 +97,11 @@ export const routes: RouteObject[] = [
   },
   {
     path: "/video",
-    loader: () => redirect("/realisations"),
+    loader: () => redirect("/projets"),
   },
   {
     path: "/music-videos",
-    loader: () => redirect("/realisations"),
+    loader: () => redirect("/projets"),
   },
   {
     path: "/music",
@@ -111,7 +112,7 @@ export const routes: RouteObject[] = [
     loader: () => redirect("/youtube-videos"),
   },
   {
-    path: "/realisations",
+    path: "/projets",
     element: (
       <ScrollToTop>
         <Home />
@@ -119,6 +120,22 @@ export const routes: RouteObject[] = [
     ),
     loader: () => ({ list: musicVideoList }),
     handle: tabs[0],
+  },
+  {
+    path: "/projets/:slug",
+    element: (
+      <ScrollToTop>
+        <ProjectDetailPage />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/realisations/:slug",
+    loader: ({ params }) => redirect(`/projets/${params.slug}`),
+  },
+  {
+    path: "/realisations",
+    loader: () => redirect("/projets"),
   },
   {
     path: "/music-production",
@@ -197,7 +214,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: "*",
-    loader: () => redirect("/realisations"),
+    loader: () => redirect("/projets"),
   },
 ];
 

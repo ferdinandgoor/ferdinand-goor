@@ -18,4 +18,13 @@
   &__details { display: flex; justify-content: space-between; gap: var(--space-3); color: var(--color-text-muted); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
 }
 
+.video-card--project {
+  .video-card__project-link { display: block; width: 100%; color: var(--color-text); text-decoration: none; }
+  .video-card__media { display: block; }
+  .video-card__open { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; display: grid; place-items: center; color: var(--color-on-accent); opacity: 0; background: var(--color-accent); border-radius: 50%; transform: translate(-50%, -50%) scale(.86); transition: opacity var(--duration-medium) var(--ease-standard), transform var(--duration-medium) var(--ease-standard); }
+  .video-card__open svg { width: 20px; height: 20px; }
+  &:hover .video-card__open, .video-card__project-link:focus-visible .video-card__open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
 @media (hover: none) { .video-card__overlay { opacity: 1; } .video-card__overlay i { transform: translate(-50%,-50%) scale(1); } .video-card__meta { transform: none; } }
+@media (hover: none) { .video-card--project .video-card__open { opacity: 1; transform: translate(-50%, -50%); } }

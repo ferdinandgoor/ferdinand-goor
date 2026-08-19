@@ -20,7 +20,7 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
 
   const filmsNavigation = (
     <>
-      <Link className={pathname === "/realisations" ? "is-active" : ""} to="/realisations">Projets</Link>
+      <Link className={pathname.startsWith("/projets") ? "is-active" : ""} to="/projets">Projets</Link>
       <Link to="/#services">Services</Link>
       <Link to="/#process">À propos</Link>
       <Link className="site-header__bridge" to="/process">Process <ArrowSquareOut weight="bold" /></Link>

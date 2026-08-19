@@ -21,7 +21,7 @@ Read `docs/design-system.md` before changing UI. All new visual work must use th
 
 - `/` is the conversion landing page for FERD FILMS clip services.
 - `/realisateur-clip-nantes` is a backwards-compatible alias whose canonical URL is `/`.
-- `/realisations` is the publicly linked portfolio gallery. `/music-videos` redirects there for backwards compatibility.
+- `/projets` is the publicly linked FERD Films project gallery. `/realisations` and `/music-videos` redirect there for backwards compatibility.
 - `/music-production` and `/youtube-videos` are FERD Process content pages. Link them from Process navigation, never as primary FERD Films navigation items.
 - `/process` is the FERD Process creative/editorial homepage. `/links` redirects there for backwards compatibility.
 - `/mashups/:slug` contains individual mashup releases.

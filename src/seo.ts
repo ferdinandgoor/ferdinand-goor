@@ -1,4 +1,9 @@
 import funnyMashupList from "./data/funnyMashupList.json";
+import musicVideoListData from "./data/musicVideoList.json";
+import type Video from "./types/Video";
+import { getProjectSlug } from "./utils/projectSlug";
+
+const musicVideoList = musicVideoListData as Video[];
 
 export const siteConfig = {
   name: "Ferd",
@@ -34,8 +39,8 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     image: "/video.webp",
     type: "website",
   },
-  "/realisations": {
-    title: "Clips musicaux réalisés par Ferd",
+  "/projets": {
+    title: "Projets de clips musicaux | FERD FILMS",
     description:
       "Découvrez les clips musicaux réalisés par Ferd pour des artistes, avec une sélection de vidéos à regarder.",
     image: "/video.webp",
@@ -106,6 +111,18 @@ export function getSeoData(pathname: string): SeoData {
       description: `Regardez ${title}, ${mashup.landing?.kicker?.toLowerCase() ?? "mashup"} de ${artist}, et retrouvez ses liens vidéo et musique.`,
       canonical: absoluteUrl(path),
       image: `https://i.ytimg.com/vi/${mashup.youtubeId}/maxresdefault.jpg`,
+      type: "video.other",
+    };
+  }
+
+  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
+  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
+  if (project) {
+    return {
+      title: `${project.artist} — ${project.song} | FERD FILMS`,
+      description: project.description || `Découvrez le clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
+      canonical: absoluteUrl(path),
+      image: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`,
       type: "video.other",
     };
   }

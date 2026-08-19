@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SiteHeader from "@/components/site-header/SiteHeader";
+import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import "./TermsPage.scss";
 
 const TermsPage = () => (
@@ -27,8 +28,9 @@ const TermsPage = () => (
       <section><h2>13. Données personnelles</h2><p>Les informations transmises servent uniquement à répondre aux demandes, préparer les devis et gérer la relation contractuelle. Les modalités détaillées d’exercice des droits seront précisées dans la politique de confidentialité du site.</p></section>
       <section><h2>14. Droit applicable et litiges</h2><p>Les parties privilégient une résolution amiable de tout différend. Les présentes conditions sont soumises au droit français, sans priver un client consommateur des protections impératives dont il bénéficie.</p></section>
 
-      <footer><p>FERD FILMS · Ferdinand Goor EI · SIRET 884 098 922 00021<br />173 chemin du Printemps, 44800 Saint-Herblain · <a href="mailto:ferdofficial@gmail.com">ferdofficial@gmail.com</a> · <a href="tel:+33651609666">+33 6 51 60 96 66</a></p><Link to="/#contact">Parler de mon projet</Link></footer>
+      <footer><Link to="/#contact">Parler de mon projet</Link></footer>
     </article>
+    <FilmsFooter />
   </main>
 );
 
