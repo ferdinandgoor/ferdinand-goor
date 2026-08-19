@@ -9,6 +9,7 @@ import {
   YoutubeLogo,
 } from "phosphor-react";
 import funnyMashupList from "@/data/funnyMashupList.json";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import ferdPhoto from "./ferd.jpg";
 import imageAyaKorn from "./imageAyaKorn.webp";
 import roroPhoto from "./roro.jpg";
@@ -264,6 +265,7 @@ const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
 };
 
 const MashupLanding = () => {
+  useScrollReveal(".mashup-hero, .mashup-release-card, .mashup-social-group");
   const { slug } = useParams();
   const release = getRelease(slug);
   const releaseTitle = release.landing?.title ?? release.song;

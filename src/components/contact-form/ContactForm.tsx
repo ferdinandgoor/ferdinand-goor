@@ -14,7 +14,7 @@ interface FieldSetProps {
 const FieldSet = ({ legend, children }: FieldSetProps) => (
   <fieldset
     style={{
-      color: "#00ff0d",
+      color: "var(--color-accent)",
       border: "solid 1px",
       margin: "0 0 40px",
       padding: "16px",
@@ -40,7 +40,7 @@ interface FieldProps {
 const Field = ({ label, children, id }: FieldProps) => (
   <div
     style={{
-      border: "solid 1px #00ff0d",
+      border: "solid 1px var(--color-accent)",
       display: "flex",
       flexGrow: 1
     }}
@@ -48,7 +48,7 @@ const Field = ({ label, children, id }: FieldProps) => (
     <label
       htmlFor={id}
       style={{
-        borderRight: "solid 1px #00ff0d",
+        borderRight: "solid 1px var(--color-accent)",
         padding: "10px",
         fontSize: "12px",
       }}
@@ -79,7 +79,7 @@ const Input = ({ id, label, type, value, onChange }: InputProps) => (
         background: "none",
         border: "none",
         outline: "none",
-        color: "#00ff0d",
+        color: "var(--color-accent)",
         padding: "0 20px",
       }}
     />
@@ -119,8 +119,8 @@ const Toggle = ({ label, isChecked, onClick, id }: ToggleProps) => (
           padding: "4px 8px",
           fontSize: "12px",
           cursor: "pointer",
-          backgroundColor: isChecked ? "#00ff0d" : "black",
-          color: isChecked ? "black" : "#00ff0d",
+          backgroundColor: isChecked ? "var(--color-accent)" : "var(--color-bg)",
+          color: isChecked ? "var(--color-on-accent)" : "var(--color-accent)",
         }}
       >
         Yes
@@ -131,8 +131,8 @@ const Toggle = ({ label, isChecked, onClick, id }: ToggleProps) => (
           padding: "4px 8px",
           fontSize: "12px",
           cursor: "pointer",
-          backgroundColor: isChecked ? "black" : "#00ff0d",
-          color: isChecked ? "#00ff0d" : "black",
+          backgroundColor: isChecked ? "var(--color-bg)" : "var(--color-accent)",
+          color: isChecked ? "var(--color-accent)" : "var(--color-on-accent)",
         }}
       >
         No
@@ -293,8 +293,8 @@ const ContactForm = () => {
           style={{
             width: "100%",
             background: "none",
-            border: "solid 1px #00ff0d",
-            color: "#00ff0d",
+            border: "solid 1px var(--color-accent)",
+            color: "var(--color-accent)",
             outline: "none",
             padding: "10px",
           }}
@@ -305,7 +305,7 @@ const ContactForm = () => {
 
       <p
         style={{
-          color: "#00ff0d",
+          color: "var(--color-accent)",
         }}
       >
         Price Estimation : {pricingDetails.totalPrice}€
@@ -313,8 +313,8 @@ const ContactForm = () => {
 
       <button
         style={{
-          color: "black",
-          backgroundColor: "#00ff0d",
+          color: "var(--color-on-accent)",
+          backgroundColor: "var(--color-accent)",
           border: "none",
           outline: "none",
           padding: "16px",

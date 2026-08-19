@@ -3,6 +3,7 @@ import { useLoaderData, useLocation } from "react-router-dom";
 import Video from "@/types/Video";
 import List from "../list/List";
 import { tabs } from "@/router";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 type PanelSection = {
   title: string;
@@ -11,6 +12,7 @@ type PanelSection = {
 
 const Panels = () => {
   const { pathname } = useLocation();
+  useScrollReveal(".list-item", pathname);
   const loaderData = useLoaderData() as { list?: Video[]; sections?: PanelSection[] };
   const sections = loaderData.sections ?? [
     {
@@ -52,8 +54,8 @@ const Panels = () => {
       style={{
         position: "relative",
         width: "100%",
-        borderTop: "solid 2px #00ff0d",
-        backgroundColor: "#111111",
+        borderTop: "solid 2px var(--color-accent)",
+        backgroundColor: "var(--color-bg-elevated)",
         // backdropFilter: "blur(50px) brightness(0.2)",
         minHeight: "100vh",
       }}
@@ -61,7 +63,7 @@ const Panels = () => {
       <div className={`panel-slide ${animClass}`}>
         <div
           style={{
-            borderTop: "solid 2px #00ff0d",
+            borderTop: "solid 2px var(--color-accent)",
           }}
         >
           {sections.map((section) => (
@@ -79,10 +81,10 @@ const Panels = () => {
           will-change: transform, opacity;
         }
         .panel-slide.animate-next {
-          animation: slideInNext 1000ms cubic-bezier(.2,.9,.2,1);
+          animation: slideInNext var(--duration-reveal) var(--ease-standard);
         }
         .panel-slide.animate-prev {
-          animation: slideInPrev 1000ms cubic-bezier(.2,.9,.2,1);
+          animation: slideInPrev var(--duration-reveal) var(--ease-standard);
         }
         @keyframes slideInNext {
           from { transform: translateX(28px); opacity: 0; }

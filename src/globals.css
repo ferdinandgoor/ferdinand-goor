@@ -1,12 +1,67 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;600;700&display=swap");
 
+:root {
+  /* FERD design system — use these tokens instead of local hard-coded values. */
+  --color-bg: #050505;
+  --color-bg-elevated: #111111;
+  --color-surface: rgba(17, 17, 17, 0.9);
+  --color-surface-soft: rgba(245, 245, 238, 0.07);
+  --color-text: #f5f5ee;
+  --color-text-muted: rgba(245, 245, 238, 0.72);
+  --color-border: rgba(245, 245, 238, 0.18);
+  --color-border-strong: rgba(245, 245, 238, 0.42);
+  --color-accent: #00ff0d;
+  --color-accent-hover: #8dff93;
+  --color-on-accent: #050505;
+
+  --font-display: "Orbitron", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --text-label: 0.68rem;
+  --text-body: 1rem;
+  --text-title-sm: clamp(1.45rem, 3vw, 2.25rem);
+  --text-title-md: clamp(2rem, 5vw, 5rem);
+  --text-title-lg: clamp(2.35rem, 5.8vw, 5.8rem);
+  --leading-display: 0.98;
+  --tracking-label: 0.12em;
+  --tracking-display: -0.035em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --section-inline: clamp(20px, 5vw, 76px);
+  --section-block: clamp(80px, 11vw, 160px);
+  --content-wide: 1440px;
+  --content-reading: 850px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+  --shadow-panel: 0 22px 70px rgba(0, 0, 0, 0.36);
+  --hero-overlay: linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.36) 65%), linear-gradient(0deg, var(--color-bg), transparent 35%);
+
+  --ease-standard: cubic-bezier(0.2, 0.75, 0.25, 1);
+  --duration-fast: 180ms;
+  --duration-medium: 350ms;
+  --duration-reveal: 850ms;
+  --reveal-distance: 44px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  background: #000;
+  background: var(--color-bg);
   scroll-behavior: auto;
-  font-family: "Orbitron", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-display);
 }
 
 * {
@@ -19,8 +74,8 @@ body {
   left: 8px;
   z-index: 1000;
   padding: 10px 14px;
-  color: #000;
-  background: #00ff0d;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
   transform: translateY(-150%);
 }
 
@@ -29,7 +84,7 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid #00ff0d !important;
+  outline: 3px solid var(--color-accent) !important;
   outline-offset: 3px;
 }
 
@@ -74,4 +129,22 @@ body {
 
 .gradient {
   background: linear-gradient(rgba(14, 62, 151, 0.5) 50%, black);
+}
+
+.ferd-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--duration-reveal) var(--ease-standard),
+    transform var(--duration-reveal) var(--ease-standard);
+}
+
+.ferd-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ferd-reveal { opacity: 1; transform: none; transition: none; }
 }

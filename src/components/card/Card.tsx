@@ -16,7 +16,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          borderRadius: "8px",
+          borderRadius: "var(--radius-lg)",
         }}
       >
         <div
@@ -88,7 +88,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  borderRadius: "8px",
+                  borderRadius: "var(--radius-lg)",
                 }}
               />
               <div
@@ -132,7 +132,7 @@ const Card = ({ artist, song, date, youtubeId }: Video) => {
       </article>
       <style>{`
       .list-item {
-        transition: transform 180ms ease, filter 180ms ease;
+        transition: transform var(--duration-fast) var(--ease-standard), filter var(--duration-fast) var(--ease-standard);
         will-change: transform, filter;
       }
       .list-item:hover {

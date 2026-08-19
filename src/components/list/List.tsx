@@ -14,7 +14,7 @@ interface ListProps {
 const List = ({ title, data, maxSize }: ListProps) => (
   <div
     style={{
-      padding: "16px",
+      padding: "var(--space-4)",
       // backdropFilter: "blur(20px) brightness(0.3) saturate(15%)",
     }}
     id="main-work"
@@ -22,12 +22,12 @@ const List = ({ title, data, maxSize }: ListProps) => (
     {title ? (
       <h2
         style={{
-          color: "#00ff0d",
-          fontSize: "clamp(0.95rem, 2.4vw, 1.35rem)",
+          color: "var(--color-accent)",
+          fontSize: "var(--text-title-sm)",
           fontWeight: 600,
           letterSpacing: 0,
           lineHeight: 1.2,
-          margin: "4px 0 12px",
+          margin: "var(--space-1) 0 var(--space-3)",
           textTransform: "uppercase",
         }}
       >
@@ -40,7 +40,7 @@ const List = ({ title, data, maxSize }: ListProps) => (
         padding: 0,
         listStyle: "none",
         display: "grid",
-        gap: "16px",
+        gap: "var(--space-4)",
         gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
         alignItems: "start",
         justifyItems: "center",

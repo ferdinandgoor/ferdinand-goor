@@ -45,7 +45,7 @@ const Header = () => {
             backgroundPosition: "center",
             filter: "brightness(0.75)",
             transform: "scale(1.02)",
-            transition: "background-image 300ms ease",
+            transition: "background-image var(--duration-medium) var(--ease-standard)",
           }}
         />
         <div
@@ -53,7 +53,7 @@ const Header = () => {
             position: "absolute",
             inset: 0,
             backdropFilter: "blur(10px)",
-            background: "rgba(0,0,0,0.35)",
+            background: "var(--hero-overlay)",
           }}
         />
       </div>
@@ -65,7 +65,7 @@ const Header = () => {
           flexDirection: "column",
           justifyContent: "space-between",
           position: "relative",
-          padding: "16px",
+          padding: "var(--space-4)",
         }}
       >
         <div
@@ -75,16 +75,35 @@ const Header = () => {
             width: "100%",
           }}
         >
-          <Link
+          <div
             style={{
-              color: "white",
-              textTransform: "uppercase",
-              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "var(--space-5)",
             }}
-            to="/links"
           >
-            Links
-          </Link>
+            <Link
+              style={{
+                color: "white",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+              to="/links"
+            >
+              Links
+            </Link>
+            <Link
+              style={{
+                color: "var(--color-accent)",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+              to="/realisateur-clip-nantes"
+            >
+              Réalisation de clips
+            </Link>
+          </div>
           <a
             style={{
               color: "white",
@@ -111,7 +130,7 @@ const Header = () => {
             <h1
               style={{
                 height: "200px",
-                color: "#00ff0d",
+                color: "var(--color-accent)",
                 margin: 0,
               }}
             >
@@ -152,7 +171,7 @@ const Header = () => {
                 <a
                   style={{
                     height: "48px",
-                    color: "#00ff0d",
+                    color: "var(--color-accent)",
                   }}
                   href="https://www.youtube.com/@ferd.process"
                   target="_blank"
@@ -164,7 +183,7 @@ const Header = () => {
                 <a
                   style={{
                     height: "48px",
-                    color: "#00ff0d",
+                    color: "var(--color-accent)",
                   }}
                   href="https://www.instagram.com/ferd.process"
                   target="_blank"
@@ -177,7 +196,7 @@ const Header = () => {
                   style={{
                     height: "48px",
                     width: "48px",
-                    color: "#00ff0d",
+                    color: "var(--color-accent)",
                   }}
                   href="https://www.tiktok.com/@ferd.process"
                   target="_blank"
@@ -196,7 +215,7 @@ const Header = () => {
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            marginTop: "16px"
+          marginTop: "var(--space-4)"
           }}
         >
           <Select />

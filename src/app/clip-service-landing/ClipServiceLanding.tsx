@@ -4,6 +4,7 @@ import { ArrowDown, ArrowRight, Envelope, InstagramLogo, List, Phone, Play, X, Y
 import { Link } from "react-router-dom";
 import { clipFaq, clipProcess, clipProjects, googleBusiness } from "@/data/clipServiceLanding";
 import { trackEvent } from "@/utils/tracking";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import "./ClipServiceLanding.css";
 
 const showreelId = "ZE8c0QD2IVM";
@@ -65,32 +66,9 @@ const ClipServiceLanding = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const closeMenu = () => setMenuOpen(false);
-
-  useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>(
-      ".clip-section, .clip-project, .clip-principles article, .clip-process li, .clip-faq details",
-    );
-    elements.forEach((element) => element.classList.add("clip-reveal"));
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      elements.forEach((element) => element.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -10%", threshold: 0.08 },
-    );
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(
+    ".clip-section, .clip-project, .clip-principles article, .clip-process li, .clip-faq details",
+  );
 
   useEffect(() => {
     const handleScroll = () => setHasScrolled(window.scrollY > 40);

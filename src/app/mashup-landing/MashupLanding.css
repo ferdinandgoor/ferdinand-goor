@@ -1,21 +1,21 @@
 .mashup-page {
-  --mashup-ink: #f5f3ee;
-  --mashup-muted: rgba(245, 243, 238, 0.72);
-  --mashup-line: rgba(245, 243, 238, 0.18);
-  --mashup-panel: rgba(13, 13, 14, 0.74);
-  --mashup-card: rgba(17, 17, 18, 0.9);
-  --mashup-accent: #d7ff3f;
+  --mashup-ink: var(--color-text);
+  --mashup-muted: var(--color-text-muted);
+  --mashup-line: var(--color-border);
+  --mashup-panel: var(--color-surface);
+  --mashup-card: var(--color-bg-elevated);
+  --mashup-accent: var(--color-accent);
   --mashup-danger: #b91f2d;
   min-height: 100vh;
   color: var(--mashup-ink);
   background:
     linear-gradient(180deg, rgba(4, 4, 5, 0.78), rgba(4, 4, 5, 0.54) 42%, rgba(4, 4, 5, 0.92)),
     var(--mashup-bg-image) center / cover no-repeat fixed,
-    #080809;
-  font-family: "Orbitron", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    var(--color-bg);
+  font-family: var(--font-display);
   display: flex;
   justify-content: center;
-  padding: 28px 18px;
+  padding: var(--space-8) var(--space-5);
 }
 
 .mashup-shell {
@@ -49,7 +49,7 @@
 
 .mashup-hero h1 {
   margin: 0;
-  font-size: clamp(2.1rem, 11vw, 4.75rem);
+  font-size: var(--text-title-md);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: 0;
@@ -71,8 +71,8 @@
   padding: 14px;
   background: var(--mashup-panel);
   border: 1px solid var(--mashup-line);
-  border-radius: 8px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
   backdrop-filter: blur(16px);
 }
 
@@ -99,7 +99,7 @@
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(245, 243, 238, 0.2);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   background: var(--mashup-card);
   aspect-ratio: 16 / 9;
 }
@@ -123,7 +123,7 @@
   color: var(--mashup-ink);
   background: rgba(245, 243, 238, 0.07);
   border: 1px solid rgba(245, 243, 238, 0.17);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: inline-grid;
   grid-template-columns: 24px minmax(0, 1fr);
   align-items: center;
@@ -135,9 +135,9 @@
   text-decoration: none;
   text-transform: uppercase;
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+    transform var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard);
 }
 
 .mashup-button:hover {
@@ -147,14 +147,14 @@
 }
 
 .mashup-button-primary {
-  color: #11120d;
+  color: var(--color-on-accent);
   background: var(--mashup-accent);
   border-color: var(--mashup-accent);
 }
 
 .mashup-button-primary:hover {
-  background: #eeff75;
-  border-color: #eeff75;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
 }
 
 .mashup-button-icon {
@@ -185,7 +185,7 @@
   padding: 14px;
   background: rgba(245, 243, 238, 0.05);
   border: 1px solid rgba(245, 243, 238, 0.13);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
 }
 
 .mashup-social-group img {
@@ -194,7 +194,7 @@
   display: block;
   object-fit: cover;
   border: 1px solid rgba(245, 243, 238, 0.18);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   filter: contrast(1.04) saturate(0.92);
 }
 

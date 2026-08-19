@@ -12,6 +12,7 @@ import funnyMashupList from "@/data/funnyMashupList.json";
 import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
 import musicVideoList from "@/data/musicVideoList.json";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import LinksVideoBlock from "./LinksVideoBlock";
 import type {
   LinksVideo,
@@ -107,6 +108,10 @@ const socials = [
 ];
 
 const LinksLanding = () => {
+  useScrollReveal(
+    ".links-profile, .links-feature, .links-socials, .links-mashup-pages, .links-music-videos",
+  );
+
   return (
     <main
       id="main-content"
