@@ -14,7 +14,7 @@
   font-family: var(--font-display);
   display: flex;
   justify-content: center;
-  padding: calc(72px + var(--space-8)) var(--space-4) var(--space-10);
+  padding: var(--space-8) var(--space-4) var(--space-10);
 }
 
 .links-page::before,
@@ -44,6 +44,8 @@
   display: grid;
   gap: 14px;
 }
+
+.links-content { display: grid; gap: 14px; scroll-margin-top: 72px; }
 
 .links-hero {
   display: grid;

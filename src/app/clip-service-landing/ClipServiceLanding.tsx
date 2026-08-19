@@ -107,7 +107,7 @@ const ClipServiceLanding = () => {
         <Link className="clip-text-link clip-all-work" to="/realisations">Voir toutes les réalisations <ArrowRight aria-hidden="true" /></Link>
       </section>
 
-      <section className="clip-section clip-manifesto">
+      <section className="clip-section clip-manifesto" id="services">
         <p className="clip-index">03 / Positionnement</p><h2>Pas besoin d’un budget Netflix<br />pour avoir une identité.</h2>
         <p className="clip-intro">Je travaille principalement avec des artistes et groupes indépendants. L’objectif est de trouver l’idée et les choix visuels qui auront le plus d’impact avec le budget disponible, plutôt que de multiplier inutilement le matériel et les journées de tournage.</p>
         <div className="clip-principles"><article><h3>Concept</h3><p>On part du morceau et de l’identité du projet, pas d’un template de clip.</p></article><article><h3>Production</h3><p>On construit une production réaliste autour du budget disponible.</p></article><article><h3>Image</h3><p>Lumière, optiques, décors, montage et étalonnage sont pensés comme un seul univers.</p></article></div>

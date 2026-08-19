@@ -282,7 +282,7 @@ const MashupLanding = () => {
       className="mashup-page"
       style={{ "--mashup-bg-image": `url(${backgroundImage})` } as React.CSSProperties}
     >
-      <SiteHeader />
+      <SiteHeader universe="process" />
       <section className="mashup-shell" aria-label={releaseTitle}>
         <header className="mashup-hero">
           <p className="mashup-kicker">{release.landing?.kicker ?? "Mashup"}</p>

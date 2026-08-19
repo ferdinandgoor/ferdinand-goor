@@ -15,7 +15,7 @@ const routes = [
   "/realisations",
   "/music-production",
   "/youtube-videos",
-  "/links",
+  "/process",
   "/realisateur-clip-nantes",
   ...funnyMashupList
     .map((item) => item.slug)

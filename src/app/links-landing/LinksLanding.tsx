@@ -13,7 +13,6 @@ import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
 import musicVideoList from "@/data/musicVideoList.json";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import SiteHeader from "@/components/site-header/SiteHeader";
 import LinksVideoBlock from "./LinksVideoBlock";
 import type {
   LinksVideo,
@@ -119,13 +118,11 @@ const LinksLanding = () => {
       className="links-page"
       style={{ "--links-bg-image": `url(${ferdPhoto})` } as CSSProperties}
     >
-      <SiteHeader />
       <section className="links-shell" aria-label="Ferd links">
 
         <section className="links-profile" aria-label="Profil Ferd">
           <img src={ferdPhoto} alt="Portrait de Ferd" loading="lazy" />
           <div className="links-profile-copy">
-            <p className="links-section-label">Ferd</p>
             <h1>@ferd.process</h1>
             <p className="links-profile-bio">
               Salut, je m'appelle FERD. Je fais des mashups débiles, des vidéos YouTube marrantes,
@@ -149,19 +146,21 @@ const LinksLanding = () => {
           </div>
         </section>
 
-        {videoBlocks.map(({ key, videos, ...blockProps }) =>
-          videos[0] ? (
-            <LinksVideoBlock
-              key={key}
-              {...blockProps}
-              primaryVideo={videos[0]}
-              secondaryVideos={videos.slice(1)}
-            />
-          ) : null,
-        )}
+        <section className="links-content" id="contenus" aria-label="Contenus FERD Process">
+          {videoBlocks.map(({ key, videos, ...blockProps }) =>
+            videos[0] ? (
+              <LinksVideoBlock
+                key={key}
+                {...blockProps}
+                primaryVideo={videos[0]}
+                secondaryVideos={videos.slice(1)}
+              />
+            ) : null,
+          )}
+        </section>
 
         <Link className="links-main-page-link" to="/">
-          <span>Tout mon univers</span>
+          <span>Découvrir FERD Films</span>
           <ArrowSquareOut weight="bold" aria-hidden="true" />
         </Link>
       </section>

@@ -13,7 +13,7 @@ const Home = () => {
   const { pathname } = useLocation();
   return (
     <main id="main-content" className="portfolio-page">
-      <SiteHeader />
+      <SiteHeader universe={pathname === "/realisations" ? "films" : "process"} />
       <h1 className="visually-hidden">{pageTitles[pathname] ?? "Portfolio de Ferd"}</h1>
       <Panels />
     </main>

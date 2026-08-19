@@ -34,7 +34,7 @@
 .clip-project small { grid-column:2; grid-row:1/3; align-self:end; color:#ccc; }
 .clip-project:hover img { transform:scale(1.035); filter:brightness(.75); }
 .clip-all-work { margin-top:45px; margin-left:auto; width:max-content; }
-.clip-manifesto { background:var(--clip-green); color:#050505; }
+.clip-manifesto { background:var(--clip-green); color:#050505; scroll-margin-top:72px; }
 .clip-manifesto .clip-index { color:#050505; }
 .clip-manifesto .clip-intro { color:#111; }
 .clip-principles { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:80px; border-top:1px solid #050505; }
@@ -42,7 +42,7 @@
 .clip-principles article+article { padding-left:30px; }
 .clip-principles h3,.clip-process h3 { margin:0 0 14px; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; }
 .clip-principles p,.clip-process p,.clip-pricing-copy p,.clip-contact p { font-family:var(--font-body); font-size:1.05rem; line-height:1.55; }
-.clip-process { display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,8vw,120px); }
+.clip-process { display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,8vw,120px); scroll-margin-top:72px; }
 .clip-process h2 { font-size:clamp(2.05rem,4.5vw,4.5rem); }
 .clip-process img { width:100%; height:auto; margin-top:40px; filter:grayscale(1) contrast(1.1); }
 .clip-process ol { list-style:none; margin:55px 0 0; padding:0; }

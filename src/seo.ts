@@ -42,23 +42,23 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     type: "website",
   },
   "/music-production": {
-    title: "Productions musicales de Ferd",
+    title: "Musique et productions | FERD Process",
     description:
-      "Écoutez une sélection de morceaux produits par Ferd et découvrez son travail de production musicale.",
+      "Écoutez les morceaux, productions musicales et expérimentations publiés dans l’univers FERD Process.",
     image: "/music.webp",
     type: "website",
   },
   "/youtube-videos": {
-    title: "Vidéos YouTube, mashups et matériel | Ferd",
+    title: "Vidéos YouTube, mashups et matériel | FERD Process",
     description:
       "Retrouvez les vidéos longues, mashups et contenus consacrés au matériel et à la production publiés par Ferd.",
     image: "/youtube.webp",
     type: "website",
   },
-  "/links": {
-    title: "Ferd | Liens, vidéos et réseaux sociaux",
+  "/process": {
+    title: "FERD Process | Vidéos, mashups et expérimentations",
     description:
-      "Retrouvez les dernières vidéos, les mashups, les clips et les profils YouTube, Instagram, TikTok et Spotify de Ferd.",
+      "Suivez FERD Process : mashups, vidéos YouTube, musique, matériel, coulisses et expérimentations créatives.",
     image: "/ferd_logo_3.png",
     type: "website",
   },
@@ -95,7 +95,7 @@ export function getSeoData(pathname: string): SeoData {
     const title = mashup.landing?.title ?? mashup.song;
     const artist = mashup.landing?.artist ?? mashup.artist;
     return {
-      title: `${title} | ${artist}`,
+      title: `${title} | FERD Process`,
       description: `Regardez ${title}, ${mashup.landing?.kicker?.toLowerCase() ?? "mashup"} de ${artist}, et retrouvez ses liens vidéo et musique.`,
       canonical: absoluteUrl(path),
       image: `https://i.ytimg.com/vi/${mashup.youtubeId}/maxresdefault.jpg`,

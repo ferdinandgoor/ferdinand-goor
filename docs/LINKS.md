@@ -11,4 +11,8 @@ Chaine YouTube  :  https://www.youtube.com/@romaingamain
 Insta : https://www.instagram.com/chezgamain/
 Tiktok : https://www.tiktok.com/@chezgamain
 
-Ajoute toujours ma Landing page (link tree custom) : https://ferd.fr/links
+Homepage FERD Process : https://ferd.fr/process
+
+L’ancienne URL https://ferd.fr/links redirige vers FERD Process.
+
+Site professionnel FERD Films : https://ferd.fr/

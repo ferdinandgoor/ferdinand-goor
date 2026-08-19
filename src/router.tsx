@@ -175,12 +175,16 @@ export const routes: RouteObject[] = [
     ),
   },
   {
-    path: "/links",
+    path: "/process",
     element: (
       <ScrollToTop>
         <LinksLanding />
       </ScrollToTop>
     ),
+  },
+  {
+    path: "/links",
+    loader: () => redirect("/process"),
   },
   {
     path: "*",
