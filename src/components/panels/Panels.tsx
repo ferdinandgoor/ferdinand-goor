@@ -53,7 +53,7 @@ const Panels = () => {
   return (
     <div className="portfolio-panels"> 
       <div className={`panel-slide ${animClass}`}>
-        <div className="portfolio-panels__inner">
+        <div>
           {sections.map((section) => (
             <List
               key={`${pathname}-${section.title || "default"}`}

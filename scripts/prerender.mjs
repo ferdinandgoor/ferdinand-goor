@@ -12,7 +12,7 @@ const funnyMashupList = JSON.parse(await readFile(mashupDataPath, "utf8"));
 
 const routes = [
   "/",
-  "/music-videos",
+  "/realisations",
   "/music-production",
   "/youtube-videos",
   "/links",

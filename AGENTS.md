@@ -19,8 +19,10 @@ Read `docs/design-system.md` before changing UI. All new visual work must use th
 
 ## Existing information architecture
 
-- `/realisateur-clip-nantes` is the conversion landing page for clip services.
-- `/`, `/music-videos`, `/music-production` and `/youtube-videos` are the complete portfolio and must remain accessible.
+- `/` is the conversion landing page for FERD FILMS clip services.
+- `/realisateur-clip-nantes` is a backwards-compatible alias whose canonical URL is `/`.
+- `/realisations` is the publicly linked portfolio gallery. `/music-videos` redirects there for backwards compatibility.
+- `/music-production` and `/youtube-videos` are deliberately unlinked archive pages. Keep their direct URLs functional, but do not add them to public navigation unless explicitly requested.
 - `/links` is the compact link-in-bio page.
 - `/mashups/:slug` contains individual mashup releases.
 

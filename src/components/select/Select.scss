@@ -1,8 +1,0 @@
-.select-tabs {
-  position: relative; display: flex; gap: var(--space-3); width: fit-content; padding: var(--space-2); background: var(--color-surface-soft); border-radius: var(--radius-pill); outline: none; user-select: none;
-  &__pill { position: absolute; top: 6px; bottom: 6px; left: var(--pill-left); width: var(--pill-width); background: var(--color-border); border-radius: var(--radius-pill); box-shadow: var(--shadow-control); transition: left var(--duration-medium) var(--ease-standard), width var(--duration-medium) var(--ease-standard); }
-  a { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-4); color: var(--color-text-muted); border-radius: var(--radius-pill); font-size: var(--text-label); font-weight: 600; text-decoration: none; opacity: .75; transition: opacity var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }
-  a:hover, a.is-active { color: var(--color-text); opacity: 1; }
-  a span { display: none; }
-}
-@media (min-width: 641px) { .select-tabs a span { display: inline; } }

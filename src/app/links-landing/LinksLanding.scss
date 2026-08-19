@@ -14,7 +14,7 @@
   font-family: var(--font-display);
   display: flex;
   justify-content: center;
-  padding: var(--space-8) var(--space-4) var(--space-10);
+  padding: calc(72px + var(--space-8)) var(--space-4) var(--space-10);
 }
 
 .links-page::before,

@@ -28,11 +28,23 @@ export type TabHandle = {
 };
 
 const ScrollToTop = ({ children }: { children: ReactNode }) => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const frame = window.requestAnimationFrame(() => {
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.querySelector(hash)?.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "start",
+        });
+      });
+      return () => window.cancelAnimationFrame(frame);
+    }
+
     window.scrollTo({ top: 0, left: 0 });
-  }, [pathname]);
+    return;
+  }, [pathname, hash]);
 
   return (
     <>
@@ -48,7 +60,7 @@ export const tabs: TabHandle[] = [
     label: "Music Videos",
     icon: <VideoCamera size={24} />,
     video: "overfloodedLight.mp4",
-    path: "/music-videos",
+    path: "/realisations",
     headerImage: "/video.webp",
     headerSubtitle: "I make music videos\nfor cool artists",
   },
@@ -77,15 +89,17 @@ export const routes: RouteObject[] = [
     path: "/",
     element: (
       <ScrollToTop>
-        <Home />
+        <ClipServiceLanding />
       </ScrollToTop>
     ),
-    loader: () => ({ list: musicVideoList }),
-    handle: tabs[0],
   },
   {
     path: "/video",
-    loader: () => redirect("/music-videos"),
+    loader: () => redirect("/realisations"),
+  },
+  {
+    path: "/music-videos",
+    loader: () => redirect("/realisations"),
   },
   {
     path: "/music",
@@ -96,7 +110,7 @@ export const routes: RouteObject[] = [
     loader: () => redirect("/youtube-videos"),
   },
   {
-    path: "/music-videos",
+    path: "/realisations",
     element: (
       <ScrollToTop>
         <Home />
@@ -170,7 +184,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: "*",
-    loader: () => redirect("/music-videos"),
+    loader: () => redirect("/realisations"),
   },
 ];
 

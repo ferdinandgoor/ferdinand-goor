@@ -10,6 +10,7 @@ import {
 } from "phosphor-react";
 import funnyMashupList from "@/data/funnyMashupList.json";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import SiteHeader from "@/components/site-header/SiteHeader";
 import ferdPhoto from "./ferd.jpg";
 import imageAyaKorn from "./imageAyaKorn.webp";
 import roroPhoto from "./roro.jpg";
@@ -281,6 +282,7 @@ const MashupLanding = () => {
       className="mashup-page"
       style={{ "--mashup-bg-image": `url(${backgroundImage})` } as React.CSSProperties}
     >
+      <SiteHeader />
       <section className="mashup-shell" aria-label={releaseTitle}>
         <header className="mashup-hero">
           <p className="mashup-kicker">{release.landing?.kicker ?? "Mashup"}</p>

@@ -13,6 +13,7 @@ import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
 import musicVideoList from "@/data/musicVideoList.json";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import SiteHeader from "@/components/site-header/SiteHeader";
 import LinksVideoBlock from "./LinksVideoBlock";
 import type {
   LinksVideo,
@@ -72,7 +73,7 @@ const videoBlocks: VideoBlock[] = [
     label: "Dernier clip réalisé",
     secondaryLabel: "Autres clips réalisés",
     buttonLabel: "Voir le clip",
-    moreHref: "/music-videos",
+    moreHref: "/realisations",
     moreLabel: "Voir plus de clips",
     videos: getRecentVideos(musicVideoList),
   },
@@ -118,6 +119,7 @@ const LinksLanding = () => {
       className="links-page"
       style={{ "--links-bg-image": `url(${ferdPhoto})` } as CSSProperties}
     >
+      <SiteHeader />
       <section className="links-shell" aria-label="Ferd links">
 
         <section className="links-profile" aria-label="Profil Ferd">

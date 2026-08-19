@@ -5,9 +5,9 @@ export const siteConfig = {
   url: "https://ferd.fr",
   language: "fr",
   locale: "fr_FR",
-  defaultTitle: "Ferd | Clips, production musicale et vidéos YouTube",
+  defaultTitle: "Réalisateur Clip Musical Nantes | FERD FILMS",
   defaultDescription:
-    "Découvrez les clips, productions musicales, vidéos YouTube et mashups de Ferd.",
+    "Réalisation de clips musicaux à Nantes et partout en France. Concept, tournage et post-production pour artistes et groupes indépendants.",
   logo: "/ferd_logo_3.png",
   email: "ferdofficial@gmail.com",
   profiles: [
@@ -28,12 +28,13 @@ export type SeoData = {
 
 const staticPages: Record<string, Omit<SeoData, "canonical">> = {
   "/": {
-    title: siteConfig.defaultTitle,
-    description: siteConfig.defaultDescription,
+    title: "Réalisateur Clip Musical Nantes | FERD FILMS",
+    description:
+      "Réalisation de clips musicaux à Nantes et partout en France. Concept, tournage et post-production pour artistes et groupes indépendants.",
     image: "/video.webp",
     type: "website",
   },
-  "/music-videos": {
+  "/realisations": {
     title: "Clips musicaux réalisés par Ferd",
     description:
       "Découvrez les clips musicaux réalisés par Ferd pour des artistes, avec une sélection de vidéos à regarder.",
@@ -62,9 +63,9 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     type: "website",
   },
   "/realisateur-clip-nantes": {
-    title: "Réalisateur Clip Musical Nantes | FERD FILMS",
+    title: "FERD FILMS | Réalisation de clips à Nantes",
     description:
-      "Réalisation de clips musicaux à Nantes et partout en France. Concept, tournage et post-production pour artistes et groupes indépendants.",
+      "Découvrez FERD FILMS, réalisateur de clips basé près de Nantes, et parlons de votre prochain projet musical.",
     image: "/video.webp",
     type: "website",
   },
@@ -84,8 +85,7 @@ export function getSeoData(pathname: string): SeoData {
   if (staticPage) {
     return {
       ...staticPage,
-      // The root renders the same portfolio selection as /music-videos.
-      canonical: absoluteUrl(path === "/" ? "/music-videos" : path),
+      canonical: absoluteUrl(path === "/realisateur-clip-nantes" ? "/" : path),
     };
   }
 
