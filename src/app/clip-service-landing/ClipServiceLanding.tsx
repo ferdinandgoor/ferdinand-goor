@@ -81,7 +81,6 @@ const ClipContactForm = () => {
 
 const ClipServiceLanding = () => {
   const [showreelPlaying, setShowreelPlaying] = useState(false);
-  const [wakeUpPlaying, setWakeUpPlaying] = useState<string | null>(null);
   useScrollReveal(
     ".clip-section, .clip-project, .clip-principles article, .clip-process li, .clip-faq details",
   );
@@ -121,12 +120,12 @@ const ClipServiceLanding = () => {
               <article key={video.id}>
                 <span>{video.label}</span>
                 <div>
-                  {wakeUpPlaying === video.id ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={`${video.label} de DTAYL — Wake Up`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <button type="button" onClick={() => { setWakeUpPlaying(video.id); trackEvent("project_video_play", { project: "Wake Up", video: video.label }); }} aria-label={`Lire ${video.label.toLowerCase()} de Wake Up`}><img src={thumbnailUrl(video.id)} alt={`${video.label} de DTAYL — Wake Up`} width="1280" height="720" loading="lazy" /><i aria-hidden="true"><Play weight="fill" /></i></button>}
+                  <Link to="/projets/dtayl-wake-up-feat-dimi#coulisses" onClick={() => trackEvent("project_view", { project: "Wake Up BTS" })} aria-label="Voir les coulisses de DTAYL — Wake Up"><img src={thumbnailUrl(video.id)} alt={`${video.label} de DTAYL — Wake Up`} width="1280" height="720" loading="lazy" /><i aria-hidden="true"><ArrowUpRight /></i></Link>
                 </div>
               </article>
             ))}
           </div>
-          <Link className="clip-text-link" to="/projets/dtayl-wake-up-feat-dimi">Découvrir le projet <ArrowRight aria-hidden="true" /></Link>
+          <Link className="clip-text-link" to="/projets/dtayl-wake-up-feat-dimi#coulisses">Voir les coulisses du projet <ArrowRight aria-hidden="true" /></Link>
         </aside>
       </section>
 
