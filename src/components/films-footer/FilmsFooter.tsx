@@ -1,8 +1,8 @@
 import { Envelope, InstagramLogo, Phone, YoutubeLogo } from "phosphor-react";
-import { Link } from "react-router-dom";
 import { trackEvent } from "@/utils/tracking";
 import "./FilmsFooter.scss";
 import Container from "@/components/container/Container";
+import { ActionLink } from "@/components/action/Action";
 
 const FilmsFooter = () => (
   <footer className="films-footer">
@@ -13,23 +13,23 @@ const FilmsFooter = () => (
     </div>
     <div className="films-footer__links">
       <strong>Contact</strong>
-      <a href="mailto:ferdofficial@gmail.com" onClick={() => trackEvent("email_click")}><Envelope /> Email</a>
-      <a href="tel:+33651609666" onClick={() => trackEvent("phone_click")}><Phone /> +33 6 51 60 96 66</a>
-      <a href="https://www.instagram.com/ferd.films" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("instagram_click")}><InstagramLogo /> @ferd.films</a>
-      <a href="https://www.youtube.com/@ferd.process" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("youtube_click")}><YoutubeLogo /> YouTube</a>
+      <ActionLink variant="icon" href="mailto:ferdofficial@gmail.com" icon={<Envelope />} iconPosition="start" onClick={() => trackEvent("email_click")}>Email</ActionLink>
+      <ActionLink variant="icon" href="tel:+33651609666" icon={<Phone />} iconPosition="start" onClick={() => trackEvent("phone_click")}>+33 6 51 60 96 66</ActionLink>
+      <ActionLink variant="icon" href="https://www.instagram.com/ferd.films" icon={<InstagramLogo />} iconPosition="start" external onClick={() => trackEvent("instagram_click")}>@ferd.films</ActionLink>
+      <ActionLink variant="icon" href="https://www.youtube.com/@ferd.process" icon={<YoutubeLogo />} iconPosition="start" external onClick={() => trackEvent("youtube_click")}>YouTube</ActionLink>
     </div>
     <div className="films-footer__links">
       <strong>Réalisation de clips</strong>
-      <Link to="/films/clip-video-nantes">Nantes</Link>
-      <Link to="/films/clip-video-rennes">Rennes</Link>
-      <Link to="/films/clip-video-angers">Angers</Link>
-      <Link to="/films/realisation-clip-metal">Clips metal & rock</Link>
+      <ActionLink variant="nav" to="/films/clip-video-nantes">Nantes</ActionLink>
+      <ActionLink variant="nav" to="/films/clip-video-rennes">Rennes</ActionLink>
+      <ActionLink variant="nav" to="/films/clip-video-angers">Angers</ActionLink>
+      <ActionLink variant="nav" to="/films/realisation-clip-metal">Clips metal & rock</ActionLink>
     </div>
     <div className="films-footer__links">
       <strong>Navigation</strong>
-      <Link to="/">Accueil</Link>
-      <Link to="/projets">Tous les projets</Link>
-      <Link to="/cgv">CGV</Link>
+      <ActionLink variant="nav" to="/">Accueil</ActionLink>
+      <ActionLink variant="nav" to="/projets">Tous les projets</ActionLink>
+      <ActionLink variant="nav" to="/cgv">CGV</ActionLink>
     </div>
       <small>© {new Date().getFullYear()} FERD FILMS</small>
     </Container>

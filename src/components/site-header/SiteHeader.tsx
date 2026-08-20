@@ -3,6 +3,7 @@ import { ArrowSquareOut, List, X } from "phosphor-react";
 import { Link, useLocation } from "react-router-dom";
 import "./SiteHeader.scss";
 import Container from "@/components/container/Container";
+import { ActionLink } from "@/components/action/Action";
 
 type SiteHeaderProps = { universe?: "films" | "process" };
 
@@ -21,20 +22,20 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
 
   const filmsNavigation = (
     <>
-      <Link className={pathname.startsWith("/projets") ? "is-active" : ""} to="/projets">Projets</Link>
-      <Link to="/#services">Approche</Link>
-      <Link to="/#budget">Budget</Link>
-      <Link className="site-header__bridge" to="/process">Process <ArrowSquareOut weight="bold" /></Link>
-      <Link className="site-header__cta" to="/#contact">Parler de mon clip</Link>
+      <ActionLink variant="nav" className={pathname.startsWith("/projets") ? "is-active" : ""} to="/projets">Projets</ActionLink>
+      <ActionLink variant="nav" to="/#services">Approche</ActionLink>
+      <ActionLink variant="nav" to="/#budget">Budget</ActionLink>
+      <ActionLink variant="nav" className="site-header__bridge" to="/process" icon={<ArrowSquareOut weight="bold" />}>Process</ActionLink>
+      <ActionLink variant="primary" className="site-header__cta" to="/#contact">Parler de mon clip</ActionLink>
     </>
   );
 
   const processNavigation = (
     <>
-      <Link to="/youtube-videos">Vidéos</Link>
-      <Link to="/music-production">Musique</Link>
-      <Link to="/process#contenus">Projets</Link>
-      <Link className="site-header__bridge" to="/">FERD Films <ArrowSquareOut weight="bold" /></Link>
+      <ActionLink variant="nav" to="/youtube-videos">Vidéos</ActionLink>
+      <ActionLink variant="nav" to="/music-production">Musique</ActionLink>
+      <ActionLink variant="nav" to="/process#contenus">Projets</ActionLink>
+      <ActionLink variant="nav" className="site-header__bridge" to="/" icon={<ArrowSquareOut weight="bold" />}>FERD Films</ActionLink>
     </>
   );
 

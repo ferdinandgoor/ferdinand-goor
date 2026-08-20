@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { ArrowDown, ArrowRight } from "phosphor-react";
-import { Link } from "react-router-dom";
 import SiteHeader from "@/components/site-header/SiteHeader";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import { ContactLink, ContactSection, ProjectsGrid, Showreel } from "@/components/films-blocks/FilmsBlocks";
@@ -8,6 +7,7 @@ import { filmProjects } from "@/data/films";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/utils/tracking";
 import Container from "@/components/container/Container";
+import { ActionLink } from "@/components/action/Action";
 import "./ClipServiceLanding.scss";
 
 const ClipServiceLanding = () => {
@@ -23,7 +23,7 @@ const ClipServiceLanding = () => {
           <p className="clip-eyebrow">Réalisateur de clips · Nantes / France</p>
           <h1>Des clips pour les<br />musiques alternatives.</h1>
           <p>Rock, métal, alternatif — et tout projet avec un univers.</p>
-          <div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><a className="clip-text-link" href="#projets">Voir les réalisations <ArrowDown aria-hidden="true" /></a></div>
+          <div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><ActionLink href="#projets" icon={<ArrowDown aria-hidden="true" />}>Voir les réalisations</ActionLink></div>
           <small>Basé à Nantes · Disponible partout en France · À partir de 850 €</small>
         </Container>
       </section>
@@ -32,7 +32,7 @@ const ClipServiceLanding = () => {
       </section>
       <section className="clip-section clip-work" id="projets">
         <p className="clip-index">02 / Clips</p><h2>Univers sélectionnés</h2><ProjectsGrid projects={filmProjects.slice(0, 6)} />
-        <Link className="clip-text-link clip-all-work" to="/projets" onClick={() => trackEvent("all_projects_click")}>Voir tous les projets <ArrowRight aria-hidden="true" /></Link>
+        <ActionLink className="clip-all-work" to="/projets" icon={<ArrowRight aria-hidden="true" />} onClick={() => trackEvent("all_projects_click")}>Voir tous les projets</ActionLink>
       </section>
       <section className="clip-section clip-approach" id="services">
         <div><p className="clip-index">03 / Approche</p><h2>Une idée forte.<br />Une production agile.</h2></div>

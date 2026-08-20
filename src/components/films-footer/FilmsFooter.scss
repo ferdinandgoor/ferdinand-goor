@@ -5,8 +5,6 @@
   &__inner { display:grid; grid-template-columns:minmax(280px,1.35fr) repeat(3,minmax(140px,.55fr)); gap:clamp(36px,6vw,100px); padding-top:60px; padding-bottom:60px; }
   strong { color: var(--color-accent); }
   p { color: var(--color-text-muted); font-family: var(--font-body); line-height: 1.5; }
-  a { display: flex; align-items: center; gap: 7px; color: var(--color-text); font-size: .65rem; text-decoration: none; text-transform: uppercase; }
-  a svg { width: 18px; height: 18px; }
   &__inner > small { grid-column: 1 / -1; color: var(--color-text-subtle, #666); }
   &__links { display: flex; align-items: flex-start; flex-direction: column; gap: 14px; }
   &__links strong { margin-bottom: 6px; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }

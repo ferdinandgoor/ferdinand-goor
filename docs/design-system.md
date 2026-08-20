@@ -7,7 +7,9 @@ The source of truth is the `:root` block in `src/globals.scss`. Page-level custo
 - Background: near-black `--color-bg` with `--color-bg-elevated` for structural separation.
 - Text: warm off-white `--color-text`; secondary copy uses `--color-text-muted`.
 - Accent: FERD green `--color-accent` (`#00ff0d`) everywhere: focus, CTA, labels and active states.
-- Display type: Orbitron via `--font-display`.
+- Brand/interface type: Orbitron via `--font-display` for the logo, navigation, labels and buttons.
+- Heading type: Space Grotesk via `--font-heading` for readable page and section titles.
+- Large headings use natural sentence case. Reserve all caps for short Orbitron labels, navigation and controls.
 - Reading type: Helvetica/Arial via `--font-body`.
 - Shapes: restrained 4–8 px radii. Circles are reserved for icon/play controls and avatars.
 
@@ -49,6 +51,7 @@ Heroes are image/video-led, dark and readable. Use `--hero-overlay`, the large t
 
 ## Components
 
+- Interactive actions use `src/components/action/Action.tsx`. Choose the `primary`, `secondary`, `text`, `nav` or `icon` variant instead of creating page-specific button or link animation rules.
 - Primary CTA: green background, dark text, uppercase Orbitron label, compact radius.
 - Secondary CTA: dark/transparent surface, off-white text and shared border.
 - Panels: `--color-surface`, `--color-border`, `--shadow-panel`, `--radius-lg`.

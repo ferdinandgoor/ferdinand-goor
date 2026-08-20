@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowUpRight, Play } from "phosphor-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SiteHeader from "@/components/site-header/SiteHeader";
 import musicVideoListData from "@/data/musicVideoList.json";
 import type Video from "@/types/Video";
@@ -8,6 +8,7 @@ import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import FilmsBackLink from "@/components/films-back-link/FilmsBackLink";
 import Container from "@/components/container/Container";
+import { ActionLink } from "@/components/action/Action";
 import "./ProjectDetailPage.scss";
 
 const musicVideoList = musicVideoListData as Video[];
@@ -22,7 +23,7 @@ const ProjectDetailPage = () => {
       <main className="project-detail project-detail--missing" id="main-content">
         <SiteHeader universe="films" />
         <h1>Projet introuvable</h1>
-        <Link to="/projets"><ArrowLeft /> Retour aux projets</Link>
+        <ActionLink variant="nav" to="/projets" icon={<ArrowLeft />} iconPosition="start">Retour aux projets</ActionLink>
       </main>
     );
   }
@@ -53,7 +54,7 @@ const ProjectDetailPage = () => {
           <iframe src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`} title={`${project.artist} — ${project.song}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
         </div>
 
-        <a className="project-detail__youtube" href={youtubeUrl} target="_blank" rel="noopener noreferrer"><Play weight="fill" /> Voir sur YouTube <ArrowUpRight /></a>
+        <ActionLink className="project-detail__youtube" variant="icon" href={youtubeUrl} external icon={<Play weight="fill" />} iconPosition="start">Voir sur YouTube</ActionLink>
 
         {project.description || project.directorNote ? (
           <div className="project-detail__copy">
@@ -74,7 +75,7 @@ const ProjectDetailPage = () => {
           <section className="project-detail__credits"><p className="project-detail__label">Équipe</p><h2>Crédits</h2><dl>{project.credits.map((credit) => <div key={`${credit.role}-${credit.name}`}><dt>{credit.role}</dt><dd>{credit.name}</dd></div>)}</dl></section>
         ) : null}
 
-        <footer><Link to="/#contact">Parler de mon clip <ArrowUpRight /></Link></footer>
+        <footer><ActionLink variant="primary" to="/#contact" icon={<ArrowUpRight />}>Parler de mon clip</ActionLink></footer>
       </Container>
       <FilmsFooter />
     </main>

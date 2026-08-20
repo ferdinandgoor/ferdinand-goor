@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import SiteHeader from "@/components/site-header/SiteHeader";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import "./TermsPage.scss";
+import { ActionLink } from "@/components/action/Action";
 
 const TermsPage = () => (
   <main className="legal-page" id="main-content">
@@ -28,7 +28,7 @@ const TermsPage = () => (
       <section><h2>13. Données personnelles</h2><p>Les informations transmises servent uniquement à répondre aux demandes, préparer les devis et gérer la relation contractuelle. Les modalités détaillées d’exercice des droits seront précisées dans la politique de confidentialité du site.</p></section>
       <section><h2>14. Droit applicable et litiges</h2><p>Les parties privilégient une résolution amiable de tout différend. Les présentes conditions sont soumises au droit français, sans priver un client consommateur des protections impératives dont il bénéficie.</p></section>
 
-      <footer><Link to="/#contact">Parler de mon projet</Link></footer>
+      <footer><ActionLink variant="primary" to="/#contact">Parler de mon clip</ActionLink></footer>
     </article>
     <FilmsFooter />
   </main>

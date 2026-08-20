@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
   /* FERD design system — use these tokens instead of local hard-coded values. */
@@ -18,6 +18,7 @@
   --color-overlay-soft: rgba(0, 0, 0, 0.4);
 
   --font-display: "Orbitron", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --text-label: 0.68rem;
   --text-body: 1rem;
@@ -71,6 +72,12 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
 }
 
 .skip-link {
