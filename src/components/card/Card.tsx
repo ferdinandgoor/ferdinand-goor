@@ -5,19 +5,38 @@ import Video from "@/types/Video";
 import { getProcessVideoSlug, getProjectPath } from "@/utils/projectSlug";
 import "./Card.scss";
 
+export type VideoCardMode = "project" | "mashup" | "video" | "gear" | "music";
+
 type CardProps = Video & {
-  linkMode?: "project" | "mashup" | "video" | "gear" | "embed";
+  linkMode?: VideoCardMode;
 };
 
-const Card = ({ artist, song, date, youtubeId, styles = [], slug, linkMode }: CardProps) => {
+const Card = ({
+  artist,
+  song,
+  date,
+  youtubeId,
+  styles = [],
+  slug,
+  linkMode,
+}: CardProps) => {
   const { pathname } = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
   const thumbnail = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
   const year = new Date(date).getFullYear();
-  const mode = linkMode ?? (pathname === "/projets" ? "project" : "embed");
-  const internalHref = mode === "project" ? getProjectPath({ artist, song }) : `/${mode === "gear" ? "matos" : `${mode}s`}/${getProcessVideoSlug({ slug, artist, song })}`;
+  const mode = linkMode ?? (pathname === "/projets" ? "project" : "music");
+  const basePath =
+    mode === "gear"
+      ? "/matos"
+      : mode === "music"
+        ? "/music-production"
+        : `/${mode}s`;
+  const internalHref =
+    mode === "project"
+      ? getProjectPath({ artist, song })
+      : `${basePath}/${getProcessVideoSlug({ slug, artist, song })}`;
 
-  if (["project", "mashup", "video", "gear"].includes(mode)) {
+  if (["project", "mashup", "video", "gear", "music"].includes(mode)) {
     return (
       <article className="video-card--reveal video-card video-card--project">
         <Link

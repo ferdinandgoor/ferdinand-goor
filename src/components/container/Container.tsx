@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import "./Container.scss";
 
 type ContainerProps = {
-  as?: "div" | "article" | "nav";
+  as?: "div" | "article" | "nav" | "section";
   children: ReactNode;
   className?: string;
   ariaLabel?: string;

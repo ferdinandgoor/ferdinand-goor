@@ -12,13 +12,17 @@ import {
 import funnyMashupList from "@/data/funnyMashupList.json";
 import bigYoutubeVideoList from "@/data/bigYoutubeVideoList.json";
 import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
+import musicVideoList from "@/data/musicVideoList.json";
+import musicProductionList from "@/data/musicProductionList.json";
 import { getProcessVideoSlug } from "@/utils/projectSlug";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SiteHeader from "@/components/site-header/SiteHeader";
+import FilmsFooter from "@/components/films-footer/FilmsFooter";
+import Container from "@/components/container/Container";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
 import imageAyaKorn from "../mashup-landing/imageAyaKorn.webp";
 import roroPhoto from "../mashup-landing/roro.jpg";
-import "./ProcessDetailPage.scss";
+import "./MediaDetailPage.scss";
 import { ActionLink } from "@/components/action/Action";
 
 type Platform = "spotify" | "apple" | "deezer" | "youtubeMusic" | "youtube";
@@ -57,6 +61,12 @@ type ProcessItem = {
   slug?: string;
   date: string;
   youtubeId: string;
+  styles?: string[];
+  role?: string;
+  description?: string;
+  directorNote?: string;
+  behindTheScenesYoutubeId?: string;
+  credits?: { role: string; name: string }[];
   landing?: {
     artist?: string;
     title?: string;
@@ -70,16 +80,50 @@ type ProcessItem = {
 const mashups = funnyMashupList as ProcessItem[];
 const longVideos = bigYoutubeVideoList as ProcessItem[];
 const gearVideos = gearYoutubeVideoList as ProcessItem[];
+const projects = musicVideoList as ProcessItem[];
+const music = musicProductionList as ProcessItem[];
 
-type ProcessCategory = "mashups" | "videos" | "matos";
+type ProcessCategory = "projects" | "mashups" | "videos" | "matos" | "music";
 
 const categories: Record<
   ProcessCategory,
-  { items: ProcessItem[]; kicker: string }
+  {
+    items: ProcessItem[];
+    kicker: string;
+    listPath: string;
+    universe: "films" | "process";
+  }
 > = {
-  mashups: { items: mashups, kicker: "Mashup" },
-  videos: { items: longVideos, kicker: "Vidéo longue" },
-  matos: { items: gearVideos, kicker: "Matos et production" },
+  projects: {
+    items: projects,
+    kicker: "Clip musical",
+    listPath: "/projets",
+    universe: "films",
+  },
+  mashups: {
+    items: mashups,
+    kicker: "Mashup",
+    listPath: "/mashups",
+    universe: "process",
+  },
+  videos: {
+    items: longVideos,
+    kicker: "Vidéo longue",
+    listPath: "/videos",
+    universe: "process",
+  },
+  matos: {
+    items: gearVideos,
+    kicker: "Matos et production",
+    listPath: "/matos",
+    universe: "process",
+  },
+  music: {
+    items: music,
+    kicker: "Production musicale",
+    listPath: "/music-production",
+    universe: "process",
+  },
 };
 
 const profileRegistry: Record<string, ArtistProfile> = {
@@ -174,6 +218,17 @@ const getProfiles = (content: ProcessItem) =>
   (content.landing?.profileIds ?? ["ferd"])
     .map((profileId) => profileRegistry[profileId])
     .filter(Boolean);
+
+const getContentYear = (date: string) =>
+  date.match(/\b\d{4}\b/)?.[0] ?? date;
+
+const categoryRoles: Record<ProcessCategory, string> = {
+  projects: "Réalisation",
+  mashups: "Mashup & production",
+  videos: "Réalisation",
+  matos: "Test & production",
+  music: "Production musicale",
+};
 
 const platformIcon = (platform: Platform) => {
   switch (platform) {
@@ -282,10 +337,10 @@ const ProcessLinkButton = ({ link }: { link: ProcessLink }) => {
 
   return (
     <ActionLink
-      variant={link.isPrimary ? "primary" : "secondary"}
+      variant={link.isPrimary ? "text" : "secondary"}
       href={link.href}
       external
-      fullWidth
+      fullWidth={!link.isPrimary}
       onClick={handleClick}
       icon={
         link.isPrimary ? <Play weight="fill" /> : platformIcon(link.platform)
@@ -297,17 +352,21 @@ const ProcessLinkButton = ({ link }: { link: ProcessLink }) => {
   );
 };
 
-const ProcessDetailPage = () => {
+const MediaDetailPage = () => {
   useScrollReveal(
-    ".process-detail__hero, .process-detail__content, .process-detail__social-group",
+    ".media-detail__intro, .media-detail__content, .media-detail__social-group",
   );
   const { slug } = useParams();
   const { pathname } = useLocation();
-  const category: ProcessCategory = pathname.startsWith("/videos/")
-    ? "videos"
-    : pathname.startsWith("/matos/")
-      ? "matos"
-      : "mashups";
+  const category: ProcessCategory = pathname.startsWith("/projets/")
+    ? "projects"
+    : pathname.startsWith("/music-production/")
+      ? "music"
+      : pathname.startsWith("/videos/")
+        ? "videos"
+        : pathname.startsWith("/matos/")
+          ? "matos"
+          : "mashups";
   const categoryConfig = categories[category];
   const content = getProcessItem(categoryConfig.items, slug);
   const contentTitle = content.landing?.title ?? content.song;
@@ -322,43 +381,66 @@ const ProcessDetailPage = () => {
   return (
     <main
       id="main-content"
-      className="process-detail"
+      className="media-detail"
       style={
         {
-          "--process-detail-bg-image": `url(${backgroundImage})`,
+          "--media-detail-bg-image": `url(${backgroundImage})`,
         } as React.CSSProperties
       }
     >
-      <SiteHeader universe="process" />
-      <section className="process-detail__shell" aria-label={contentTitle}>
+      <SiteHeader universe={categoryConfig.universe} />
+      <Container
+        as="section"
+        className="media-detail__shell"
+        ariaLabel={contentTitle}
+      >
         <ActionLink
           variant="nav"
-          to={`/${category}`}
+          to={categoryConfig.listPath}
           icon={<ArrowLeft weight="bold" />}
           iconPosition="start"
         >
           Retour à la liste
         </ActionLink>
-        <header className="process-detail__hero">
-          <p className="process-detail__kicker">
-            {content.landing?.kicker ?? categoryConfig.kicker}
-          </p>
-          <h1>{contentTitle}</h1>
-          <p className="process-detail__artist">{contentArtist}</p>
+        <header className="media-detail__intro">
+          <div>
+            <p>
+              {content.styles?.join(" · ") ??
+                content.landing?.kicker ??
+                categoryConfig.kicker}
+              {" · "}
+              {getContentYear(content.date)}
+            </p>
+            <h1>
+              <span>{contentArtist}</span>
+              {contentTitle}
+            </h1>
+          </div>
+          <dl>
+            <div>
+              <dt>Artiste</dt>
+              <dd>{contentArtist}</dd>
+            </div>
+            <div>
+              <dt>Projet</dt>
+              <dd>{contentTitle}</dd>
+            </div>
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>{content.role ?? categoryRoles[category]}</dd>
+            </div>
+          </dl>
         </header>
 
-        <section
-          className="process-detail__content"
-          aria-label="Vidéo et liens"
-        >
-          <div className="process-detail__featured-videos">
+        <section className="media-detail__content" aria-label="Vidéo et liens">
+          <div className="media-detail__featured-videos">
             {videos.map((video) => (
               <article
-                className="process-detail__video-feature"
+                className="media-detail__video-feature"
                 key={video.youtubeId}
               >
                 <p>{video.label}</p>
-                <div className="process-detail__video">
+                <div className="media-detail__video">
                   <iframe
                     loading="lazy"
                     src={youtubeEmbedUrl(video.youtubeId)}
@@ -371,7 +453,7 @@ const ProcessDetailPage = () => {
             ))}
           </div>
 
-          <div className="process-detail__links" aria-label="Streaming links">
+          <div className="media-detail__links" aria-label="Streaming links">
             {links.map((link) => (
               <ProcessLinkButton
                 key={`${link.platform}-${link.href}`}
@@ -381,9 +463,57 @@ const ProcessDetailPage = () => {
           </div>
         </section>
 
-        <section className="process-detail__socials" aria-label="Social links">
+        {content.description || content.directorNote ? (
+          <div className="media-detail__copy">
+            {content.description ? (
+              <section>
+                <p className="media-detail__label">Le projet</p>
+                <h2>À propos</h2>
+                <p>{content.description}</p>
+              </section>
+            ) : null}
+            {content.directorNote ? (
+              <section>
+                <p className="media-detail__label">Note</p>
+                <h2>Un mot sur le projet</h2>
+                <p>{content.directorNote}</p>
+              </section>
+            ) : null}
+          </div>
+        ) : null}
+
+        {content.behindTheScenesYoutubeId ? (
+          <section className="media-detail__extra">
+            <p className="media-detail__label">Coulisses</p>
+            <h2>Behind the scenes</h2>
+            <div className="media-detail__video">
+              <iframe
+                src={youtubeEmbedUrl(content.behindTheScenesYoutubeId)}
+                title={`Coulisses de ${contentTitle}`}
+                allowFullScreen
+              />
+            </div>
+          </section>
+        ) : null}
+
+        {content.credits?.length ? (
+          <section className="media-detail__credits">
+            <p className="media-detail__label">Équipe</p>
+            <h2>Crédits</h2>
+            <dl>
+              {content.credits.map((credit) => (
+                <div key={`${credit.role}-${credit.name}`}>
+                  <dt>{credit.role}</dt>
+                  <dd>{credit.name}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
+        <section className="media-detail__socials" aria-label="Social links">
           {profiles.map((profile) => (
-            <div className="process-detail__social-group" key={profile.id}>
+            <div className="media-detail__social-group" key={profile.id}>
               <img src={profile.photo} alt={profile.alt} loading="lazy" />
               <p>{profile.name}</p>
               <div>
@@ -405,9 +535,10 @@ const ProcessDetailPage = () => {
             </div>
           ))}
         </section>
-      </section>
+      </Container>
+      {category === "projects" ? <FilmsFooter /> : null}
     </main>
   );
 };
 
-export default ProcessDetailPage;
+export default MediaDetailPage;

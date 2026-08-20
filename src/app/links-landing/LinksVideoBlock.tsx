@@ -1,11 +1,12 @@
 import {
-  ArrowSquareOut,
+  ArrowRight,
   MusicNotes,
   Play,
   SpotifyLogo,
-  YoutubeLogo,
 } from "phosphor-react";
+import { Link } from "react-router-dom";
 import { ActionLink } from "@/components/action/Action";
+import { getProcessVideoSlug } from "@/utils/projectSlug";
 
 type ListeningLink = {
   label: string;
@@ -17,6 +18,7 @@ type ListeningLink = {
 export type LinksVideo = {
   artist: string;
   song: string;
+  slug?: string;
   date: string;
   youtubeId: string;
   landing?: {
@@ -32,12 +34,11 @@ export type LinksVideoBlockProps = {
   secondaryVideos?: LinksVideo[];
   secondaryLabel?: string;
   buttonLabel: string;
+  detailBasePath: string;
   moreHref: string;
   moreLabel: string;
+  showListeningLinks?: boolean;
 };
-
-const youtubeWatchUrl = (youtubeId: string) =>
-  `https://www.youtube.com/watch?v=${youtubeId}`;
 
 const listeningLinkIcon = (platform: string) => {
   if (platform === "spotify") {
@@ -53,14 +54,19 @@ const LinksVideoBlock = ({
   secondaryVideos = [],
   secondaryLabel,
   buttonLabel,
+  detailBasePath,
   moreHref,
   moreLabel,
+  showListeningLinks = false,
 }: LinksVideoBlockProps) => {
-  const primaryHref = youtubeWatchUrl(primaryVideo.youtubeId);
-  const listeningLinks = (primaryVideo.landing?.links ?? []).filter(
-    (link) => link.platform !== "youtube",
-  );
-  const isExternalMoreLink = moreHref.startsWith("http");
+  const getDetailPath = (video: LinksVideo) =>
+    `${detailBasePath}/${getProcessVideoSlug(video)}`;
+  const primaryPath = getDetailPath(primaryVideo);
+  const listeningLinks = showListeningLinks
+    ? (primaryVideo.landing?.links ?? []).filter(
+        (link) => link.platform !== "youtube",
+      )
+    : [];
 
   return (
     <section
@@ -72,12 +78,10 @@ const LinksVideoBlock = ({
         <h2>{primaryVideo.song}</h2>
       </div>
 
-      <a
+      <Link
         className="links-page__thumbnail"
-        href={primaryHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Regarder ${primaryVideo.song} sur YouTube`}
+        to={primaryPath}
+        aria-label={`Découvrir ${primaryVideo.song}`}
       >
         <img
           src={`https://i.ytimg.com/vi/${primaryVideo.youtubeId}/hqdefault.jpg`}
@@ -89,16 +93,14 @@ const LinksVideoBlock = ({
         <span>
           <Play weight="fill" aria-hidden="true" />
         </span>
-      </a>
+      </Link>
 
       <div className="links-page__feature-copy">
         <ActionLink
           variant="primary"
-          href={primaryHref}
-          external
+          to={primaryPath}
           fullWidth
-          icon={<YoutubeLogo weight="fill" />}
-          iconPosition="start"
+          icon={<ArrowRight weight="bold" />}
         >
           {buttonLabel}
         </ActionLink>
@@ -125,11 +127,9 @@ const LinksVideoBlock = ({
           <p className="links-page__section-label">{secondaryLabel}</p>
           <div className="links-page__list">
             {secondaryVideos.map((video) => (
-              <a
+              <Link
                 className="links-page__link"
-                href={youtubeWatchUrl(video.youtubeId)}
-                target="_blank"
-                rel="noopener noreferrer"
+                to={getDetailPath(video)}
                 key={video.youtubeId}
               >
                 <img
@@ -143,33 +143,21 @@ const LinksVideoBlock = ({
                   <strong>{video.landing?.title ?? video.song}</strong>
                   <small>{video.landing?.artist ?? video.artist}</small>
                 </span>
-                <YoutubeLogo weight="fill" aria-hidden="true" />
-              </a>
+                <ArrowRight weight="bold" aria-hidden="true" />
+              </Link>
             ))}
           </div>
         </div>
       ) : null}
 
-      {isExternalMoreLink ? (
-        <ActionLink
-          className="links-page__feature-more"
-          variant="text"
-          href={moreHref}
-          external
-          icon={<ArrowSquareOut weight="bold" />}
-        >
-          {moreLabel}
-        </ActionLink>
-      ) : (
-        <ActionLink
-          className="links-page__feature-more"
-          variant="text"
-          to={moreHref}
-          icon={<ArrowSquareOut weight="bold" />}
-        >
-          {moreLabel}
-        </ActionLink>
-      )}
+      <ActionLink
+        className="links-page__feature-more"
+        variant="text"
+        to={moreHref}
+        icon={<ArrowRight weight="bold" />}
+      >
+        {moreLabel}
+      </ActionLink>
     </section>
   );
 };

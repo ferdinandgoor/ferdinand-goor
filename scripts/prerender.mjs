@@ -10,11 +10,13 @@ const mashupDataPath = path.join(rootDir, "src", "data", "funnyMashupList.json")
 const projectDataPath = path.join(rootDir, "src", "data", "musicVideoList.json");
 const longVideoDataPath = path.join(rootDir, "src", "data", "bigYoutubeVideoList.json");
 const gearVideoDataPath = path.join(rootDir, "src", "data", "gearYoutubeVideoList.json");
+const musicProductionDataPath = path.join(rootDir, "src", "data", "musicProductionList.json");
 const mountPattern = /(<div\s+id=["']root["'][^>]*>)\s*(<\/div>)/;
 const funnyMashupList = JSON.parse(await readFile(mashupDataPath, "utf8"));
 const musicVideoList = JSON.parse(await readFile(projectDataPath, "utf8"));
 const longVideoList = JSON.parse(await readFile(longVideoDataPath, "utf8"));
 const gearVideoList = JSON.parse(await readFile(gearVideoDataPath, "utf8"));
+const musicProductionList = JSON.parse(await readFile(musicProductionDataPath, "utf8"));
 const slugifyProject = (value) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const baseRoutes = [
@@ -34,6 +36,7 @@ const baseRoutes = [
     .map((slug) => `/mashups/${slug}`),
   ...longVideoList.map((item) => `/videos/${slugifyProject(`${item.artist}-${item.song}`)}`),
   ...gearVideoList.map((item) => `/matos/${slugifyProject(`${item.artist}-${item.song}`)}`),
+  ...musicProductionList.map((item) => `/music-production/${slugifyProject(`${item.artist}-${item.song}`)}`),
 ];
 
 const template = await readFile(templatePath, "utf8");

@@ -1,10 +1,17 @@
 import funnyMashupList from "./data/funnyMashupList.json";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
+import musicProductionList from "./data/musicProductionList.json";
 import musicVideoListData from "./data/musicVideoList.json";
 import type Video from "./types/Video";
 import { getProcessVideoSlug, getProjectSlug } from "./utils/projectSlug";
-import { filmLandingPages, filmProjects, getFilmLandingPage, showreel, youtubeThumbnail } from "./data/films";
+import {
+  filmLandingPages,
+  filmProjects,
+  getFilmLandingPage,
+  showreel,
+  youtubeThumbnail,
+} from "./data/films";
 
 const musicVideoList = musicVideoListData as Video[];
 
@@ -117,14 +124,22 @@ export const absoluteUrl = (value: string) =>
 
 export function getSeoData(pathname: string): SeoData {
   const path = normalizePath(pathname);
-  const filmsSlug = path.startsWith("/films/") ? path.slice("/films/".length) : "";
+  const filmsSlug = path.startsWith("/films/")
+    ? path.slice("/films/".length)
+    : "";
   const filmsPage = getFilmLandingPage(filmsSlug);
   if (filmsPage) {
     return {
       title: filmsPage.title,
       description: filmsPage.metaDescription,
       canonical: absoluteUrl(path),
-      image: youtubeThumbnail(filmsPage.featuredProjects.length ? filmProjects.find((project) => project.slug === filmsPage.featuredProjects[0])?.youtubeId ?? showreel.youtubeId : showreel.youtubeId),
+      image: youtubeThumbnail(
+        filmsPage.featuredProjects.length
+          ? (filmProjects.find(
+              (project) => project.slug === filmsPage.featuredProjects[0],
+            )?.youtubeId ?? showreel.youtubeId)
+          : showreel.youtubeId,
+      ),
       type: "website",
     };
   }
@@ -136,7 +151,9 @@ export function getSeoData(pathname: string): SeoData {
     };
   }
 
-  const slug = path.startsWith("/mashups/") ? path.slice("/mashups/".length) : "";
+  const slug = path.startsWith("/mashups/")
+    ? path.slice("/mashups/".length)
+    : "";
   const mashup = funnyMashupList.find((item) => item.slug === slug);
   if (mashup) {
     const title = mashup.landing?.title ?? mashup.song;
@@ -153,10 +170,21 @@ export function getSeoData(pathname: string): SeoData {
   const processCategory = path.startsWith("/videos/")
     ? { prefix: "/videos/", label: "Vidéo", items: bigYoutubeVideoList }
     : path.startsWith("/matos/")
-      ? { prefix: "/matos/", label: "Matos et production", items: gearYoutubeVideoList }
-      : null;
+      ? {
+          prefix: "/matos/",
+          label: "Matos et production",
+          items: gearYoutubeVideoList,
+        }
+      : path.startsWith("/music-production/")
+        ? {
+            prefix: "/music-production/",
+            label: "Production musicale",
+            items: musicProductionList,
+          }
+        : null;
   const processVideo = processCategory?.items.find(
-    (item) => getProcessVideoSlug(item) === path.slice(processCategory.prefix.length),
+    (item) =>
+      getProcessVideoSlug(item) === path.slice(processCategory.prefix.length),
   );
   if (processVideo && processCategory) {
     return {
@@ -168,12 +196,18 @@ export function getSeoData(pathname: string): SeoData {
     };
   }
 
-  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
-  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
+  const projectSlug = path.startsWith("/projets/")
+    ? path.slice("/projets/".length)
+    : "";
+  const project = musicVideoList.find(
+    (item) => getProjectSlug(item) === projectSlug,
+  );
   if (project) {
     return {
       title: `${project.artist} — ${project.song} | FERD FILMS`,
-      description: project.description || `Découvrez le clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
+      description:
+        project.description ||
+        `Découvrez le clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
       canonical: absoluteUrl(path),
       image: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`,
       type: "video.other",
@@ -186,7 +220,10 @@ export function getSeoData(pathname: string): SeoData {
   };
 }
 
-export function getStructuredData(pathname: string, seo = getSeoData(pathname)) {
+export function getStructuredData(
+  pathname: string,
+  seo = getSeoData(pathname),
+) {
   const path = normalizePath(pathname);
   const graph: Record<string, unknown>[] = [
     {
@@ -241,15 +278,32 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     },
   ];
 
-  const filmsSlug = path.startsWith("/films/") ? path.slice("/films/".length) : "";
+  const filmsSlug = path.startsWith("/films/")
+    ? path.slice("/films/".length)
+    : "";
   const filmsPage = getFilmLandingPage(filmsSlug);
   if (filmsPage) {
     graph.push({
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "FERD", item: `${siteConfig.url}/` },
-        { "@type": "ListItem", position: 2, name: "Films", item: `${siteConfig.url}/films/realisation-clip-musical` },
-        { "@type": "ListItem", position: 3, name: filmsPage.city ? `Clip vidéo ${filmsPage.city}` : filmsPage.h1, item: seo.canonical },
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "FERD",
+          item: `${siteConfig.url}/`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Films",
+          item: `${siteConfig.url}/films/realisation-clip-musical`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: filmsPage.city ? `Clip vidéo ${filmsPage.city}` : filmsPage.h1,
+          item: seo.canonical,
+        },
       ],
     });
   } else if (path !== "/") {
@@ -272,7 +326,11 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     });
   }
 
-  const featuredSlugs = filmsPage?.featuredProjects ?? (path === "/" ? filmProjects.slice(0, 6).map((project) => project.slug) : []);
+  const featuredSlugs =
+    filmsPage?.featuredProjects ??
+    (path === "/"
+      ? filmProjects.slice(0, 6).map((project) => project.slug)
+      : []);
   if (path === "/" || filmsPage) {
     graph.push({
       "@type": "VideoObject",
@@ -298,15 +356,23 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     });
   }
 
-  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
-  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
+  const projectSlug = path.startsWith("/projets/")
+    ? path.slice("/projets/".length)
+    : "";
+  const project = musicVideoList.find(
+    (item) => getProjectSlug(item) === projectSlug,
+  );
   if (project) {
     const parsedDate = new Date(project.date);
-    const uploadDate = Number.isNaN(parsedDate.getTime()) ? undefined : parsedDate.toISOString();
+    const uploadDate = Number.isNaN(parsedDate.getTime())
+      ? undefined
+      : parsedDate.toISOString();
     graph.push({
       "@type": "VideoObject",
       name: `${project.artist} — ${project.song}`,
-      description: project.description || `Clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
+      description:
+        project.description ||
+        `Clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
       thumbnailUrl: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`,
       ...(uploadDate ? { uploadDate } : {}),
       embedUrl: `https://www.youtube-nocookie.com/embed/${project.youtubeId}`,
@@ -318,21 +384,43 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
-export const filmSeoRoutes = filmLandingPages.map((page) => `/films/${page.slug}`);
+export const filmSeoRoutes = filmLandingPages.map(
+  (page) => `/films/${page.slug}`,
+);
 
 export function getSitemapImages(pathname: string) {
   const path = normalizePath(pathname);
-  const filmsPage = getFilmLandingPage(path.startsWith("/films/") ? path.slice("/films/".length) : "");
+  const filmsPage = getFilmLandingPage(
+    path.startsWith("/films/") ? path.slice("/films/".length) : "",
+  );
   if (path === "/" || filmsPage) {
     const projects = filmsPage
-      ? filmsPage.featuredProjects.map((slug) => filmProjects.find((project) => project.slug === slug)).filter((project): project is (typeof filmProjects)[number] => Boolean(project))
+      ? filmsPage.featuredProjects
+          .map((slug) => filmProjects.find((project) => project.slug === slug))
+          .filter((project): project is (typeof filmProjects)[number] =>
+            Boolean(project),
+          )
       : filmProjects.slice(0, 6);
     return [
       { url: youtubeThumbnail(showreel.youtubeId), title: showreel.title },
-      ...projects.map((project) => ({ url: youtubeThumbnail(project.youtubeId), title: `Clip ${project.title} de ${project.artist}` })),
+      ...projects.map((project) => ({
+        url: youtubeThumbnail(project.youtubeId),
+        title: `Clip ${project.title} de ${project.artist}`,
+      })),
     ];
   }
-  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
-  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
-  return project ? [{ url: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`, title: `Clip ${project.song} de ${project.artist}` }] : [];
+  const projectSlug = path.startsWith("/projets/")
+    ? path.slice("/projets/".length)
+    : "";
+  const project = musicVideoList.find(
+    (item) => getProjectSlug(item) === projectSlug,
+  );
+  return project
+    ? [
+        {
+          url: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`,
+          title: `Clip ${project.song} de ${project.artist}`,
+        },
+      ]
+    : [];
 }

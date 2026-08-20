@@ -5,13 +5,11 @@ import {
   useLocation,
   type RouteObject,
 } from "react-router-dom";
-import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
-import Home from "./app/page";
+import VideoListPage from "./app/video-list-page/VideoListPage";
 import LinksLanding from "./app/links-landing/LinksLanding";
-import ProcessDetailPage from "./app/process-detail/ProcessDetailPage";
+import MediaDetailPage from "./app/media-detail/MediaDetailPage";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
 import TermsPage from "./app/legal/TermsPage";
-import ProjectDetailPage from "./app/project-detail/ProjectDetailPage";
 import FilmsSeoLanding from "./app/films-seo/FilmsSeoLanding";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import funnyMashupList from "./data/funnyMashupList.json";
@@ -20,16 +18,6 @@ import musicVideoList from "./data/musicVideoList.json";
 import musicProductionList from "./data/musicProductionList.json";
 import SeoManager from "./components/SeoManager";
 import CookieConsent from "./components/cookie-consent/CookieConsent";
-
-export type TabHandle = {
-  id: number;
-  label: string;
-  icon: ReactNode;
-  video: string;
-  path: string;
-  headerImage: string;
-  headerSubtitle: string;
-};
 
 const ScrollToTop = ({ children }: { children: ReactNode }) => {
   const { pathname, hash } = useLocation();
@@ -61,36 +49,6 @@ const ScrollToTop = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const tabs: TabHandle[] = [
-  {
-    id: 0,
-    label: "Projets",
-    icon: <VideoCamera size={24} />,
-    video: "overfloodedLight.mp4",
-    path: "/projets",
-    headerImage: "/video.webp",
-    headerSubtitle: "I make music videos\nfor cool artists",
-  },
-  {
-    id: 1,
-    label: "Music Production",
-    icon: <MusicNote size={24} />,
-    video: "overfloodedLight.mp4",
-    path: "/music-production",
-    headerImage: "/music.webp",
-    headerSubtitle: "I produce music\nfor cool artists",
-  },
-  {
-    id: 2,
-    label: "YouTube Videos",
-    icon: <YoutubeLogo size={24} />,
-    video: "artificialafter.mp4",
-    path: "/youtube-videos",
-    headerImage: "/youtube.webp",
-    headerSubtitle: "I make content\nfor YouTube",
-  },
-];
-
 export const routes: RouteObject[] = [
   {
     path: "/",
@@ -120,17 +78,23 @@ export const routes: RouteObject[] = [
     path: "/projets",
     element: (
       <ScrollToTop>
-        <Home />
+        <VideoListPage
+          title="Projets de clips musicaux de Ferd"
+          list={musicVideoList}
+          linkMode="project"
+          universe="films"
+          backTo="/"
+          backLabel="Retour à l’accueil"
+          showFilmsFooter
+        />
       </ScrollToTop>
     ),
-    loader: () => ({ list: musicVideoList }),
-    handle: tabs[0],
   },
   {
     path: "/projets/:slug",
     element: (
       <ScrollToTop>
-        <ProjectDetailPage />
+        <MediaDetailPage />
       </ScrollToTop>
     ),
   },
@@ -146,11 +110,24 @@ export const routes: RouteObject[] = [
     path: "/music-production",
     element: (
       <ScrollToTop>
-        <Home />
+        <VideoListPage
+          title="Productions musicales de Ferd"
+          list={musicProductionList}
+          linkMode="music"
+          universe="process"
+          backTo="/process"
+          backLabel="Retour à FERD Process"
+        />
       </ScrollToTop>
     ),
-    loader: () => ({ list: musicProductionList }),
-    handle: tabs[1],
+  },
+  {
+    path: "/music-production/:slug",
+    element: (
+      <ScrollToTop>
+        <MediaDetailPage />
+      </ScrollToTop>
+    ),
   },
   {
     path: "/youtube-videos",
@@ -160,34 +137,64 @@ export const routes: RouteObject[] = [
     path: "/mashups",
     element: (
       <ScrollToTop>
-        <Home />
+        <VideoListPage
+          title="Mashups de FERD Process"
+          list={funnyMashupList}
+          linkMode="mashup"
+          universe="process"
+          backTo="/process"
+          backLabel="Retour à FERD Process"
+          playlist={{
+            href: "https://www.youtube.com/playlist?list=PLTGarG5bkXoA",
+            label: "Playlist des mashups",
+          }}
+        />
       </ScrollToTop>
     ),
-    loader: () => ({ list: funnyMashupList, linkMode: "mashup" }),
   },
   {
     path: "/videos",
     element: (
       <ScrollToTop>
-        <Home />
+        <VideoListPage
+          title="Vidéos longues de FERD Process"
+          list={bigYoutubeVideoList}
+          linkMode="video"
+          universe="process"
+          backTo="/process"
+          backLabel="Retour à FERD Process"
+          playlist={{
+            href: "https://www.youtube.com/playlist?list=PLOGfm0l52k3g",
+            label: "Playlist des vidéos longues",
+          }}
+        />
       </ScrollToTop>
     ),
-    loader: () => ({ list: bigYoutubeVideoList, linkMode: "video" }),
   },
   {
     path: "/matos",
     element: (
       <ScrollToTop>
-        <Home />
+        <VideoListPage
+          title="Tests de matériel de FERD Process"
+          list={gearYoutubeVideoList}
+          linkMode="gear"
+          universe="process"
+          backTo="/process"
+          backLabel="Retour à FERD Process"
+          playlist={{
+            href: "https://www.youtube.com/playlist?list=PLOvnmxmjrjv4",
+            label: "Playlist matos et production",
+          }}
+        />
       </ScrollToTop>
     ),
-    loader: () => ({ list: gearYoutubeVideoList, linkMode: "gear" }),
   },
   {
     path: "/videos/:slug",
     element: (
       <ScrollToTop>
-        <ProcessDetailPage />
+        <MediaDetailPage />
       </ScrollToTop>
     ),
   },
@@ -195,7 +202,7 @@ export const routes: RouteObject[] = [
     path: "/matos/:slug",
     element: (
       <ScrollToTop>
-        <ProcessDetailPage />
+        <MediaDetailPage />
       </ScrollToTop>
     ),
   },
@@ -207,7 +214,7 @@ export const routes: RouteObject[] = [
     path: "/mashups/:slug",
     element: (
       <ScrollToTop>
-        <ProcessDetailPage />
+        <MediaDetailPage />
       </ScrollToTop>
     ),
   },

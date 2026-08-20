@@ -1,18 +1,13 @@
 import Card from "@/components/card";
+import type { VideoCardMode } from "@/components/card/Card";
+import type Video from "@/types/Video";
 import "./List.scss";
 
 interface ListProps {
   title?: string;
-  data: {
-    artist: string;
-    date: string;
-    song: string;
-    youtubeId: string;
-    slug?: string;
-    styles?: string[];
-  }[];
+  data: Video[];
   maxSize: number;
-  linkMode?: "project" | "mashup" | "video" | "gear" | "embed";
+  linkMode?: VideoCardMode;
 }
 
 const List = ({ title, data, maxSize, linkMode }: ListProps) => (
