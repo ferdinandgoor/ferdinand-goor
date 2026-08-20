@@ -51,8 +51,10 @@ Heroes are image/video-led, dark and readable. Use `--hero-overlay`, the large t
 
 ## Components
 
-- Interactive actions use `src/components/action/Action.tsx`. Choose the `primary`, `secondary`, `text`, `nav` or `icon` variant instead of creating page-specific button or link animation rules.
+- Interactive actions use `src/components/action/Action.tsx`. Buttons are limited to `primary` (green/black), `secondary` (bordered blurred dark surface) and `contrast` (black/green for light backgrounds). `text`, `nav`, `icon` and the accessible social-only `icon-bubble` are link treatments, not button variants.
 - Primary CTA: green background, dark text, uppercase Orbitron label, compact radius.
+- Actions keep a minimum 44 px interactive width, a 50 px button height, visible focus and live loading feedback when they submit a form.
+- Use the component `fullWidth` prop when an action must fill its container; do not set button widths in page SCSS.
 - Secondary CTA: dark/transparent surface, off-white text and shared border.
 - Panels: `--color-surface`, `--color-border`, `--shadow-panel`, `--radius-lg`.
 - Cards: imagery first; metadata overlays should remain concise.

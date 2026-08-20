@@ -81,14 +81,14 @@ export const filmProjects: FilmProject[] = [
   },
   {
     slug: "chrome-fear-melody-to-my-soul",
-    artist: "Chrome Fear",
+    artist: "Vialisme",
     title: "Melody To My Soul",
     youtubeId: "jQ72aX22f2M",
     uploadDate: "2025-12-15",
     year: 2025,
     genres: ["Metalcore"],
     role: "Réalisation",
-    description: "Clip metalcore de Chrome Fear réalisé par FERD FILMS.",
+    description: "Clip metalcore de Vialisme réalisé par FERD FILMS.",
   },
   {
     slug: "dissolve-shattered-minds-of-evolution",

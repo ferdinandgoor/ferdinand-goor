@@ -5,7 +5,7 @@ import {
   SpotifyLogo,
   YoutubeLogo,
 } from "phosphor-react";
-import { Link } from "react-router-dom";
+import { ActionLink } from "@/components/action/Action";
 
 type ListeningLink = {
   label: string;
@@ -61,12 +61,6 @@ const LinksVideoBlock = ({
     (link) => link.platform !== "youtube",
   );
   const isExternalMoreLink = moreHref.startsWith("http");
-  const moreLinkContent = (
-    <>
-      <span>{moreLabel}</span>
-      <ArrowSquareOut weight="bold" aria-hidden="true" />
-    </>
-  );
 
   return (
     <section className="links-feature links-feature-video" aria-label={label}>
@@ -95,26 +89,9 @@ const LinksVideoBlock = ({
       </a>
 
       <div className="links-feature-copy">
-        <a
-          className="links-button links-button-primary"
-          href={primaryHref}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <YoutubeLogo weight="fill" aria-hidden="true" />
-          <span>{buttonLabel}</span>
-        </a>
+        <ActionLink variant="primary" href={primaryHref} external fullWidth icon={<YoutubeLogo weight="fill" />} iconPosition="start">{buttonLabel}</ActionLink>
         {listeningLinks.map((link) => (
-          <a
-            className="links-button"
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={`${link.platform}-${link.href}`}
-          >
-            {listeningLinkIcon(link.platform)}
-            <span>{link.label}</span>
-          </a>
+          <ActionLink variant="secondary" href={link.href} external fullWidth icon={listeningLinkIcon(link.platform)} iconPosition="start" key={`${link.platform}-${link.href}`}>{link.label}</ActionLink>
         ))}
       </div>
 
@@ -149,18 +126,9 @@ const LinksVideoBlock = ({
       ) : null}
 
       {isExternalMoreLink ? (
-        <a
-          className="links-more-link links-feature-more"
-          href={moreHref}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {moreLinkContent}
-        </a>
+        <ActionLink className="links-feature-more" variant="text" href={moreHref} external icon={<ArrowSquareOut weight="bold" />}>{moreLabel}</ActionLink>
       ) : (
-        <Link className="links-more-link links-feature-more" to={moreHref}>
-          {moreLinkContent}
-        </Link>
+        <ActionLink className="links-feature-more" variant="text" to={moreHref} icon={<ArrowSquareOut weight="bold" />}>{moreLabel}</ActionLink>
       )}
     </section>
   );

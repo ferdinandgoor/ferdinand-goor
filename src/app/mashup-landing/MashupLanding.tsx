@@ -15,6 +15,7 @@ import ferdPhoto from "./ferd.jpg";
 import imageAyaKorn from "./imageAyaKorn.webp";
 import roroPhoto from "./roro.jpg";
 import "./MashupLanding.scss";
+import { ActionLink } from "@/components/action/Action";
 
 type Platform = "spotify" | "apple" | "deezer" | "youtubeMusic" | "youtube";
 
@@ -250,18 +251,7 @@ const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
   };
 
   return (
-    <a
-      className={link.isPrimary ? "mashup-button mashup-button-primary" : "mashup-button"}
-      href={link.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleClick}
-    >
-      <span className="mashup-button-icon" aria-hidden="true">
-        {link.isPrimary ? <Play weight="fill" /> : platformIcon(link.platform)}
-      </span>
-      <span>{link.label}</span>
-    </a>
+    <ActionLink variant={link.isPrimary ? "primary" : "secondary"} href={link.href} external fullWidth onClick={handleClick} icon={link.isPrimary ? <Play weight="fill" /> : platformIcon(link.platform)} iconPosition="start">{link.label}</ActionLink>
   );
 };
 

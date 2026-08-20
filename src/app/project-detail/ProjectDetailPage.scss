@@ -1,5 +1,4 @@
 .project-detail { min-height: 100vh; padding-top: 72px; color: var(--color-text); background: var(--color-bg); }
-.project-detail__container { padding-top:var(--space-6); padding-bottom:var(--section-block); }
 .project-detail__intro { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, .6fr); align-items: end; gap: var(--space-10); margin-bottom: clamp(var(--space-8), 6vw, var(--space-16)); }
 .project-detail__intro > div { animation: project-intro var(--duration-reveal) var(--ease-standard) both; animation-delay: var(--duration-fast); }
 .project-detail__intro > dl { animation: project-intro var(--duration-reveal) var(--ease-standard) both; animation-delay: var(--duration-medium); }

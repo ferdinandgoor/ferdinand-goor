@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import { Link } from "react-router-dom";
 import {
   ArrowSquareOut,
   InstagramLogo,
@@ -19,6 +18,7 @@ import type {
   LinksVideoBlockProps,
 } from "./LinksVideoBlock";
 import "./LinksLanding.scss";
+import { ActionLink } from "@/components/action/Action";
 
 type VideoBlock = Omit<LinksVideoBlockProps, "primaryVideo" | "secondaryVideos"> & {
   key: string;
@@ -85,25 +85,25 @@ const socials = [
     label: "YouTube",
     href: youtubeChannelUrl,
     icon: <YoutubeLogo weight="fill" />,
-    className: "links-social-youtube",
+    tone: "youtube" as const,
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/ferd.process",
     icon: <InstagramLogo weight="fill" />,
-    className: "links-social-instagram",
+    tone: "instagram" as const,
   },
   {
     label: "TikTok",
     href: "https://www.tiktok.com/@ferd.process",
     icon: <TiktokLogo weight="fill" />,
-    className: "links-social-tiktok",
+    tone: "tiktok" as const,
   },
   {
     label: "Spotify",
     href: spotifyArtistUrl,
     icon: <SpotifyLogo weight="fill" />,
-    className: "links-social-spotify",
+    tone: "spotify" as const,
   },
 ];
 
@@ -131,16 +131,18 @@ const LinksLanding = () => {
             </p>
             <div className="links-profile-socials">
               {socials.map((social) => (
-                <a
+                <ActionLink
                   key={social.href}
-                  className={`links-profile-social ${social.className}`}
+                  variant="icon-bubble"
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
+                  external
+                  icon={social.icon}
+                  iconPosition="start"
+                  tone={social.tone}
+                  ariaLabel={social.label}
                 >
-                  {social.icon}
-                </a>
+                  {social.label}
+                </ActionLink>
               ))}
             </div>
           </div>
@@ -159,10 +161,7 @@ const LinksLanding = () => {
           )}
         </section>
 
-        <Link className="links-main-page-link" to="/">
-          <span>Découvrir FERD Films</span>
-          <ArrowSquareOut weight="bold" aria-hidden="true" />
-        </Link>
+        <div className="links-main-action"><ActionLink variant="nav" to="/" icon={<ArrowSquareOut weight="bold" />}>Découvrir FERD Films</ActionLink></div>
       </section>
     </main>
   );

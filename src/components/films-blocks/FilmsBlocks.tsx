@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { web3FormsAccessKey } from "@/config/contact";
 import { FilmProject, showreel, youtubeThumbnail } from "@/data/films";
 import { trackEvent } from "@/utils/tracking";
-import { ActionButton, ActionLink } from "@/components/action/Action";
+import { ActionButton, ActionLink, type ActionVariant } from "@/components/action/Action";
 
-export const ContactLink = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <ActionLink className={className} variant="primary" href="#contact" icon={<ArrowRight weight="bold" aria-hidden="true" />} onClick={() => trackEvent("cta_contact_click")}>{children}</ActionLink>
+export const ContactLink = ({ children, className = "", variant = "primary" }: { children: React.ReactNode; className?: string; variant?: ActionVariant }) => (
+  <ActionLink className={className} variant={variant} href="#contact" icon={<ArrowRight weight="bold" aria-hidden="true" />} onClick={() => trackEvent("cta_contact_click")}>{children}</ActionLink>
 );
 
 export const Showreel = ({ compact = false }: { compact?: boolean }) => {
@@ -69,15 +69,15 @@ const ClipContactForm = () => {
       <label>Lien vers la musique<input name="music_link" type="url" inputMode="url" /></label>
       <label>Budget approximatif<select name="budget" defaultValue="À définir"><option>Moins de 850 €</option><option>850 – 1 500 €</option><option>1 500 – 2 500 €</option><option>2 500 €+</option><option>À définir</option></select></label>
       <label className="clip-form-wide">Message<textarea name="request" rows={5} required /></label>
-      <ActionButton className="clip-form-wide" type="submit" disabled={status === "sending"} icon={<ArrowRight weight="bold" aria-hidden="true" />}>{status === "sending" ? "ENVOI…" : "ENVOYER MON PROJET"}</ActionButton>
-      <p className="clip-form-wide clip-form-status" aria-live="polite">{status === "sent" && "Merci. Ton projet a bien été envoyé."}{status === "error" && "L’envoi a échoué. Tu peux écrire à ferdofficial@gmail.com."}</p>
+      <ActionButton className="clip-form-wide" fullWidth type="submit" disabled={status === "sending"} aria-busy={status === "sending"} aria-describedby="clip-form-status" icon={<ArrowRight weight="bold" aria-hidden="true" />}>{status === "sending" ? "Envoi en cours…" : "Envoyer mon projet"}</ActionButton>
+      <p id="clip-form-status" className="clip-form-wide clip-form-status" role="status" aria-live="polite">{status === "sending" && "Envoi du formulaire en cours."}{status === "sent" && "Merci. Ton projet a bien été envoyé."}{status === "error" && "L’envoi a échoué. Tu peux écrire à ferdofficial@gmail.com."}</p>
     </form>
   );
 };
 
 export const ContactSection = ({ title = "Tu as un morceau ? Parlons du clip." }: { title?: string }) => (
   <section className="clip-section clip-contact" id="contact">
-    <div><p className="clip-index">Contact</p><h2>{title}</h2><p>Envoie le morceau, quelques références et ton budget, même si le projet n’est encore qu’une idée.</p><div className="clip-direct-contact"><ActionLink variant="icon" href="tel:+33651609666" icon={<Phone weight="bold" aria-hidden="true" />} iconPosition="start" onClick={() => trackEvent("phone_click")}><small>Appeler</small><b>+33 6 51 60 96 66</b></ActionLink><ActionLink variant="icon" href="mailto:ferdofficial@gmail.com" icon={<Envelope weight="bold" aria-hidden="true" />} iconPosition="start" onClick={() => trackEvent("email_click")}><small>Écrire</small><b>ferdofficial@gmail.com</b></ActionLink></div></div>
+    <div><p className="clip-index">05 / Contact</p><h2>{title}</h2><p>Envoie le morceau, quelques références et ton budget, même si le projet n’est encore qu’une idée.</p><div className="clip-direct-contact"><ActionLink variant="icon" href="tel:+33651609666" icon={<Phone weight="bold" aria-hidden="true" />} iconPosition="start" onClick={() => trackEvent("phone_click")}><small>Appeler</small><b>+33 6 51 60 96 66</b></ActionLink><ActionLink variant="icon" href="mailto:ferdofficial@gmail.com" icon={<Envelope weight="bold" aria-hidden="true" />} iconPosition="start" onClick={() => trackEvent("email_click")}><small>Écrire</small><b>ferdofficial@gmail.com</b></ActionLink></div></div>
     <ClipContactForm />
   </section>
 );

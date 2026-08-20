@@ -23,7 +23,7 @@ const ClipServiceLanding = () => {
           <p className="clip-eyebrow">Réalisateur de clips · Nantes / France</p>
           <h1>Des clips pour les<br />musiques alternatives.</h1>
           <p>Rock, métal, alternatif — et tout projet avec un univers.</p>
-          <div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><ActionLink href="#projets" icon={<ArrowDown aria-hidden="true" />}>Voir les réalisations</ActionLink></div>
+          <div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><ActionLink variant="secondary" href="#projets" icon={<ArrowDown aria-hidden="true" />}>Voir les réalisations</ActionLink></div>
           <small>Basé à Nantes · Disponible partout en France · À partir de 850 €</small>
         </Container>
       </section>
@@ -40,7 +40,7 @@ const ClipServiceLanding = () => {
       </section>
       <section className="clip-section clip-pricing" id="budget">
         <div><p className="clip-index">04 / Budget</p><h2>Clips à partir de</h2><p className="clip-price"><strong>850 €</strong></p></div>
-        <div className="clip-pricing-copy"><p>Le budget dépend du concept, des décors, de l’équipe, de la lumière, du matériel et des éventuels VFX.</p><ContactLink>Parler de mon clip</ContactLink></div>
+        <div className="clip-pricing-copy"><p>Le budget dépend du concept, des décors, de l’équipe, de la lumière, du matériel et des éventuels VFX.</p><ContactLink variant="contrast">Parler de mon clip</ContactLink></div>
       </section>
       <ContactSection />
       <aside className="clip-mobile-cta"><ContactLink>Parler de mon clip</ContactLink></aside>

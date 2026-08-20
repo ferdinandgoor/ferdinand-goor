@@ -1,5 +1,4 @@
 .legal-page { min-height: 100vh; padding-top: 72px; color: var(--color-text); background: var(--color-bg); }
-.legal-page__content { width: min(100%, 920px); margin: 0 auto; padding: clamp(var(--space-8), 5vw, var(--space-12)) var(--section-inline) var(--section-block); }
 .legal-page__content > header { padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-border); }
 .legal-page__eyebrow { color: var(--color-accent); font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
 .legal-page h1 { max-width: 800px; margin: var(--space-3) 0; font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 400; line-height: 0.98; letter-spacing: var(--tracking-display); }

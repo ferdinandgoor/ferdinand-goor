@@ -2,11 +2,12 @@ import SiteHeader from "@/components/site-header/SiteHeader";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import "./TermsPage.scss";
 import { ActionLink } from "@/components/action/Action";
+import FilmsPageContent from "@/components/films-page-content/FilmsPageContent";
 
 const TermsPage = () => (
   <main className="legal-page" id="main-content">
     <SiteHeader universe="films" />
-    <article className="legal-page__content">
+    <FilmsPageContent backTo="/" backLabel="Retour à l’accueil" className="legal-page__content">
       <header>
         <p className="legal-page__eyebrow">FERD FILMS · Informations contractuelles</p>
         <h1>Conditions générales de vente</h1>
@@ -29,7 +30,7 @@ const TermsPage = () => (
       <section><h2>14. Droit applicable et litiges</h2><p>Les parties privilégient une résolution amiable de tout différend. Les présentes conditions sont soumises au droit français, sans priver un client consommateur des protections impératives dont il bénéficie.</p></section>
 
       <footer><ActionLink variant="primary" to="/#contact">Parler de mon clip</ActionLink></footer>
-    </article>
+    </FilmsPageContent>
     <FilmsFooter />
   </main>
 );

@@ -6,8 +6,7 @@ import type Video from "@/types/Video";
 import { getProjectSlug } from "@/utils/projectSlug";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import FilmsBackLink from "@/components/films-back-link/FilmsBackLink";
-import Container from "@/components/container/Container";
+import FilmsPageContent from "@/components/films-page-content/FilmsPageContent";
 import { ActionLink } from "@/components/action/Action";
 import "./ProjectDetailPage.scss";
 
@@ -34,8 +33,7 @@ const ProjectDetailPage = () => {
   return (
     <main className="project-detail" id="main-content">
       <SiteHeader universe="films" />
-      <Container as="article" className="project-detail__container">
-        <FilmsBackLink to="/projets">Tous les projets</FilmsBackLink>
+      <FilmsPageContent backTo="/projets" backLabel="Tous les projets" className="project-detail__container">
 
         <header className="project-detail__intro">
           <div>
@@ -76,7 +74,7 @@ const ProjectDetailPage = () => {
         ) : null}
 
         <footer><ActionLink variant="primary" to="/#contact" icon={<ArrowUpRight />}>Parler de mon clip</ActionLink></footer>
-      </Container>
+      </FilmsPageContent>
       <FilmsFooter />
     </main>
   );
