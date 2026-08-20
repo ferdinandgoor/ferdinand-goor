@@ -27,7 +27,7 @@ const SeoManager = () => {
     document.documentElement.lang = siteConfig.language;
 
     setMeta('meta[name="description"]', "name", "description", seo.description);
-    setMeta('meta[name="robots"]', "name", "robots", "index, follow");
+    setMeta('meta[name="robots"]', "name", "robots", "index, follow, max-image-preview:large, max-video-preview:-1");
     setMeta('meta[property="og:title"]', "property", "og:title", seo.title);
     setMeta('meta[property="og:description"]', "property", "og:description", seo.description);
     setMeta('meta[property="og:type"]', "property", "og:type", seo.type);

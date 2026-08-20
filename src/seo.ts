@@ -193,6 +193,10 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
       inLanguage: siteConfig.language,
       isPartOf: { "@id": `${siteConfig.url}/#website` },
       about: { "@id": `${siteConfig.url}/#person` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: absoluteUrl(seo.image),
+      },
     },
   ];
 
@@ -253,7 +257,41 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     });
   }
 
+  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
+  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
+  if (project) {
+    const parsedDate = new Date(project.date);
+    const uploadDate = Number.isNaN(parsedDate.getTime()) ? undefined : parsedDate.toISOString();
+    graph.push({
+      "@type": "VideoObject",
+      name: `${project.artist} — ${project.song}`,
+      description: project.description || `Clip ${project.song} de ${project.artist}, réalisé par FERD FILMS.`,
+      thumbnailUrl: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`,
+      ...(uploadDate ? { uploadDate } : {}),
+      embedUrl: `https://www.youtube-nocookie.com/embed/${project.youtubeId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${project.youtubeId}`,
+      mainEntityOfPage: `${seo.canonical}#webpage`,
+    });
+  }
+
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
 export const filmSeoRoutes = filmLandingPages.map((page) => `/films/${page.slug}`);
+
+export function getSitemapImages(pathname: string) {
+  const path = normalizePath(pathname);
+  const filmsPage = getFilmLandingPage(path.startsWith("/films/") ? path.slice("/films/".length) : "");
+  if (path === "/" || filmsPage) {
+    const projects = filmsPage
+      ? filmsPage.featuredProjects.map((slug) => filmProjects.find((project) => project.slug === slug)).filter((project): project is (typeof filmProjects)[number] => Boolean(project))
+      : filmProjects.slice(0, 6);
+    return [
+      { url: youtubeThumbnail(showreel.youtubeId), title: showreel.title },
+      ...projects.map((project) => ({ url: youtubeThumbnail(project.youtubeId), title: `Clip ${project.title} de ${project.artist}` })),
+    ];
+  }
+  const projectSlug = path.startsWith("/projets/") ? path.slice("/projets/".length) : "";
+  const project = musicVideoList.find((item) => getProjectSlug(item) === projectSlug);
+  return project ? [{ url: `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`, title: `Clip ${project.song} de ${project.artist}` }] : [];
+}

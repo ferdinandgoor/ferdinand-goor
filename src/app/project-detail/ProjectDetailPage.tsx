@@ -5,6 +5,9 @@ import musicVideoListData from "@/data/musicVideoList.json";
 import type Video from "@/types/Video";
 import { getProjectSlug } from "@/utils/projectSlug";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
+import useScrollReveal from "@/hooks/useScrollReveal";
+import FilmsBackLink from "@/components/films-back-link/FilmsBackLink";
+import Container from "@/components/container/Container";
 import "./ProjectDetailPage.scss";
 
 const musicVideoList = musicVideoListData as Video[];
@@ -12,6 +15,7 @@ const musicVideoList = musicVideoListData as Video[];
 const ProjectDetailPage = () => {
   const { slug } = useParams();
   const project = musicVideoList.find((item) => getProjectSlug(item) === slug);
+  useScrollReveal(".project-detail__video, .project-detail__youtube, .project-detail__copy section, .project-detail__bts > :not(.project-detail__video), .project-detail__credits, .project-detail__container > footer", slug);
 
   if (!project) {
     return (
@@ -29,8 +33,8 @@ const ProjectDetailPage = () => {
   return (
     <main className="project-detail" id="main-content">
       <SiteHeader universe="films" />
-      <article>
-        <Link className="project-detail__back" to="/projets"><ArrowLeft /> Tous les projets</Link>
+      <Container as="article" className="project-detail__container">
+        <FilmsBackLink to="/projets">Tous les projets</FilmsBackLink>
 
         <header className="project-detail__intro">
           <div>
@@ -71,7 +75,7 @@ const ProjectDetailPage = () => {
         ) : null}
 
         <footer><Link to="/#contact">Parler de mon clip <ArrowUpRight /></Link></footer>
-      </article>
+      </Container>
       <FilmsFooter />
     </main>
   );

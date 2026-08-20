@@ -39,6 +39,7 @@ const {
   absoluteUrl,
   filmSeoRoutes,
   getSeoData,
+  getSitemapImages,
   getStructuredData,
   render,
 } = await import(`${pathToFileURL(serverEntry).href}?t=${Date.now()}`);
@@ -66,7 +67,7 @@ const injectSeo = (html, route) => {
 
   for (const [attribute, name, content] of [
     ["name", "description", seo.description],
-    ["name", "robots", "index, follow"],
+    ["name", "robots", "index, follow, max-image-preview:large, max-video-preview:-1"],
     ["property", "og:title", seo.title],
     ["property", "og:description", seo.description],
     ["property", "og:type", seo.type],
@@ -109,5 +110,8 @@ for (const route of routes) {
 }
 
 const sitemapRoutes = routes.filter((route) => route !== "/realisateur-clip-nantes");
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => `  <url><loc>https://ferd.fr${route === "/" ? "/" : route}</loc></url>`).join("\n")}\n</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${sitemapRoutes.map((route) => {
+  const images = getSitemapImages(route);
+  return `  <url><loc>https://ferd.fr${route === "/" ? "/" : route}</loc>${images.map((image) => `<image:image><image:loc>${escapeHtml(image.url)}</image:loc><image:title>${escapeHtml(image.title)}</image:title></image:image>`).join("")}</url>`;
+}).join("\n")}\n</urlset>\n`;
 await writeFile(path.join(clientDir, "sitemap.xml"), sitemap);

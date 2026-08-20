@@ -94,7 +94,7 @@ if (/Disallow:\s*\//i.test(robots) || !robots.includes(`Sitemap: ${siteUrl}/site
 }
 
 const sitemap = await readFile(path.join(distDir, "sitemap.xml"), "utf8");
-if (!/^<\?xml[^>]+\?>[\s\S]*<urlset\s+xmlns=["']http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9["']>[\s\S]*<\/urlset>\s*$/i.test(sitemap.trim())) {
+if (!/^<\?xml[^>]+\?>[\s\S]*<urlset\s+xmlns=["']http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9["'][^>]*>[\s\S]*<\/urlset>\s*$/i.test(sitemap.trim())) {
   throw new Error("sitemap.xml is not a valid sitemap document.");
 }
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);

@@ -16,7 +16,7 @@ Les pages locales prioritaires sont Nantes, Rennes et Angers. Les pages thémati
 
 ## Métadonnées et données structurées
 
-`src/seo.ts` construit les balises title, description, canonical, OpenGraph et Twitter. Il produit aussi `Organization`/`ProfessionalService`, `WebPage`, `BreadcrumbList` et un `VideoObject` par vidéo sélectionnée. Les champs absents ou incertains (durée, avis, note Google) ne sont pas inventés.
+`src/seo.ts` construit les balises title, description, canonical, OpenGraph et Twitter. Il produit aussi `Organization`/`ProfessionalService`, `WebPage`, `BreadcrumbList` et un `VideoObject` par vidéo sélectionnée. `primaryImageOfPage`, les grandes prévisualisations et les entrées image du sitemap aident Google à associer les miniatures aux pages. Les champs absents ou incertains (durée, avis, note Google) ne sont pas inventés.
 
 Le build prérend toutes les routes exposées par `filmSeoRoutes`, puis génère le sitemap. Après une modification, lancer `npm run build` puis `npm run verify:prerender`.
 

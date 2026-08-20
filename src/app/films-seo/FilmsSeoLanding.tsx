@@ -7,6 +7,7 @@ import SiteHeader from "@/components/site-header/SiteHeader";
 import { filmProjects, getFilmLandingPage } from "@/data/films";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/utils/tracking";
+import Container from "@/components/container/Container";
 import "@/app/clip-service-landing/ClipServiceLanding.scss";
 import "./FilmsSeoLanding.scss";
 
@@ -24,9 +25,9 @@ const FilmsSeoLanding = () => {
       <section className="films-seo__hero">
         <img src={`/video.webp`} alt="Image de réalisation de clip musical par FERD FILMS" width="1920" height="1080" />
         <div className="films-seo__hero-overlay" />
-        <div><p className="clip-eyebrow">{page.eyebrow}</p><h1>{page.h1}</h1><p>{page.intro}</p><div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><a className="clip-text-link" href="#realisations">Voir les réalisations <ArrowRight /></a></div><small>Clips à partir de 850 € · Déplacements partout en France</small></div>
+        <Container className="films-seo__hero-copy"><p className="clip-eyebrow">{page.eyebrow}</p><h1>{page.h1}</h1><p>{page.intro}</p><div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><a className="clip-text-link" href="#realisations">Voir les réalisations <ArrowRight /></a></div><small>Clips à partir de 850 € · Déplacements partout en France</small></Container>
       </section>
-      <nav className="films-seo__breadcrumb" aria-label="Fil d’Ariane"><Link to="/">FERD</Link><span>/</span><Link to="/films/realisation-clip-musical">Films</Link><span>/</span><span>{page.city ? `Clip vidéo ${page.city}` : page.h1}</span></nav>
+      <Container as="nav" className="films-seo__breadcrumb" ariaLabel="Fil d’Ariane"><Link to="/">FERD</Link><span>/</span><Link to="/films/realisation-clip-musical">Films</Link><span>/</span><span>{page.city ? `Clip vidéo ${page.city}` : page.h1}</span></Container>
       <section className="clip-section films-seo__section" id="realisations"><p className="clip-index">Showreel</p><h2>Des images, tout de suite.</h2><Showreel compact /><ProjectsGrid projects={projects} /><Link className="clip-text-link clip-all-work" to="/projets">Voir tout le portfolio <ArrowRight /></Link></section>
       <section className="clip-section films-seo__section films-seo__copy"><div><p className="clip-index">{page.city ? `À ${page.city}` : "Réalisation"}</p><h2>{page.focusTitle}</h2></div><div>{page.localCopy.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></section>
       <section className="clip-section films-seo__section films-seo__focus"><h2>Rock, métal, alternatif — sans s’y limiter.</h2><p>{page.focusCopy}</p></section>

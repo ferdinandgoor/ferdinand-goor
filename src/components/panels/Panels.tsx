@@ -4,6 +4,7 @@ import Video from "@/types/Video";
 import List from "../list/List";
 import { tabs } from "@/router";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import Container from "@/components/container/Container";
 import "./Panels.scss";
 
 type PanelSection = {
@@ -53,7 +54,7 @@ const Panels = () => {
   return (
     <div className="portfolio-panels"> 
       <div className={`panel-slide ${animClass}`}>
-        <div>
+        <Container>
           {sections.map((section) => (
             <List
               key={`${pathname}-${section.title || "default"}`}
@@ -62,7 +63,7 @@ const Panels = () => {
               maxSize={100}
             />
           ))}
-        </div>
+        </Container>
       </div>
     </div>
   );

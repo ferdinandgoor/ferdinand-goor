@@ -2,10 +2,12 @@ import { Envelope, InstagramLogo, Phone, YoutubeLogo } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "@/utils/tracking";
 import "./FilmsFooter.scss";
+import Container from "@/components/container/Container";
 
 const FilmsFooter = () => (
   <footer className="films-footer">
-    <div className="films-footer__identity">
+    <Container className="films-footer__inner">
+      <div className="films-footer__identity">
       <strong>FERD FILMS</strong>
       <p>Ferdinand Goor — Entrepreneur individuel<br />SIRET 884 098 922 00021<br />173 chemin du Printemps, 44800 Saint-Herblain, France<br />TVA non applicable, article 293 B du CGI</p>
     </div>
@@ -29,7 +31,8 @@ const FilmsFooter = () => (
       <Link to="/projets">Tous les projets</Link>
       <Link to="/cgv">CGV</Link>
     </div>
-    <small>© {new Date().getFullYear()} FERD FILMS</small>
+      <small>© {new Date().getFullYear()} FERD FILMS</small>
+    </Container>
   </footer>
 );
 

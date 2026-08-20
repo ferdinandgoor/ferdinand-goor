@@ -7,6 +7,7 @@ import { ContactLink, ContactSection, ProjectsGrid, Showreel } from "@/component
 import { filmProjects } from "@/data/films";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/utils/tracking";
+import Container from "@/components/container/Container";
 import "./ClipServiceLanding.scss";
 
 const ClipServiceLanding = () => {
@@ -18,13 +19,13 @@ const ClipServiceLanding = () => {
       <section className="clip-hero" id="top">
         <video autoPlay muted loop playsInline preload="metadata" poster="/video.webp" aria-hidden="true"><source src="/overfloodedLight.mp4" type="video/mp4" /></video>
         <div className="clip-hero-overlay" />
-        <div className="clip-hero-copy">
+        <Container className="clip-hero-copy">
           <p className="clip-eyebrow">Réalisateur de clips · Nantes / France</p>
-          <h1>Des clips pour les<br />musiques qui cognent.</h1>
+          <h1>Des clips pour les<br />musiques alternatives.</h1>
           <p>Rock, métal, alternatif — et tout projet avec un univers.</p>
           <div className="clip-actions"><ContactLink>Parler de mon clip</ContactLink><a className="clip-text-link" href="#projets">Voir les réalisations <ArrowDown aria-hidden="true" /></a></div>
           <small>Basé à Nantes · Disponible partout en France · À partir de 850 €</small>
-        </div>
+        </Container>
       </section>
       <section className="clip-section clip-showreel" id="showreel">
         <p className="clip-index">01 / Showreel</p><h2>Le film avant le discours.</h2><Showreel />

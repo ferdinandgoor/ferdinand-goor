@@ -1,0 +1,5 @@
+.films-back-link { display:flex; align-items:center; gap:var(--space-2); width:max-content; margin-bottom:var(--space-6); color:var(--color-text-muted); font-size:var(--text-label); letter-spacing:var(--tracking-label); text-decoration:none; text-transform:uppercase; animation:films-back-intro var(--duration-reveal) var(--ease-standard) both; }
+.films-back-link svg { width:16px; transition:transform var(--duration-fast) var(--ease-standard); }
+.films-back-link:hover svg { transform:translateX(-4px); }
+@keyframes films-back-intro { from { opacity:0; transform:translateY(var(--reveal-distance)); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { .films-back-link { animation:none; } .films-back-link svg { transition:none; } .films-back-link:hover svg { transform:none; } }
