@@ -1,7 +1,9 @@
 import funnyMashupList from "./data/funnyMashupList.json";
+import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
+import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
 import musicVideoListData from "./data/musicVideoList.json";
 import type Video from "./types/Video";
-import { getProjectSlug } from "./utils/projectSlug";
+import { getProcessVideoSlug, getProjectSlug } from "./utils/projectSlug";
 import { filmLandingPages, filmProjects, getFilmLandingPage, showreel, youtubeThumbnail } from "./data/films";
 
 const musicVideoList = musicVideoListData as Video[];
@@ -68,6 +70,27 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     image: "/ferd_logo_3.png",
     type: "website",
   },
+  "/mashups": {
+    title: "Mashups metal et alternatifs | FERD Process",
+    description:
+      "Découvrez tous les mashups de FERD Process et leurs liens vidéo, Spotify, Apple Music et autres plateformes.",
+    image: "/youtube.webp",
+    type: "website",
+  },
+  "/videos": {
+    title: "Vidéos longues et coulisses | FERD Process",
+    description:
+      "Retrouvez les vidéos longues, making-of, créations et coulisses publiées par FERD Process sur YouTube.",
+    image: "/youtube.webp",
+    type: "website",
+  },
+  "/matos": {
+    title: "Tests de matériel et production | FERD Process",
+    description:
+      "Tests de matériel, production musicale, studio et outils créatifs présentés par FERD Process.",
+    image: "/youtube.webp",
+    type: "website",
+  },
   "/realisateur-clip-nantes": {
     title: "FERD FILMS | Réalisation de clips à Nantes",
     description:
@@ -123,6 +146,24 @@ export function getSeoData(pathname: string): SeoData {
       description: `Regardez ${title}, ${mashup.landing?.kicker?.toLowerCase() ?? "mashup"} de ${artist}, et retrouvez ses liens vidéo et musique.`,
       canonical: absoluteUrl(path),
       image: `https://i.ytimg.com/vi/${mashup.youtubeId}/maxresdefault.jpg`,
+      type: "video.other",
+    };
+  }
+
+  const processCategory = path.startsWith("/videos/")
+    ? { prefix: "/videos/", label: "Vidéo", items: bigYoutubeVideoList }
+    : path.startsWith("/matos/")
+      ? { prefix: "/matos/", label: "Matos et production", items: gearYoutubeVideoList }
+      : null;
+  const processVideo = processCategory?.items.find(
+    (item) => getProcessVideoSlug(item) === path.slice(processCategory.prefix.length),
+  );
+  if (processVideo && processCategory) {
+    return {
+      title: `${processVideo.song} | FERD Process`,
+      description: `${processCategory.label} : ${processVideo.song}, par ${processVideo.artist}. Regardez la vidéo et retrouvez FERD Process.`,
+      canonical: absoluteUrl(path),
+      image: `https://i.ytimg.com/vi/${processVideo.youtubeId}/maxresdefault.jpg`,
       type: "video.other",
     };
   }

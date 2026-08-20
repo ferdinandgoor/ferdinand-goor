@@ -5,7 +5,16 @@
   background: var(--color-bg);
 
   &__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
     padding-top: var(--space-6);
+
+    @media (max-width: 640px) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 
   @media (max-width: 800px) {

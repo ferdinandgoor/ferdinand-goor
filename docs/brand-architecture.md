@@ -26,7 +26,8 @@ FERD Process is Ferdinand's creative and editorial universe: mashups, YouTube vi
 
 - Purpose: **Create → Publish → Audience → Brand**.
 - Homepage: `/process`.
-- Content routes currently include `/youtube-videos`, `/music-production` and `/mashups/:slug`.
+- Content routes include `/mashups`, `/mashups/:slug`, `/videos`, `/matos` and `/music-production`. `/youtube-videos` redirects to `/videos` for backwards compatibility.
+- Mashup, long-video and gear detail routes share `src/app/process-detail/ProcessDetailPage.tsx`; category-specific pages must configure this component instead of creating parallel detail layouts.
 - Navigation prioritizes content and offers a clear but non-aggressive bridge back to FERD Films.
 - Visual tone may be more playful, energetic and internet-native while retaining FERD tokens.
 - `/links` redirects to `/process` for backwards compatibility.

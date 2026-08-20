@@ -18,6 +18,7 @@ const Panels = () => {
   const loaderData = useLoaderData() as {
     list?: Video[];
     sections?: PanelSection[];
+    linkMode?: "project" | "mashup" | "video" | "gear" | "embed";
   };
   const sections = loaderData.sections ?? [
     {
@@ -66,6 +67,7 @@ const Panels = () => {
               title={section.title}
               data={section.list}
               maxSize={100}
+              linkMode={loaderData.linkMode}
             />
           ))}
         </Container>

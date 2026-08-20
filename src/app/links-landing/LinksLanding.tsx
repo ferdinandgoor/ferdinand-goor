@@ -28,10 +28,6 @@ type VideoBlock = Omit<
 const youtubeChannelUrl = "https://www.youtube.com/@ferd.process";
 const spotifyArtistUrl =
   "https://open.spotify.com/artist/15Z2HnTByQHjpyLZrHB3vs";
-const mashupPlaylistUrl = "https://www.youtube.com/playlist?list=PLTGarG5bkXoA";
-const longVideosPlaylistUrl =
-  "https://www.youtube.com/playlist?list=PLOGfm0l52k3g";
-const gearPlaylistUrl = "https://www.youtube.com/playlist?list=PLOvnmxmjrjv4";
 
 const getVideoTimestamp = (video?: LinksVideo) =>
   video ? new Date(video.date).getTime() : 0;
@@ -47,7 +43,7 @@ const videoBlocks: VideoBlock[] = [
     label: "Dernier mashup",
     secondaryLabel: "Autres mashups metal",
     buttonLabel: "Voir le mashup",
-    moreHref: mashupPlaylistUrl,
+    moreHref: "/mashups",
     moreLabel: "Voir plus de mashups",
     videos: getRecentVideos(funnyMashupList),
   },
@@ -56,7 +52,7 @@ const videoBlocks: VideoBlock[] = [
     label: "À voir aussi",
     secondaryLabel: "Autres vidéos longues",
     buttonLabel: "Voir la vidéo",
-    moreHref: longVideosPlaylistUrl,
+    moreHref: "/videos",
     moreLabel: "Voir plus de vidéos longues",
     videos: getRecentVideos(bigYoutubeVideoList),
   },
@@ -65,7 +61,7 @@ const videoBlocks: VideoBlock[] = [
     label: "Matos et prod",
     secondaryLabel: "Autres vidéos matos et prod",
     buttonLabel: "Voir la vidéo",
-    moreHref: gearPlaylistUrl,
+    moreHref: "/matos",
     moreLabel: "Voir plus de tests matos",
     videos: getRecentVideos(gearYoutubeVideoList),
   },

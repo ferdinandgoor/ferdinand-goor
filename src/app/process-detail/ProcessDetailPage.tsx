@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   FacebookLogo,
   InstagramLogo,
@@ -7,19 +7,23 @@ import {
   SpotifyLogo,
   TiktokLogo,
   YoutubeLogo,
+  ArrowLeft,
 } from "phosphor-react";
 import funnyMashupList from "@/data/funnyMashupList.json";
+import bigYoutubeVideoList from "@/data/bigYoutubeVideoList.json";
+import gearYoutubeVideoList from "@/data/gearYoutubeVideoList.json";
+import { getProcessVideoSlug } from "@/utils/projectSlug";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SiteHeader from "@/components/site-header/SiteHeader";
-import ferdPhoto from "./ferd.jpg";
-import imageAyaKorn from "./imageAyaKorn.webp";
-import roroPhoto from "./roro.jpg";
-import "./MashupLanding.scss";
+import ferdPhoto from "../mashup-landing/ferd.jpg";
+import imageAyaKorn from "../mashup-landing/imageAyaKorn.webp";
+import roroPhoto from "../mashup-landing/roro.jpg";
+import "./ProcessDetailPage.scss";
 import { ActionLink } from "@/components/action/Action";
 
 type Platform = "spotify" | "apple" | "deezer" | "youtubeMusic" | "youtube";
 
-type ReleaseLink = {
+type ProcessLink = {
   label: string;
   href: string;
   platform: Platform;
@@ -41,16 +45,16 @@ type ArtistProfile = {
   socials: SocialLink[];
 };
 
-type FeaturedVideo = {
+type ProcessVideo = {
   label: string;
   title: string;
   youtubeId: string;
 };
 
-type MashupItem = {
+type ProcessItem = {
   artist: string;
   song: string;
-  slug: string;
+  slug?: string;
   date: string;
   youtubeId: string;
   landing?: {
@@ -58,12 +62,25 @@ type MashupItem = {
     title?: string;
     kicker?: string;
     profileIds?: string[];
-    videos?: FeaturedVideo[];
-    links?: ReleaseLink[];
+    videos?: ProcessVideo[];
+    links?: ProcessLink[];
   };
 };
 
-const mashups = funnyMashupList as MashupItem[];
+const mashups = funnyMashupList as ProcessItem[];
+const longVideos = bigYoutubeVideoList as ProcessItem[];
+const gearVideos = gearYoutubeVideoList as ProcessItem[];
+
+type ProcessCategory = "mashups" | "videos" | "matos";
+
+const categories: Record<
+  ProcessCategory,
+  { items: ProcessItem[]; kicker: string }
+> = {
+  mashups: { items: mashups, kicker: "Mashup" },
+  videos: { items: longVideos, kicker: "Vidéo longue" },
+  matos: { items: gearVideos, kicker: "Matos et production" },
+};
 
 const profileRegistry: Record<string, ArtistProfile> = {
   ferd: {
@@ -131,30 +148,30 @@ const youtubeEmbedUrl = (youtubeId: string) =>
 const youtubeThumbnailUrl = (youtubeId: string) =>
   `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
 
-const getRelease = (slug?: string) =>
-  mashups.find((mashup) => mashup.slug === slug) ?? mashups[0];
+const getProcessItem = (items: ProcessItem[], slug?: string) =>
+  items.find((item) => getProcessVideoSlug(item) === slug) ?? items[0];
 
-const getReleaseLinks = (release: MashupItem): ReleaseLink[] =>
-  release.landing?.links ?? [
+const getProcessLinks = (content: ProcessItem): ProcessLink[] =>
+  content.landing?.links ?? [
     {
       label: "Voir sur YouTube",
-      href: youtubeWatchUrl(release.youtubeId),
+      href: youtubeWatchUrl(content.youtubeId),
       platform: "youtube",
       isPrimary: true,
     },
   ];
 
-const getReleaseVideos = (release: MashupItem): FeaturedVideo[] =>
-  release.landing?.videos ?? [
+const getProcessVideos = (content: ProcessItem): ProcessVideo[] =>
+  content.landing?.videos ?? [
     {
       label: "Video",
-      title: release.song,
-      youtubeId: release.youtubeId,
+      title: content.song,
+      youtubeId: content.youtubeId,
     },
   ];
 
-const getProfiles = (release: MashupItem) =>
-  (release.landing?.profileIds ?? ["ferd"])
+const getProfiles = (content: ProcessItem) =>
+  (content.landing?.profileIds ?? ["ferd"])
     .map((profileId) => profileRegistry[profileId])
     .filter(Boolean);
 
@@ -239,7 +256,7 @@ const getDeepLink = (
   return null;
 };
 
-const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
+const ProcessLinkButton = ({ link }: { link: ProcessLink }) => {
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const ua = navigator.userAgent;
     const isAndroid = /Android/i.test(ua);
@@ -280,52 +297,68 @@ const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
   );
 };
 
-const MashupLanding = () => {
+const ProcessDetailPage = () => {
   useScrollReveal(
-    ".mashup-page__hero, .mashup-page__release, .mashup-page__social-group",
+    ".process-detail__hero, .process-detail__content, .process-detail__social-group",
   );
   const { slug } = useParams();
-  const release = getRelease(slug);
-  const releaseTitle = release.landing?.title ?? release.song;
-  const releaseArtist = release.landing?.artist ?? release.artist;
+  const { pathname } = useLocation();
+  const category: ProcessCategory = pathname.startsWith("/videos/")
+    ? "videos"
+    : pathname.startsWith("/matos/")
+      ? "matos"
+      : "mashups";
+  const categoryConfig = categories[category];
+  const content = getProcessItem(categoryConfig.items, slug);
+  const contentTitle = content.landing?.title ?? content.song;
+  const contentArtist = content.landing?.artist ?? content.artist;
   const backgroundImage =
-    backgroundImages[release.slug] ?? youtubeThumbnailUrl(release.youtubeId);
-  const profiles = getProfiles(release);
-  const links = getReleaseLinks(release);
-  const videos = getReleaseVideos(release);
+    backgroundImages[content.slug ?? ""] ??
+    youtubeThumbnailUrl(content.youtubeId);
+  const profiles = getProfiles(content);
+  const links = getProcessLinks(content);
+  const videos = getProcessVideos(content);
 
   return (
     <main
       id="main-content"
-      className="mashup-page"
+      className="process-detail"
       style={
         {
-          "--mashup-bg-image": `url(${backgroundImage})`,
+          "--process-detail-bg-image": `url(${backgroundImage})`,
         } as React.CSSProperties
       }
     >
       <SiteHeader universe="process" />
-      <section className="mashup-page__shell" aria-label={releaseTitle}>
-        <header className="mashup-page__hero">
-          <p className="mashup-page__kicker">
-            {release.landing?.kicker ?? "Mashup"}
+      <section className="process-detail__shell" aria-label={contentTitle}>
+        <ActionLink
+          variant="nav"
+          to={`/${category}`}
+          icon={<ArrowLeft weight="bold" />}
+          iconPosition="start"
+        >
+          Retour à la liste
+        </ActionLink>
+        <header className="process-detail__hero">
+          <p className="process-detail__kicker">
+            {content.landing?.kicker ?? categoryConfig.kicker}
           </p>
-          <h1>{releaseTitle}</h1>
-          <p className="mashup-page__artist">{releaseArtist}</p>
+          <h1>{contentTitle}</h1>
+          <p className="process-detail__artist">{contentArtist}</p>
         </header>
 
         <section
-          className="mashup-page__release"
-          aria-label="Release video and links"
+          className="process-detail__content"
+          aria-label="Vidéo et liens"
         >
-          <div className="mashup-page__featured-videos">
+          <div className="process-detail__featured-videos">
             {videos.map((video) => (
               <article
-                className="mashup-page__video-feature"
+                className="process-detail__video-feature"
                 key={video.youtubeId}
               >
                 <p>{video.label}</p>
-                <div className="mashup-page__video">
+                <div className="process-detail__video">
                   <iframe
                     loading="lazy"
                     src={youtubeEmbedUrl(video.youtubeId)}
@@ -338,9 +371,9 @@ const MashupLanding = () => {
             ))}
           </div>
 
-          <div className="mashup-page__links" aria-label="Streaming links">
+          <div className="process-detail__links" aria-label="Streaming links">
             {links.map((link) => (
-              <ReleaseButton
+              <ProcessLinkButton
                 key={`${link.platform}-${link.href}`}
                 link={link}
               />
@@ -348,9 +381,9 @@ const MashupLanding = () => {
           </div>
         </section>
 
-        <section className="mashup-page__socials" aria-label="Social links">
+        <section className="process-detail__socials" aria-label="Social links">
           {profiles.map((profile) => (
-            <div className="mashup-page__social-group" key={profile.id}>
+            <div className="process-detail__social-group" key={profile.id}>
               <img src={profile.photo} alt={profile.alt} loading="lazy" />
               <p>{profile.name}</p>
               <div>
@@ -377,4 +410,4 @@ const MashupLanding = () => {
   );
 };
 
-export default MashupLanding;
+export default ProcessDetailPage;

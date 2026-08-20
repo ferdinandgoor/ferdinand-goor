@@ -2,23 +2,28 @@ import { useState } from "react";
 import { ArrowUpRight } from "phosphor-react";
 import { Link, useLocation } from "react-router-dom";
 import Video from "@/types/Video";
-import { getProjectPath } from "@/utils/projectSlug";
+import { getProcessVideoSlug, getProjectPath } from "@/utils/projectSlug";
 import "./Card.scss";
 
-const Card = ({ artist, song, date, youtubeId, styles = [] }: Video) => {
+type CardProps = Video & {
+  linkMode?: "project" | "mashup" | "video" | "gear" | "embed";
+};
+
+const Card = ({ artist, song, date, youtubeId, styles = [], slug, linkMode }: CardProps) => {
   const { pathname } = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
   const thumbnail = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
   const year = new Date(date).getFullYear();
-  const isPortfolioProject = pathname === "/projets";
+  const mode = linkMode ?? (pathname === "/projets" ? "project" : "embed");
+  const internalHref = mode === "project" ? getProjectPath({ artist, song }) : `/${mode === "gear" ? "matos" : `${mode}s`}/${getProcessVideoSlug({ slug, artist, song })}`;
 
-  if (isPortfolioProject) {
+  if (["project", "mashup", "video", "gear"].includes(mode)) {
     return (
       <article className="video-card--reveal video-card video-card--project">
         <Link
           className="video-card__project-link"
-          to={getProjectPath({ artist, song })}
-          aria-label={`Découvrir le projet ${artist} — ${song}`}
+          to={internalHref}
+          aria-label={`Découvrir ${song}`}
         >
           <span className="video-card__media">
             <img

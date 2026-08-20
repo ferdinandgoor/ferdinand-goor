@@ -51,7 +51,7 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
 
   const processNavigation = (
     <>
-      <ActionLink variant="nav" to="/youtube-videos">
+      <ActionLink variant="nav" to="/videos">
         Vidéos
       </ActionLink>
       <ActionLink variant="nav" to="/music-production">

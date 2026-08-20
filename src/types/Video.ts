@@ -1,4 +1,5 @@
 interface Video {
+    slug?: string;
     artist: string;
     song: string;
     date: string;

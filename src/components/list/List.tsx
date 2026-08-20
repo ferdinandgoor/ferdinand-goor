@@ -8,12 +8,14 @@ interface ListProps {
     date: string;
     song: string;
     youtubeId: string;
+    slug?: string;
     styles?: string[];
   }[];
   maxSize: number;
+  linkMode?: "project" | "mashup" | "video" | "gear" | "embed";
 }
 
-const List = ({ title, data, maxSize }: ListProps) => (
+const List = ({ title, data, maxSize, linkMode }: ListProps) => (
   <div className="portfolio-list" id="main-work">
     {title ? <h2 className="portfolio-list__title">{title}</h2> : null}
     <ul className="portfolio-list__grid">
@@ -26,7 +28,7 @@ const List = ({ title, data, maxSize }: ListProps) => (
         .slice(0, maxSize || data.length)
         .map((item) => (
           <li className="portfolio-list__item" key={item.youtubeId}>
-            <Card {...item} />
+            <Card {...item} linkMode={linkMode} />
           </li>
         ))}
     </ul>

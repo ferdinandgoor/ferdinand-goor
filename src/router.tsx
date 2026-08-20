@@ -8,7 +8,7 @@ import {
 import { MusicNote, VideoCamera, YoutubeLogo } from "phosphor-react";
 import Home from "./app/page";
 import LinksLanding from "./app/links-landing/LinksLanding";
-import MashupLanding from "./app/mashup-landing/MashupLanding";
+import ProcessDetailPage from "./app/process-detail/ProcessDetailPage";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
 import TermsPage from "./app/legal/TermsPage";
 import ProjectDetailPage from "./app/project-detail/ProjectDetailPage";
@@ -154,28 +154,50 @@ export const routes: RouteObject[] = [
   },
   {
     path: "/youtube-videos",
+    loader: () => redirect("/videos"),
+  },
+  {
+    path: "/mashups",
     element: (
       <ScrollToTop>
         <Home />
       </ScrollToTop>
     ),
-    loader: () => ({
-      sections: [
-        {
-          title: "Grosses vidéos",
-          list: bigYoutubeVideoList,
-        },
-        {
-          title: "Mashups fun",
-          list: funnyMashupList,
-        },
-        {
-          title: "Matos et production",
-          list: gearYoutubeVideoList,
-        },
-      ],
-    }),
-    handle: tabs[2],
+    loader: () => ({ list: funnyMashupList, linkMode: "mashup" }),
+  },
+  {
+    path: "/videos",
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
+    loader: () => ({ list: bigYoutubeVideoList, linkMode: "video" }),
+  },
+  {
+    path: "/matos",
+    element: (
+      <ScrollToTop>
+        <Home />
+      </ScrollToTop>
+    ),
+    loader: () => ({ list: gearYoutubeVideoList, linkMode: "gear" }),
+  },
+  {
+    path: "/videos/:slug",
+    element: (
+      <ScrollToTop>
+        <ProcessDetailPage />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/matos/:slug",
+    element: (
+      <ScrollToTop>
+        <ProcessDetailPage />
+      </ScrollToTop>
+    ),
   },
   {
     path: "/aya-korn",
@@ -185,7 +207,7 @@ export const routes: RouteObject[] = [
     path: "/mashups/:slug",
     element: (
       <ScrollToTop>
-        <MashupLanding />
+        <ProcessDetailPage />
       </ScrollToTop>
     ),
   },
