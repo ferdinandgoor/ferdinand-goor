@@ -8,18 +8,41 @@ import {
   ProjectsGrid,
   Showreel,
 } from "@/components/films-blocks/FilmsBlocks";
-import { filmProjects } from "@/data/films";
+import { filmProjects, type FilmLandingPage } from "@/data/films";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/utils/tracking";
 import Container from "@/components/container/Container";
 import { ActionLink } from "@/components/action/Action";
 import "./ClipServiceLanding.scss";
 
-const ClipServiceLanding = () => {
+type ClipServiceLandingProps = {
+  page?: FilmLandingPage;
+};
+
+const ClipServiceLanding = ({ page }: ClipServiceLandingProps) => {
   useScrollReveal(
     ".clip-page__section, .clip-page__project, .clip-page__approach article",
   );
-  useEffect(() => trackEvent("films_visit", { page: "home" }), []);
+  useEffect(
+    () => trackEvent("films_visit", { page: page?.slug ?? "home" }),
+    [page?.slug],
+  );
+
+  const projects = page
+    ? page.featuredProjects
+        .map((slug) => filmProjects.find((project) => project.slug === slug))
+        .filter((project): project is (typeof filmProjects)[number] =>
+          Boolean(project),
+        )
+    : filmProjects.slice(0, 6);
+
+  const eyebrow = page?.eyebrow ?? "Réalisateur de clips · Nantes / France";
+  const intro =
+    page?.intro ?? "Rock, métal, alternatif — et tout projet avec un univers.";
+  const location = page?.city
+    ? `${page.city} · Déplacements partout en France · À partir de 850 €`
+    : "Basé à Nantes · Disponible partout en France · À partir de 850 €";
+
   return (
     <main className="clip-page" id="main-content">
       <SiteHeader />
@@ -37,15 +60,19 @@ const ClipServiceLanding = () => {
         </video>
         <div className="clip-page__hero-overlay" />
         <Container className="clip-page__hero-copy">
-          <p className="clip-page__eyebrow">
-            Réalisateur de clips · Nantes / France
-          </p>
+          <p className="clip-page__eyebrow">{eyebrow}</p>
           <h1>
-            Des clips pour les
-            <br />
-            musiques alternatives.
+            {page ? (
+              page.h1
+            ) : (
+              <>
+                Des clips pour les
+                <br />
+                musiques alternatives.
+              </>
+            )}
           </h1>
-          <p>Rock, métal, alternatif — et tout projet avec un univers.</p>
+          <p>{intro}</p>
           <div className="clip-page__actions">
             <ContactLink>Parler de mon clip</ContactLink>
             <ActionLink
@@ -56,9 +83,7 @@ const ClipServiceLanding = () => {
               Voir les réalisations
             </ActionLink>
           </div>
-          <small>
-            Basé à Nantes · Disponible partout en France · À partir de 850 €
-          </small>
+          <small>{location}</small>
         </Container>
       </section>
       <section
@@ -74,8 +99,8 @@ const ClipServiceLanding = () => {
         id="projets"
       >
         <p className="clip-page__index">02 / Clips</p>
-        <h2>Univers sélectionnés</h2>
-        <ProjectsGrid projects={filmProjects.slice(0, 6)} />
+        <h2>{page?.city ? `Clips réalisés depuis ${page.city}` : "Univers sélectionnés"}</h2>
+        <ProjectsGrid projects={projects} />
         <ActionLink
           className="clip-page__all-work"
           to="/projets"
@@ -88,17 +113,13 @@ const ClipServiceLanding = () => {
       <section className="clip-page__section clip-page__approach" id="services">
         <div>
           <p className="clip-page__index">03 / Approche</p>
-          <h2>
-            Une idée forte.
-            <br />
-            Une production agile.
-          </h2>
+          <h2>{page?.focusTitle ?? "Une idée forte. Une production agile."}</h2>
         </div>
         <div>
-          <p>
-            Le morceau guide le concept, la lumière et le rythme. L’équipe et
-            les moyens s’adaptent à l’idée — pas l’inverse.
-          </p>
+          {(page?.localCopy ?? [
+            "Le morceau guide le concept, la lumière et le rythme. L’équipe et les moyens s’adaptent à l’idée — pas l’inverse.",
+          ]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {page?.focusCopy ? <p>{page.focusCopy}</p> : null}
           <p className="clip-page__process-line">
             Morceau → concept → préparation → tournage → montage & étalonnage
           </p>
