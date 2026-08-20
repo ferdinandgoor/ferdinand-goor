@@ -1,4 +1,37 @@
-.portfolio-panels { position: relative; width: 100%; min-height: 100vh; background: transparent; }
-.panel-slide { will-change: transform, opacity; &.animate-next { animation: panels-next var(--duration-reveal) var(--ease-standard); } &.animate-prev { animation: panels-prev var(--duration-reveal) var(--ease-standard); } }
-@keyframes panels-next { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes panels-prev { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: translateX(0); } }
+.portfolio-panels {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  &__slide {
+    will-change: transform, opacity;
+
+    &--next {
+      animation: panels-next var(--duration-reveal) var(--ease-standard);
+    }
+
+    &--previous {
+      animation: panels-prev var(--duration-reveal) var(--ease-standard);
+    }
+  }
+}
+@keyframes panels-next {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes panels-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

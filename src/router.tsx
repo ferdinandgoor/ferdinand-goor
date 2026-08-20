@@ -37,7 +37,9 @@ const ScrollToTop = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (hash) {
       const frame = window.requestAnimationFrame(() => {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
         document.querySelector(hash)?.scrollIntoView({
           behavior: reduceMotion ? "auto" : "smooth",
           block: "start",

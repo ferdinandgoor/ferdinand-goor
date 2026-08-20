@@ -10,8 +10,16 @@ type FilmsPageContentProps = {
   className?: string;
 };
 
-const FilmsPageContent = ({ backTo, backLabel, children, className = "" }: FilmsPageContentProps) => (
-  <Container as="article" className={`films-page-content${className ? ` ${className}` : ""}`}>
+const FilmsPageContent = ({
+  backTo,
+  backLabel,
+  children,
+  className = "",
+}: FilmsPageContentProps) => (
+  <Container
+    as="article"
+    className={`films-page-content${className ? ` ${className}` : ""}`}
+  >
     <FilmsBackLink to={backTo}>{backLabel}</FilmsBackLink>
     {children}
   </Container>

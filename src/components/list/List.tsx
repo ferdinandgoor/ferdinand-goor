@@ -15,12 +15,8 @@ interface ListProps {
 
 const List = ({ title, data, maxSize }: ListProps) => (
   <div className="portfolio-list" id="main-work">
-    {title ? (
-      <h2>
-        {title}
-      </h2>
-    ) : null}
-    <ul>
+    {title ? <h2 className="portfolio-list__title">{title}</h2> : null}
+    <ul className="portfolio-list__grid">
       {[...data]
         .sort((a, b) => {
           const dateA = new Date(a.date);
@@ -29,7 +25,7 @@ const List = ({ title, data, maxSize }: ListProps) => (
         })
         .slice(0, maxSize || data.length)
         .map((item) => (
-          <li key={item.youtubeId}>
+          <li className="portfolio-list__item" key={item.youtubeId}>
             <Card {...item} />
           </li>
         ))}

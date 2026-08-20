@@ -1,4 +1,14 @@
-.portfolio-page { position: relative; min-height:100vh; padding-top:72px; background:var(--color-bg); }
-.portfolio-page__intro { padding-top:var(--space-6); }
+.portfolio-page {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 72px;
+  background: var(--color-bg);
 
-@media (max-width: 800px) { .portfolio-page { padding-top: 64px; } }
+  &__intro {
+    padding-top: var(--space-6);
+  }
+
+  @media (max-width: 800px) {
+    padding-top: 64px;
+  }
+}

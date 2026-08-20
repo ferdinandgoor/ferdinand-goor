@@ -124,11 +124,15 @@ const backgroundImages: Record<string, string> = {
   "aya-korn": imageAyaKorn,
 };
 
-const youtubeWatchUrl = (youtubeId: string) => `https://www.youtube.com/watch?v=${youtubeId}`;
-const youtubeEmbedUrl = (youtubeId: string) => `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`;
-const youtubeThumbnailUrl = (youtubeId: string) => `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
+const youtubeWatchUrl = (youtubeId: string) =>
+  `https://www.youtube.com/watch?v=${youtubeId}`;
+const youtubeEmbedUrl = (youtubeId: string) =>
+  `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`;
+const youtubeThumbnailUrl = (youtubeId: string) =>
+  `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`;
 
-const getRelease = (slug?: string) => mashups.find((mashup) => mashup.slug === slug) ?? mashups[0];
+const getRelease = (slug?: string) =>
+  mashups.find((mashup) => mashup.slug === slug) ?? mashups[0];
 
 const getReleaseLinks = (release: MashupItem): ReleaseLink[] =>
   release.landing?.links ?? [
@@ -180,14 +184,23 @@ const socialIcon = (icon: SocialLink["icon"]) => {
   }
 };
 
-const getDeepLink = (platform: Platform, href: string, isAndroid: boolean, isIOS: boolean) => {
+const getDeepLink = (
+  platform: Platform,
+  href: string,
+  isAndroid: boolean,
+  isIOS: boolean,
+) => {
   if (platform === "spotify") {
-    const match = href.match(/open\.spotify\.com\/(track|album|artist)\/([a-zA-Z0-9]+)/);
+    const match = href.match(
+      /open\.spotify\.com\/(track|album|artist)\/([a-zA-Z0-9]+)/,
+    );
     return match ? `spotify:${match[1]}:${match[2]}` : null;
   }
 
   if (platform === "deezer") {
-    const match = href.match(/deezer\.com\/(?:[a-z]{2}\/)?(track|album|artist)\/(\d+)/);
+    const match = href.match(
+      /deezer\.com\/(?:[a-z]{2}\/)?(track|album|artist)\/(\d+)/,
+    );
     if (!match) {
       return null;
     }
@@ -251,17 +264,32 @@ const ReleaseButton = ({ link }: { link: ReleaseLink }) => {
   };
 
   return (
-    <ActionLink variant={link.isPrimary ? "primary" : "secondary"} href={link.href} external fullWidth onClick={handleClick} icon={link.isPrimary ? <Play weight="fill" /> : platformIcon(link.platform)} iconPosition="start">{link.label}</ActionLink>
+    <ActionLink
+      variant={link.isPrimary ? "primary" : "secondary"}
+      href={link.href}
+      external
+      fullWidth
+      onClick={handleClick}
+      icon={
+        link.isPrimary ? <Play weight="fill" /> : platformIcon(link.platform)
+      }
+      iconPosition="start"
+    >
+      {link.label}
+    </ActionLink>
   );
 };
 
 const MashupLanding = () => {
-  useScrollReveal(".mashup-hero, .mashup-release-card, .mashup-social-group");
+  useScrollReveal(
+    ".mashup-page__hero, .mashup-page__release, .mashup-page__social-group",
+  );
   const { slug } = useParams();
   const release = getRelease(slug);
   const releaseTitle = release.landing?.title ?? release.song;
   const releaseArtist = release.landing?.artist ?? release.artist;
-  const backgroundImage = backgroundImages[release.slug] ?? youtubeThumbnailUrl(release.youtubeId);
+  const backgroundImage =
+    backgroundImages[release.slug] ?? youtubeThumbnailUrl(release.youtubeId);
   const profiles = getProfiles(release);
   const links = getReleaseLinks(release);
   const videos = getReleaseVideos(release);
@@ -270,22 +298,34 @@ const MashupLanding = () => {
     <main
       id="main-content"
       className="mashup-page"
-      style={{ "--mashup-bg-image": `url(${backgroundImage})` } as React.CSSProperties}
+      style={
+        {
+          "--mashup-bg-image": `url(${backgroundImage})`,
+        } as React.CSSProperties
+      }
     >
       <SiteHeader universe="process" />
-      <section className="mashup-shell" aria-label={releaseTitle}>
-        <header className="mashup-hero">
-          <p className="mashup-kicker">{release.landing?.kicker ?? "Mashup"}</p>
+      <section className="mashup-page__shell" aria-label={releaseTitle}>
+        <header className="mashup-page__hero">
+          <p className="mashup-page__kicker">
+            {release.landing?.kicker ?? "Mashup"}
+          </p>
           <h1>{releaseTitle}</h1>
-          <p className="mashup-artist">{releaseArtist}</p>
+          <p className="mashup-page__artist">{releaseArtist}</p>
         </header>
 
-        <section className="mashup-release-card" aria-label="Release video and links">
-          <div className="mashup-featured-videos">
+        <section
+          className="mashup-page__release"
+          aria-label="Release video and links"
+        >
+          <div className="mashup-page__featured-videos">
             {videos.map((video) => (
-              <article className="mashup-video-feature" key={video.youtubeId}>
+              <article
+                className="mashup-page__video-feature"
+                key={video.youtubeId}
+              >
                 <p>{video.label}</p>
-                <div className="mashup-video">
+                <div className="mashup-page__video">
                   <iframe
                     loading="lazy"
                     src={youtubeEmbedUrl(video.youtubeId)}
@@ -298,30 +338,35 @@ const MashupLanding = () => {
             ))}
           </div>
 
-          <div className="mashup-links" aria-label="Streaming links">
+          <div className="mashup-page__links" aria-label="Streaming links">
             {links.map((link) => (
-              <ReleaseButton key={`${link.platform}-${link.href}`} link={link} />
+              <ReleaseButton
+                key={`${link.platform}-${link.href}`}
+                link={link}
+              />
             ))}
           </div>
         </section>
 
-        <section className="mashup-socials" aria-label="Social links">
+        <section className="mashup-page__socials" aria-label="Social links">
           {profiles.map((profile) => (
-            <div className="mashup-social-group" key={profile.id}>
+            <div className="mashup-page__social-group" key={profile.id}>
               <img src={profile.photo} alt={profile.alt} loading="lazy" />
               <p>{profile.name}</p>
               <div>
                 {profile.socials.map((social) => (
-                  <a
+                  <ActionLink
                     key={`${social.owner}-${social.label}`}
-                    className={`mashup-social mashup-social-${social.icon}`}
+                    variant="icon-bubble"
                     href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${social.owner} ${social.label}`}
+                    external
+                    icon={socialIcon(social.icon)}
+                    iconPosition="start"
+                    tone={social.icon}
+                    ariaLabel={`${social.owner} ${social.label}`}
                   >
-                    {socialIcon(social.icon)}
-                  </a>
+                    {social.label}
+                  </ActionLink>
                 ))}
               </div>
             </div>

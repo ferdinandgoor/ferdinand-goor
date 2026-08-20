@@ -63,14 +63,17 @@ const LinksVideoBlock = ({
   const isExternalMoreLink = moreHref.startsWith("http");
 
   return (
-    <section className="links-feature links-feature-video" aria-label={label}>
-      <div className="links-feature-heading">
-        <p className="links-section-label">{label}</p>
+    <section
+      className="links-page__feature links-page__feature--video"
+      aria-label={label}
+    >
+      <div className="links-page__feature-heading">
+        <p className="links-page__section-label">{label}</p>
         <h2>{primaryVideo.song}</h2>
       </div>
 
       <a
-        className="links-thumbnail"
+        className="links-page__thumbnail"
         href={primaryHref}
         target="_blank"
         rel="noopener noreferrer"
@@ -88,20 +91,42 @@ const LinksVideoBlock = ({
         </span>
       </a>
 
-      <div className="links-feature-copy">
-        <ActionLink variant="primary" href={primaryHref} external fullWidth icon={<YoutubeLogo weight="fill" />} iconPosition="start">{buttonLabel}</ActionLink>
+      <div className="links-page__feature-copy">
+        <ActionLink
+          variant="primary"
+          href={primaryHref}
+          external
+          fullWidth
+          icon={<YoutubeLogo weight="fill" />}
+          iconPosition="start"
+        >
+          {buttonLabel}
+        </ActionLink>
         {listeningLinks.map((link) => (
-          <ActionLink variant="secondary" href={link.href} external fullWidth icon={listeningLinkIcon(link.platform)} iconPosition="start" key={`${link.platform}-${link.href}`}>{link.label}</ActionLink>
+          <ActionLink
+            variant="secondary"
+            href={link.href}
+            external
+            fullWidth
+            icon={listeningLinkIcon(link.platform)}
+            iconPosition="start"
+            key={`${link.platform}-${link.href}`}
+          >
+            {link.label}
+          </ActionLink>
         ))}
       </div>
 
       {secondaryVideos.length > 0 && secondaryLabel ? (
-        <div className="links-feature-secondary" aria-label={secondaryLabel}>
-          <p className="links-section-label">{secondaryLabel}</p>
-          <div className="links-page-list">
+        <div
+          className="links-page__feature-secondary"
+          aria-label={secondaryLabel}
+        >
+          <p className="links-page__section-label">{secondaryLabel}</p>
+          <div className="links-page__list">
             {secondaryVideos.map((video) => (
               <a
-                className="links-page-link"
+                className="links-page__link"
                 href={youtubeWatchUrl(video.youtubeId)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -126,9 +151,24 @@ const LinksVideoBlock = ({
       ) : null}
 
       {isExternalMoreLink ? (
-        <ActionLink className="links-feature-more" variant="text" href={moreHref} external icon={<ArrowSquareOut weight="bold" />}>{moreLabel}</ActionLink>
+        <ActionLink
+          className="links-page__feature-more"
+          variant="text"
+          href={moreHref}
+          external
+          icon={<ArrowSquareOut weight="bold" />}
+        >
+          {moreLabel}
+        </ActionLink>
       ) : (
-        <ActionLink className="links-feature-more" variant="text" to={moreHref} icon={<ArrowSquareOut weight="bold" />}>{moreLabel}</ActionLink>
+        <ActionLink
+          className="links-page__feature-more"
+          variant="text"
+          to={moreHref}
+          icon={<ArrowSquareOut weight="bold" />}
+        >
+          {moreLabel}
+        </ActionLink>
       )}
     </section>
   );

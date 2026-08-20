@@ -17,8 +17,14 @@ const Home = () => {
   return (
     <main id="main-content" className="portfolio-page">
       <SiteHeader universe={pathname === "/projets" ? "films" : "process"} />
-      {pathname === "/projets" ? <Container className="portfolio-page__intro"><FilmsBackLink to="/">Retour à l’accueil</FilmsBackLink></Container> : null}
-      <h1 className="visually-hidden">{pageTitles[pathname] ?? "Projets de Ferd"}</h1>
+      {pathname === "/projets" ? (
+        <Container className="portfolio-page__intro">
+          <FilmsBackLink to="/">Retour à l’accueil</FilmsBackLink>
+        </Container>
+      ) : null}
+      <h1 className="visually-hidden">
+        {pageTitles[pathname] ?? "Projets de Ferd"}
+      </h1>
       <Panels />
       {pathname === "/projets" ? <FilmsFooter /> : null}
     </main>

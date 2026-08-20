@@ -36,7 +36,10 @@ Read `docs/brand-architecture.md` before changing routes, navigation, brand labe
 - Use SCSS only; do not add `.css` files.
 - Each component owns and imports a colocated `<ComponentName>.scss` file.
 - Avoid JSX inline styles. They are allowed only for genuinely dynamic runtime values passed through CSS custom properties.
-- Prefer shallow SCSS nesting for component elements, states and responsive variants.
+- Use BEM consistently in every component and page: `.block`, `.block__element`, and `.block--modifier`. JSX class names and SCSS selectors must follow the same naming structure.
+- Keep every component or page under a single SCSS block root. Nest elements with `&__element`, modifiers with `&--modifier`, and pseudo-classes or state selectors with `&:state` or `&.is-state`; do not repeat fully qualified BEM selectors at the top level.
+- Nest child selectors and responsive or reduced-motion overrides inside their owning BEM block whenever possible. Keep nesting shallow and do not create unnecessary selector specificity.
+- Before completing SCSS work, check for duplicated selector declarations, orphaned selectors and BEM elements or modifiers declared outside their block root.
 
 ## Verification
 

@@ -15,14 +15,27 @@ const musicVideoList = musicVideoListData as Video[];
 const ProjectDetailPage = () => {
   const { slug } = useParams();
   const project = musicVideoList.find((item) => getProjectSlug(item) === slug);
-  useScrollReveal(".project-detail__video, .project-detail__youtube, .project-detail__copy section, .project-detail__bts > :not(.project-detail__video), .project-detail__credits, .project-detail__container > footer", slug);
+  useScrollReveal(
+    ".project-detail__video, .project-detail__youtube, .project-detail__copy section, .project-detail__bts > :not(.project-detail__video), .project-detail__credits, .project-detail__container > footer",
+    slug,
+  );
 
   if (!project) {
     return (
-      <main className="project-detail project-detail--missing" id="main-content">
+      <main
+        className="project-detail project-detail--missing"
+        id="main-content"
+      >
         <SiteHeader universe="films" />
         <h1>Projet introuvable</h1>
-        <ActionLink variant="nav" to="/projets" icon={<ArrowLeft />} iconPosition="start">Retour aux projets</ActionLink>
+        <ActionLink
+          variant="nav"
+          to="/projets"
+          icon={<ArrowLeft />}
+          iconPosition="start"
+        >
+          Retour aux projets
+        </ActionLink>
       </main>
     );
   }
@@ -33,31 +46,79 @@ const ProjectDetailPage = () => {
   return (
     <main className="project-detail" id="main-content">
       <SiteHeader universe="films" />
-      <FilmsPageContent backTo="/projets" backLabel="Tous les projets" className="project-detail__container">
-
+      <FilmsPageContent
+        backTo="/projets"
+        backLabel="Tous les projets"
+        className="project-detail__container"
+      >
         <header className="project-detail__intro">
           <div>
-            <p>{project.styles?.join(" · ") || "Clip musical"} · {year}</p>
-            <h1><span>{project.artist}</span>{project.song}</h1>
+            <p>
+              {project.styles?.join(" · ") || "Clip musical"} · {year}
+            </p>
+            <h1>
+              <span>{project.artist}</span>
+              {project.song}
+            </h1>
           </div>
           <dl>
-            <div><dt>Artiste</dt><dd>{project.artist}</dd></div>
-            <div><dt>Projet</dt><dd>{project.song}</dd></div>
-            <div><dt>Mon rôle</dt><dd>{project.role || "Réalisation"}</dd></div>
-            {typeof project.vfx === "boolean" ? <div><dt>VFX</dt><dd>{project.vfx ? project.vfxDetails || "Oui" : "Non"}</dd></div> : null}
+            <div>
+              <dt>Artiste</dt>
+              <dd>{project.artist}</dd>
+            </div>
+            <div>
+              <dt>Projet</dt>
+              <dd>{project.song}</dd>
+            </div>
+            <div>
+              <dt>Mon rôle</dt>
+              <dd>{project.role || "Réalisation"}</dd>
+            </div>
+            {typeof project.vfx === "boolean" ? (
+              <div>
+                <dt>VFX</dt>
+                <dd>{project.vfx ? project.vfxDetails || "Oui" : "Non"}</dd>
+              </div>
+            ) : null}
           </dl>
         </header>
 
         <div className="project-detail__video">
-          <iframe src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`} title={`${project.artist} — ${project.song}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`}
+            title={`${project.artist} — ${project.song}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
 
-        <ActionLink className="project-detail__youtube" variant="icon" href={youtubeUrl} external icon={<Play weight="fill" />} iconPosition="start">Voir sur YouTube</ActionLink>
+        <ActionLink
+          className="project-detail__youtube"
+          variant="icon"
+          href={youtubeUrl}
+          external
+          icon={<Play weight="fill" />}
+          iconPosition="start"
+        >
+          Voir sur YouTube
+        </ActionLink>
 
         {project.description || project.directorNote ? (
           <div className="project-detail__copy">
-            {project.description ? <section><p className="project-detail__label">Le projet</p><h2>À propos du clip</h2><p>{project.description}</p></section> : null}
-            {project.directorNote ? <section><p className="project-detail__label">Note du réalisateur</p><h2>Un mot sur le projet</h2><p>{project.directorNote}</p></section> : null}
+            {project.description ? (
+              <section>
+                <p className="project-detail__label">Le projet</p>
+                <h2>À propos du clip</h2>
+                <p>{project.description}</p>
+              </section>
+            ) : null}
+            {project.directorNote ? (
+              <section>
+                <p className="project-detail__label">Note du réalisateur</p>
+                <h2>Un mot sur le projet</h2>
+                <p>{project.directorNote}</p>
+              </section>
+            ) : null}
           </div>
         ) : null}
 
@@ -65,15 +126,37 @@ const ProjectDetailPage = () => {
           <section className="project-detail__bts" id="coulisses">
             <p className="project-detail__label">Behind the scenes</p>
             <h2>Dans les coulisses</h2>
-            <div className="project-detail__video"><iframe src={`https://www.youtube-nocookie.com/embed/${project.behindTheScenesYoutubeId}?rel=0&modestbranding=1`} title={`Coulisses de ${project.artist} — ${project.song}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /></div>
+            <div className="project-detail__video">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${project.behindTheScenesYoutubeId}?rel=0&modestbranding=1`}
+                title={`Coulisses de ${project.artist} — ${project.song}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           </section>
         ) : null}
 
         {project.credits?.length ? (
-          <section className="project-detail__credits"><p className="project-detail__label">Équipe</p><h2>Crédits</h2><dl>{project.credits.map((credit) => <div key={`${credit.role}-${credit.name}`}><dt>{credit.role}</dt><dd>{credit.name}</dd></div>)}</dl></section>
+          <section className="project-detail__credits">
+            <p className="project-detail__label">Équipe</p>
+            <h2>Crédits</h2>
+            <dl>
+              {project.credits.map((credit) => (
+                <div key={`${credit.role}-${credit.name}`}>
+                  <dt>{credit.role}</dt>
+                  <dd>{credit.name}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         ) : null}
 
-        <footer><ActionLink variant="primary" to="/#contact" icon={<ArrowUpRight />}>Parler de mon clip</ActionLink></footer>
+        <footer>
+          <ActionLink variant="primary" to="/#contact" icon={<ArrowUpRight />}>
+            Parler de mon clip
+          </ActionLink>
+        </footer>
       </FilmsPageContent>
       <FilmsFooter />
     </main>

@@ -8,8 +8,18 @@ type ContainerProps = {
   ariaLabel?: string;
 };
 
-const Container = ({ as: Tag = "div", children, className = "", ariaLabel }: ContainerProps) => (
-  <Tag className={`ferd-container${className ? ` ${className}` : ""}`} aria-label={ariaLabel}>{children}</Tag>
+const Container = ({
+  as: Tag = "div",
+  children,
+  className = "",
+  ariaLabel,
+}: ContainerProps) => (
+  <Tag
+    className={`ferd-container${className ? ` ${className}` : ""}`}
+    aria-label={ariaLabel}
+  >
+    {children}
+  </Tag>
 );
 
 export default Container;

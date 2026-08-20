@@ -14,8 +14,11 @@ type PanelSection = {
 
 const Panels = () => {
   const { pathname } = useLocation();
-  useScrollReveal(".list-item", pathname);
-  const loaderData = useLoaderData() as { list?: Video[]; sections?: PanelSection[] };
+  useScrollReveal(".video-card--reveal", pathname);
+  const loaderData = useLoaderData() as {
+    list?: Video[];
+    sections?: PanelSection[];
+  };
   const sections = loaderData.sections ?? [
     {
       title: "",
@@ -34,7 +37,9 @@ const Panels = () => {
       prevIndexRef.current !== currentIndex
     ) {
       const direction =
-        currentIndex > prevIndexRef.current ? "animate-next" : "animate-prev";
+        currentIndex > prevIndexRef.current
+          ? "portfolio-panels__slide--next"
+          : "portfolio-panels__slide--previous";
       setAnimClass(direction);
       const timeout = window.setTimeout(() => setAnimClass(""), 420);
       return () => window.clearTimeout(timeout);
@@ -52,8 +57,8 @@ const Panels = () => {
   }, [pathname]);
 
   return (
-    <div className="portfolio-panels"> 
-      <div className={`panel-slide ${animClass}`}>
+    <div className="portfolio-panels">
+      <div className={`portfolio-panels__slide ${animClass}`}>
         <Container>
           {sections.map((section) => (
             <List

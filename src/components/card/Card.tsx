@@ -14,11 +14,23 @@ const Card = ({ artist, song, date, youtubeId, styles = [] }: Video) => {
 
   if (isPortfolioProject) {
     return (
-      <article className="list-item video-card video-card--project">
-        <Link className="video-card__project-link" to={getProjectPath({ artist, song })} aria-label={`Découvrir le projet ${artist} — ${song}`}>
+      <article className="video-card--reveal video-card video-card--project">
+        <Link
+          className="video-card__project-link"
+          to={getProjectPath({ artist, song })}
+          aria-label={`Découvrir le projet ${artist} — ${song}`}
+        >
           <span className="video-card__media">
-            <img src={thumbnail} alt={`${artist} — ${song}`} width="480" height="360" loading="lazy" />
-            <span className="video-card__open" aria-hidden="true"><ArrowUpRight /></span>
+            <img
+              src={thumbnail}
+              alt={`${artist} — ${song}`}
+              width="480"
+              height="360"
+              loading="lazy"
+            />
+            <span className="video-card__open" aria-hidden="true">
+              <ArrowUpRight />
+            </span>
           </span>
         </Link>
       </article>
@@ -26,13 +38,28 @@ const Card = ({ artist, song, date, youtubeId, styles = [] }: Video) => {
   }
 
   return (
-    <article className="list-item video-card">
+    <article className="video-card--reveal video-card">
       <div className="video-card__media">
         {isLoaded ? (
-          <iframe src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1`} title={`${artist} — ${song}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" />
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&modestbranding=1`}
+            title={`${artist} — ${song}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            loading="lazy"
+          />
         ) : (
-          <button type="button" aria-label={`Lire ${artist} — ${song}`} onClick={() => setIsLoaded(true)}>
-            <img src={thumbnail} alt={`${artist} — ${song}`} width="480" height="360" loading="lazy" />
+          <button
+            type="button"
+            aria-label={`Lire ${artist} — ${song}`}
+            onClick={() => setIsLoaded(true)}
+          >
+            <img
+              src={thumbnail}
+              alt={`${artist} — ${song}`}
+              width="480"
+              height="360"
+              loading="lazy"
+            />
             <span className="video-card__overlay" aria-hidden="true">
               <i />
               <span className="video-card__meta">

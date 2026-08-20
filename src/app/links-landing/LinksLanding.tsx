@@ -13,22 +13,24 @@ import musicVideoList from "@/data/musicVideoList.json";
 import ferdPhoto from "../mashup-landing/ferd.jpg";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import LinksVideoBlock from "./LinksVideoBlock";
-import type {
-  LinksVideo,
-  LinksVideoBlockProps,
-} from "./LinksVideoBlock";
+import type { LinksVideo, LinksVideoBlockProps } from "./LinksVideoBlock";
 import "./LinksLanding.scss";
 import { ActionLink } from "@/components/action/Action";
 
-type VideoBlock = Omit<LinksVideoBlockProps, "primaryVideo" | "secondaryVideos"> & {
+type VideoBlock = Omit<
+  LinksVideoBlockProps,
+  "primaryVideo" | "secondaryVideos"
+> & {
   key: string;
   videos: LinksVideo[];
 };
 
 const youtubeChannelUrl = "https://www.youtube.com/@ferd.process";
-const spotifyArtistUrl = "https://open.spotify.com/artist/15Z2HnTByQHjpyLZrHB3vs";
+const spotifyArtistUrl =
+  "https://open.spotify.com/artist/15Z2HnTByQHjpyLZrHB3vs";
 const mashupPlaylistUrl = "https://www.youtube.com/playlist?list=PLTGarG5bkXoA";
-const longVideosPlaylistUrl = "https://www.youtube.com/playlist?list=PLOGfm0l52k3g";
+const longVideosPlaylistUrl =
+  "https://www.youtube.com/playlist?list=PLOGfm0l52k3g";
 const gearPlaylistUrl = "https://www.youtube.com/playlist?list=PLOvnmxmjrjv4";
 
 const getVideoTimestamp = (video?: LinksVideo) =>
@@ -108,9 +110,7 @@ const socials = [
 ];
 
 const LinksLanding = () => {
-  useScrollReveal(
-    ".links-profile, .links-feature, .links-socials, .links-mashup-pages, .links-music-videos",
-  );
+  useScrollReveal(".links-page__profile, .links-page__feature");
 
   return (
     <main
@@ -118,18 +118,18 @@ const LinksLanding = () => {
       className="links-page"
       style={{ "--links-bg-image": `url(${ferdPhoto})` } as CSSProperties}
     >
-      <section className="links-shell" aria-label="Ferd links">
-
-        <section className="links-profile" aria-label="Profil Ferd">
+      <section className="links-page__shell" aria-label="Ferd links">
+        <section className="links-page__profile" aria-label="Profil Ferd">
           <img src={ferdPhoto} alt="Portrait de Ferd" loading="lazy" />
-          <div className="links-profile-copy">
+          <div className="links-page__profile-copy">
             <h1>@ferd.process</h1>
-            <p className="links-profile-bio">
-              Salut, je m'appelle FERD. Je fais des mashups débiles, des vidéos YouTube marrantes,
-              des clips et de la production musicale metal. Je suis aussi développeur web freelance
-              pour ceux que ça intéresse. Oui, je fais tout mdr.
+            <p className="links-page__profile-bio">
+              Salut, je m'appelle FERD. Je fais des mashups débiles, des vidéos
+              YouTube marrantes, des clips et de la production musicale metal.
+              Je suis aussi développeur web freelance pour ceux que ça
+              intéresse. Oui, je fais tout mdr.
             </p>
-            <div className="links-profile-socials">
+            <div className="links-page__profile-socials">
               {socials.map((social) => (
                 <ActionLink
                   key={social.href}
@@ -148,7 +148,11 @@ const LinksLanding = () => {
           </div>
         </section>
 
-        <section className="links-content" id="contenus" aria-label="Contenus FERD Process">
+        <section
+          className="links-page__content"
+          id="contenus"
+          aria-label="Contenus FERD Process"
+        >
           {videoBlocks.map(({ key, videos, ...blockProps }) =>
             videos[0] ? (
               <LinksVideoBlock
@@ -161,7 +165,15 @@ const LinksLanding = () => {
           )}
         </section>
 
-        <div className="links-main-action"><ActionLink variant="nav" to="/" icon={<ArrowSquareOut weight="bold" />}>Découvrir FERD Films</ActionLink></div>
+        <div className="links-page__main-action">
+          <ActionLink
+            variant="nav"
+            to="/"
+            icon={<ArrowSquareOut weight="bold" />}
+          >
+            Découvrir FERD Films
+          </ActionLink>
+        </div>
       </section>
     </main>
   );

@@ -1,15 +1,102 @@
-.films-seo__hero { position:relative; min-height:min(82svh,880px); display:flex; align-items:flex-end; isolation:isolate; }
-.films-seo__hero>img,.films-seo__hero-overlay { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; }
-.films-seo__hero-overlay { z-index:-1; background:var(--hero-overlay); }
-.films-seo__hero-copy { padding-top:clamp(130px,18vh,200px); padding-bottom:var(--section-block); }
-.films-seo__hero h1 { max-width:1100px; margin:var(--space-5) 0; font-size:var(--text-title-lg); font-weight:400; line-height:var(--leading-display); letter-spacing:var(--tracking-display); text-wrap:balance; }
-.films-seo__hero p:not(.clip-eyebrow) { max-width:720px; color:var(--color-text-muted); font-family:var(--font-body); font-size:clamp(1rem,1.5vw,1.3rem); line-height:1.5; }
-.films-seo__hero small { display:block; margin-top:var(--space-8); color:var(--color-text-muted); font-size:var(--text-label); letter-spacing:var(--tracking-label); text-transform:uppercase; }
-.films-seo__breadcrumb { display:flex; gap:var(--space-3); padding-top:var(--space-5); padding-bottom:var(--space-5); color:var(--color-text-muted); border-top:1px solid var(--color-border); font-size:var(--text-label); text-transform:uppercase; }
-.films-seo__section .clip-showreel-frame { margin-bottom:var(--space-16); }
-.films-seo__copy,.films-seo__budget { display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.8fr); gap:clamp(var(--space-10),8vw,120px); }
-.films-seo__copy>div:last-child,.films-seo__focus p,.films-seo__budget>p { color:var(--color-text-muted); font-family:var(--font-body); font-size:clamp(1rem,1.5vw,1.25rem); line-height:1.65; }
-.films-seo__focus { background:var(--color-accent); color:var(--color-on-accent); }
-.films-seo__focus p { max-width:var(--content-reading); color:var(--color-on-accent); }
-.films-seo__budget { align-items:end; }
-@media (max-width:800px) { .films-seo__hero { min-height:78svh; } .films-seo__copy,.films-seo__budget { grid-template-columns:1fr; } .films-seo__breadcrumb { overflow-x:auto; white-space:nowrap; } }
+.films-seo {
+  &__hero {
+    position: relative;
+    min-height: min(82svh, 880px);
+    display: flex;
+    align-items: flex-end;
+    isolation: isolate;
+  }
+  &__hero > img,
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__hero-overlay {
+    z-index: -1;
+    background: var(--hero-overlay);
+  }
+  &__hero-copy {
+    padding-top: clamp(130px, 18vh, 200px);
+    padding-bottom: var(--section-block);
+  }
+  &__hero h1 {
+    max-width: 1100px;
+    margin: var(--space-5) 0;
+    font-size: var(--text-title-lg);
+    font-weight: 400;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  &__hero p:not(.clip-page__eyebrow) {
+    max-width: 720px;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    line-height: 1.5;
+  }
+  &__hero small {
+    display: block;
+    margin-top: var(--space-8);
+    color: var(--color-text-muted);
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  &__breadcrumb {
+    display: flex;
+    gap: var(--space-3);
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-label);
+    text-transform: uppercase;
+  }
+  &__section .clip-page__showreel {
+    margin-bottom: var(--space-16);
+  }
+  &__copy,
+  &__budget {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
+    gap: clamp(var(--space-10), 8vw, 120px);
+  }
+  &__copy > div:last-child,
+  &__focus p,
+  &__budget > p {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.65;
+  }
+  &__focus {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  &__focus p {
+    max-width: var(--content-reading);
+    color: var(--color-on-accent);
+  }
+  &__budget {
+    align-items: end;
+  }
+}
+
+@media (max-width: 800px) {
+  .films-seo__hero {
+    min-height: 78svh;
+  }
+  .films-seo__copy,
+  .films-seo__budget {
+    grid-template-columns: 1fr;
+  }
+  .films-seo__breadcrumb {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

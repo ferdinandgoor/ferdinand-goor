@@ -14,5 +14,5 @@ hydrateRoot(
   root,
   <React.StrictMode>
     <RouterProvider router={createRouter()} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
