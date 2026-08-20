@@ -2,6 +2,7 @@ import funnyMashupList from "./data/funnyMashupList.json";
 import musicVideoListData from "./data/musicVideoList.json";
 import type Video from "./types/Video";
 import { getProjectSlug } from "./utils/projectSlug";
+import { filmLandingPages, filmProjects, getFilmLandingPage, showreel, youtubeThumbnail } from "./data/films";
 
 const musicVideoList = musicVideoListData as Video[];
 
@@ -93,6 +94,17 @@ export const absoluteUrl = (value: string) =>
 
 export function getSeoData(pathname: string): SeoData {
   const path = normalizePath(pathname);
+  const filmsSlug = path.startsWith("/films/") ? path.slice("/films/".length) : "";
+  const filmsPage = getFilmLandingPage(filmsSlug);
+  if (filmsPage) {
+    return {
+      title: filmsPage.title,
+      description: filmsPage.metaDescription,
+      canonical: absoluteUrl(path),
+      image: youtubeThumbnail(filmsPage.featuredProjects.length ? filmProjects.find((project) => project.slug === filmsPage.featuredProjects[0])?.youtubeId ?? showreel.youtubeId : showreel.youtubeId),
+      type: "website",
+    };
+  }
   const staticPage = staticPages[path];
   if (staticPage) {
     return {
@@ -146,6 +158,25 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
       sameAs: siteConfig.profiles,
     },
     {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${siteConfig.url}/#films`,
+      name: "FERD FILMS",
+      url: `${siteConfig.url}/`,
+      logo: absoluteUrl(siteConfig.logo),
+      image: absoluteUrl(seo.image),
+      email: siteConfig.email,
+      telephone: "+33651609666",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "173 chemin du Printemps",
+        postalCode: "44800",
+        addressLocality: "Saint-Herblain",
+        addressCountry: "FR",
+      },
+      areaServed: "France",
+      priceRange: "À partir de 850 €",
+    },
+    {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       url: `${siteConfig.url}/`,
@@ -165,7 +196,18 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     },
   ];
 
-  if (path !== "/") {
+  const filmsSlug = path.startsWith("/films/") ? path.slice("/films/".length) : "";
+  const filmsPage = getFilmLandingPage(filmsSlug);
+  if (filmsPage) {
+    graph.push({
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "FERD", item: `${siteConfig.url}/` },
+        { "@type": "ListItem", position: 2, name: "Films", item: `${siteConfig.url}/films/realisation-clip-musical` },
+        { "@type": "ListItem", position: 3, name: filmsPage.city ? `Clip vidéo ${filmsPage.city}` : filmsPage.h1, item: seo.canonical },
+      ],
+    });
+  } else if (path !== "/") {
     graph.push({
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -185,5 +227,33 @@ export function getStructuredData(pathname: string, seo = getSeoData(pathname)) 
     });
   }
 
+  const featuredSlugs = filmsPage?.featuredProjects ?? (path === "/" ? filmProjects.slice(0, 6).map((project) => project.slug) : []);
+  if (path === "/" || filmsPage) {
+    graph.push({
+      "@type": "VideoObject",
+      name: showreel.title,
+      description: showreel.description,
+      thumbnailUrl: youtubeThumbnail(showreel.youtubeId),
+      uploadDate: showreel.uploadDate,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${showreel.youtubeId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${showreel.youtubeId}`,
+    });
+    featuredSlugs.forEach((slug) => {
+      const project = filmProjects.find((item) => item.slug === slug);
+      if (!project) return;
+      graph.push({
+        "@type": "VideoObject",
+        name: `${project.artist} — ${project.title}`,
+        description: project.description,
+        thumbnailUrl: youtubeThumbnail(project.youtubeId),
+        uploadDate: project.uploadDate,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${project.youtubeId}`,
+        contentUrl: `https://www.youtube.com/watch?v=${project.youtubeId}`,
+      });
+    });
+  }
+
   return { "@context": "https://schema.org", "@graph": graph };
 }
+
+export const filmSeoRoutes = filmLandingPages.map((page) => `/films/${page.slug}`);

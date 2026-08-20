@@ -18,6 +18,8 @@ FERD Films is the primary professional activity: music-video direction and produ
 
 SEO intent includes réalisateur clip, réalisateur clip Nantes, clip musical, réalisation clip, vidéaste clip and production clip musical. Copy must remain natural and useful rather than keyword-stuffed.
 
+Dedicated local and thematic acquisition pages live under `/films/*`. They support the short visual homepage with genuinely specific SEO content; see `docs/films-content-architecture.md` for the data-driven workflow.
+
 ## FERD Process
 
 FERD Process is Ferdinand's creative and editorial universe: mashups, YouTube videos, music, production, guitar, gear, behind-the-scenes material, experiments and personal projects.

@@ -12,6 +12,7 @@ import MashupLanding from "./app/mashup-landing/MashupLanding";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
 import TermsPage from "./app/legal/TermsPage";
 import ProjectDetailPage from "./app/project-detail/ProjectDetailPage";
+import FilmsSeoLanding from "./app/films-seo/FilmsSeoLanding";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import funnyMashupList from "./data/funnyMashupList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
@@ -183,6 +184,14 @@ export const routes: RouteObject[] = [
     element: (
       <ScrollToTop>
         <MashupLanding />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/films/:slug",
+    element: (
+      <ScrollToTop>
+        <FilmsSeoLanding />
       </ScrollToTop>
     ),
   },

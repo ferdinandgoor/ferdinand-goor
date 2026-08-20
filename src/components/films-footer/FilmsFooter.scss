@@ -1,6 +1,6 @@
 .films-footer {
   display: grid;
-  grid-template-columns: minmax(300px, 1.5fr) repeat(2, minmax(150px, .55fr));
+  grid-template-columns: minmax(280px, 1.35fr) repeat(3, minmax(140px, .55fr));
   gap: clamp(36px, 6vw, 100px);
   padding: 60px var(--section-inline);
   color: var(--color-text);

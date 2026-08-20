@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ferd.fr/</loc></url>
   <url><loc>https://ferd.fr/projets</loc></url>
+  <url><loc>https://ferd.fr/films/clip-video-nantes</loc></url>
+  <url><loc>https://ferd.fr/films/clip-video-rennes</loc></url>
+  <url><loc>https://ferd.fr/films/clip-video-angers</loc></url>
+  <url><loc>https://ferd.fr/films/realisation-clip-musical</loc></url>
+  <url><loc>https://ferd.fr/films/realisation-clip-metal</loc></url>
   <url><loc>https://ferd.fr/music-production</loc></url>
   <url><loc>https://ferd.fr/youtube-videos</loc></url>
   <url><loc>https://ferd.fr/mashups/jul-tchikita-version-slipknot</loc></url>

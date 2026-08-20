@@ -13,7 +13,7 @@ const funnyMashupList = JSON.parse(await readFile(mashupDataPath, "utf8"));
 const musicVideoList = JSON.parse(await readFile(projectDataPath, "utf8"));
 const slugifyProject = (value) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-const routes = [
+const baseRoutes = [
   "/",
   "/projets",
   "/music-production",
@@ -37,10 +37,13 @@ if (!mountPattern.test(template)) {
 
 const {
   absoluteUrl,
+  filmSeoRoutes,
   getSeoData,
   getStructuredData,
   render,
 } = await import(`${pathToFileURL(serverEntry).href}?t=${Date.now()}`);
+
+const routes = [...baseRoutes, ...filmSeoRoutes];
 
 const escapeHtml = (value) =>
   value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
