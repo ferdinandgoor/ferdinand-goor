@@ -13,10 +13,6 @@ const FilmsFooter = () => (
           Ferdinand Goor — Entrepreneur individuel
           <br />
           SIRET 884 098 922 00021
-          <br />
-          173 chemin du Printemps, 44800 Saint-Herblain, France
-          <br />
-          TVA non applicable, article 293 B du CGI
         </p>
       </div>
       <div className="films-footer__links">
