@@ -469,9 +469,6 @@
   &__botcheck {
     display: none !important;
   }
-  &__mobile-cta {
-    display: none;
-  }
 }
 
 @keyframes clipHeroReveal {
@@ -547,16 +544,6 @@
     }
   }
 
-  .clip-page__mobile-cta {
-    position: fixed;
-    inset: auto var(--space-4) var(--space-4);
-    z-index: 20;
-    display: block;
-  }
-
-  .films-footer__inner {
-    padding-bottom: calc(var(--space-16) + var(--space-10));
-  }
 }
 
 @media (hover: none) {

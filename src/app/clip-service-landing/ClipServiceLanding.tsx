@@ -142,9 +142,6 @@ const ClipServiceLanding = ({ page }: ClipServiceLandingProps) => {
         </div>
       </section>
       <ContactSection />
-      <aside className="clip-page__mobile-cta">
-        <ContactLink>Parler de mon clip</ContactLink>
-      </aside>
       <FilmsFooter />
     </main>
   );
