@@ -79,6 +79,9 @@ const FilmsFooter = () => (
         <ActionLink variant="nav" to="/projets">
           Tous les projets
         </ActionLink>
+        <ActionLink variant="nav" to="/developpeur-freelance">
+          Développement web freelance
+        </ActionLink>
         <ActionLink variant="nav" to="/cgv">
           CGV
         </ActionLink>
