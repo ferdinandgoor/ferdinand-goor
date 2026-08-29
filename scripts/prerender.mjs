@@ -29,6 +29,8 @@ const baseRoutes = [
   "/matos",
   "/realisateur-clip-nantes",
   "/cgv",
+  "/developpeur-freelance",
+  "/developpeur-freelance/projets/genesia",
   ...musicVideoList.map((item) => `/projets/${slugifyProject(`${item.artist}-${item.song}`)}`),
   ...funnyMashupList
     .map((item) => item.slug)

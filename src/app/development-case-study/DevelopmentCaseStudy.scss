@@ -1,0 +1,52 @@
+.case-study {
+  min-width: 320px;
+  background: var(--color-bg);
+
+  &__hero, &__section, &__showcase, &__contact { padding: var(--section-block) var(--section-inline); }
+  &__hero { padding-top: calc(72px + var(--section-block)); }
+  &__eyebrow { color: var(--color-accent); font-family: var(--font-display); font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+  h1 { max-width: 1100px; margin: var(--space-8) 0 var(--space-6); font-size: var(--text-title-lg); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+  &__lead { max-width: var(--content-reading); color: var(--color-text-muted); font-family: var(--font-body); font-size: 1.25rem; line-height: 1.65; }
+  &__hero-actions { margin-top: var(--space-8); }
+
+  &__showcase { padding-top: 0; }
+  &__browser { overflow: hidden; color: var(--color-on-accent); background: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-panel); }
+  &__browser-bar { display: flex; gap: var(--space-2); align-items: center; min-height: 48px; padding: 0 var(--space-4); color: var(--color-text-muted); background: var(--color-bg-elevated); }
+  &__browser-bar span { width: 9px; height: 9px; background: var(--color-border-strong); border-radius: 50%; }
+  &__browser-bar small { margin-left: var(--space-4); font-family: var(--font-body); }
+  &__browser-screen { overflow: hidden; background: var(--color-text); }
+  &__browser-screen img { display: block; width: 100%; height: auto; }
+
+  &__section { border-top: 1px solid var(--color-border); }
+  &__section h2 { max-width: 900px; margin: var(--space-5) 0 var(--space-8); font-size: var(--text-title-md); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+  &__intro-grid, &__columns, &__result { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+  &__intro-grid > div:last-child, &__result > p { color: var(--color-text-muted); font-family: var(--font-body); font-size: 1.1rem; line-height: 1.75; }
+  &__section--split, &__section--result { background: var(--color-bg-elevated); }
+  &__columns ul { margin: 0; padding: 0; list-style: none; }
+  &__columns li { padding: var(--space-5) 0; border-bottom: 1px solid var(--color-border); font-family: var(--font-body); }
+  &__columns li::before { margin-right: var(--space-3); color: var(--color-accent); content: "→"; }
+  &__challenges { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  &__challenge { padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  &__challenge span { color: var(--color-accent); font-size: var(--text-label); }
+  &__challenge h3 { margin: var(--space-8) 0 var(--space-4); font-size: var(--text-title-sm); }
+  &__challenge p { color: var(--color-text-muted); font-family: var(--font-body); line-height: 1.65; }
+  &__technologies { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-8) 0 0; padding: 0; list-style: none; }
+  &__technologies li { padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); }
+  &__contact { color: var(--color-on-accent); background: var(--color-accent); }
+  &__contact .case-study__eyebrow { color: var(--color-on-accent); }
+  &__contact h2 { max-width: 900px; margin: var(--space-5) 0; font-size: var(--text-title-md); line-height: var(--leading-display); }
+  &__contact p:not(.case-study__eyebrow) { max-width: var(--content-reading); margin-bottom: var(--space-8); font-family: var(--font-body); }
+
+  @media (max-width: 800px) {
+    &__intro-grid, &__columns, &__result { grid-template-columns: 1fr; }
+    &__browser-screen img { width: 150%; max-width: none; transform: translateX(-17%); }
+    &__challenges { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    &__hero { padding-top: calc(64px + var(--space-16)); }
+    &__browser-bar small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    &__browser-screen img { width: 180%; transform: translateX(-22%); }
+    &__challenge { padding: var(--space-6); }
+  }
+}

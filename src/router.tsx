@@ -11,6 +11,8 @@ import MediaDetailPage from "./app/media-detail/MediaDetailPage";
 import ClipServiceLanding from "./app/clip-service-landing/ClipServiceLanding";
 import TermsPage from "./app/legal/TermsPage";
 import FilmsSeoLanding from "./app/films-seo/FilmsSeoLanding";
+import DevelopmentLanding from "./app/development-landing/DevelopmentLanding";
+import DevelopmentCaseStudy from "./app/development-case-study/DevelopmentCaseStudy";
 import bigYoutubeVideoList from "./data/bigYoutubeVideoList.json";
 import funnyMashupList from "./data/funnyMashupList.json";
 import gearYoutubeVideoList from "./data/gearYoutubeVideoList.json";
@@ -231,6 +233,22 @@ export const routes: RouteObject[] = [
     element: (
       <ScrollToTop>
         <ClipServiceLanding />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/developpeur-freelance",
+    element: (
+      <ScrollToTop>
+        <DevelopmentLanding />
+      </ScrollToTop>
+    ),
+  },
+  {
+    path: "/developpeur-freelance/projets/genesia",
+    element: (
+      <ScrollToTop>
+        <DevelopmentCaseStudy />
       </ScrollToTop>
     ),
   },

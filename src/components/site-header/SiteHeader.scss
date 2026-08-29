@@ -61,6 +61,15 @@
       color: var(--color-accent);
     }
   }
+  &--dev {
+    .site-header__brand {
+      color: var(--color-text);
+    }
+
+    .site-header__brand span {
+      color: var(--color-accent);
+    }
+  }
 }
 
 @media (max-width: 800px) {

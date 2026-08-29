@@ -5,7 +5,7 @@ import "./SiteHeader.scss";
 import Container from "@/components/container/Container";
 import { ActionLink } from "@/components/action/Action";
 
-type SiteHeaderProps = { universe?: "films" | "process" };
+type SiteHeaderProps = { universe?: "films" | "process" | "dev" };
 
 const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
   const { pathname, hash } = useLocation();
@@ -71,6 +71,44 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
     </>
   );
 
+  const devNavigation = (
+    <>
+      <ActionLink variant="nav" to="/developpeur-freelance#services">
+        Services
+      </ActionLink>
+      <ActionLink variant="nav" to="/developpeur-freelance#approche">
+        Approche
+      </ActionLink>
+      <ActionLink variant="nav" to="/developpeur-freelance#projets">
+        Projets
+      </ActionLink>
+      <ActionLink
+        variant="nav"
+        className="site-header__bridge"
+        to="/"
+        icon={<ArrowSquareOut weight="bold" />}
+      >
+        FERD Films
+      </ActionLink>
+      <ActionLink
+        variant="primary"
+        className="site-header__cta"
+        to="/developpeur-freelance#contact"
+      >
+        Parler de mon site
+      </ActionLink>
+    </>
+  );
+
+  const brandHref =
+    universe === "process"
+      ? "/process"
+      : universe === "dev"
+        ? "/developpeur-freelance"
+        : "/";
+  const brandLabel =
+    universe === "process" ? "PROCESS" : universe === "dev" ? "DEV" : "FILMS";
+
   return (
     <header
       className={`site-header site-header--${universe}${scrolled ? " is-scrolled" : ""}`}
@@ -78,9 +116,9 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
       <Container className="site-header__inner">
         <Link
           className="site-header__brand"
-          to={universe === "films" ? "/" : "/process"}
+          to={brandHref}
         >
-          FERD <span>{universe === "films" ? "FILMS" : "PROCESS"}</span>
+          FERD <span>{brandLabel}</span>
         </Link>
         <button
           className="site-header__toggle"
@@ -94,9 +132,13 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
         <nav
           id="site-navigation"
           className={`site-header__nav${menuOpen ? " is-open" : ""}`}
-          aria-label={`Navigation FERD ${universe === "films" ? "Films" : "Process"}`}
+          aria-label={`Navigation FERD ${brandLabel}`}
         >
-          {universe === "films" ? filmsNavigation : processNavigation}
+          {universe === "films"
+            ? filmsNavigation
+            : universe === "process"
+              ? processNavigation
+              : devNavigation}
         </nav>
       </Container>
     </header>

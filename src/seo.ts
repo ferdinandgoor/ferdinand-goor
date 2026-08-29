@@ -112,6 +112,20 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
     image: "/ferd_logo_3.png",
     type: "website",
   },
+  "/developpeur-freelance": {
+    title: "Développeur web freelance à Nantes | Ferdinand Goor",
+    description:
+      "Conception UX/UI, développement React et TypeScript, SEO et déploiement de sites web sur mesure par Ferdinand Goor.",
+    image: "/genesia-homepage.webp",
+    type: "website",
+  },
+  "/developpeur-freelance/projets/genesia": {
+    title: "Création du site GENESIA — Étude de cas React et TypeScript | Ferdinand Goor",
+    description:
+      "Découvrez la conception et le développement du site GENESIA, un site médical responsive réalisé avec React, TypeScript, pré-rendu SEO et déploiement automatisé.",
+    image: "/genesia-homepage.webp",
+    type: "website",
+  },
 };
 
 const normalizePath = (pathname: string) => {
@@ -393,6 +407,14 @@ export function getSitemapImages(pathname: string) {
   const filmsPage = getFilmLandingPage(
     path.startsWith("/films/") ? path.slice("/films/".length) : "",
   );
+  if (path.startsWith("/developpeur-freelance")) {
+    return [
+      {
+        url: absoluteUrl("/genesia-homepage.webp"),
+        title: "GENESIA — Centre de Génétique & Fertilité",
+      },
+    ];
+  }
   if (path === "/" || filmsPage) {
     const projects = filmsPage
       ? filmsPage.featuredProjects
