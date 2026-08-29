@@ -115,7 +115,7 @@ const staticPages: Record<string, Omit<SeoData, "canonical">> = {
   "/developpeur-freelance": {
     title: "Développeur web freelance à Nantes | Ferdinand Goor",
     description:
-      "Conception UX/UI, développement React et TypeScript, SEO et déploiement de sites web sur mesure par Ferdinand Goor.",
+      "Lead Front-End avec plus de dix ans d’expérience : conception UX/UI, développement React et TypeScript, SEO et sites web sur mesure à Nantes.",
     image: "/genesia-homepage.webp",
     type: "website",
   },

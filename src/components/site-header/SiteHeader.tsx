@@ -76,9 +76,6 @@ const SiteHeader = ({ universe = "films" }: SiteHeaderProps) => {
       <ActionLink variant="nav" to="/developpeur-freelance#services">
         Services
       </ActionLink>
-      <ActionLink variant="nav" to="/developpeur-freelance#approche">
-        Approche
-      </ActionLink>
       <ActionLink variant="nav" to="/developpeur-freelance#projets">
         Projets
       </ActionLink>

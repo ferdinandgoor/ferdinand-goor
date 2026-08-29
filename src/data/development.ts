@@ -44,10 +44,3 @@ export const developmentServices = [
     copy: "Pré-rendu, métadonnées, performance et déploiement automatisé pour une base fiable et facile à maintenir.",
   },
 ] as const;
-
-export const workflow = [
-  "Cadrage du besoin et des contenus",
-  "Direction créative et prototype",
-  "Développement par étapes vérifiables",
-  "Tests, mise en ligne et transmission",
-] as const;
