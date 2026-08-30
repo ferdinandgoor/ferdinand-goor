@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowDown, ArrowRight } from "phosphor-react";
 import SiteHeader from "@/components/site-header/SiteHeader";
 import FilmsFooter from "@/components/films-footer/FilmsFooter";
@@ -20,13 +20,57 @@ type ClipServiceLandingProps = {
 };
 
 const ClipServiceLanding = ({ page }: ClipServiceLandingProps) => {
+  const introSceneRef = useRef<HTMLDivElement>(null);
+
   useScrollReveal(
-    ".clip-page__section, .clip-page__project, .clip-page__approach article",
+    ".clip-page__section:not(.clip-page__section--showreel), .clip-page__project, .clip-page__approach article",
   );
   useEffect(
     () => trackEvent("films_visit", { page: page?.slug ?? "home" }),
     [page?.slug],
   );
+
+  useEffect(() => {
+    const scene = introSceneRef.current;
+
+    if (!scene) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    let animationFrame = 0;
+
+    const updateProgress = () => {
+      animationFrame = 0;
+
+      if (reducedMotion.matches) {
+        scene.style.setProperty("--intro-progress", "0");
+        return;
+      }
+
+      const bounds = scene.getBoundingClientRect();
+      const scrollRange = Math.max(bounds.height / 2, 1);
+      const progress = Math.min(Math.max(-bounds.top / scrollRange, 0), 1);
+
+      scene.style.setProperty("--intro-progress", progress.toString());
+    };
+
+    const requestProgressUpdate = () => {
+      if (!animationFrame) animationFrame = requestAnimationFrame(updateProgress);
+    };
+
+    requestProgressUpdate();
+    window.addEventListener("scroll", requestProgressUpdate, { passive: true });
+    window.addEventListener("resize", requestProgressUpdate);
+    reducedMotion.addEventListener("change", requestProgressUpdate);
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", requestProgressUpdate);
+      window.removeEventListener("resize", requestProgressUpdate);
+      reducedMotion.removeEventListener("change", requestProgressUpdate);
+    };
+  }, []);
 
   const projects = page
     ? page.featuredProjects
@@ -46,54 +90,57 @@ const ClipServiceLanding = ({ page }: ClipServiceLandingProps) => {
   return (
     <main className="clip-page" id="main-content">
       <SiteHeader />
-      <section className="clip-page__hero" id="top">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/video.webp"
-          aria-hidden="true"
-        >
-          <source src="/overfloodedLight.mp4" type="video/mp4" />
-        </video>
-        <div className="clip-page__hero-overlay" />
-        <Container className="clip-page__hero-copy">
-          <p className="clip-page__eyebrow">{eyebrow}</p>
-          <h1>
-            {page ? (
-              page.h1
-            ) : (
-              <>
-                Des clips pour les
-                <br />
-                musiques alternatives.
-              </>
-            )}
-          </h1>
-          <p>{intro}</p>
-          <div className="clip-page__actions">
-            <ContactLink>Parler de mon clip</ContactLink>
-            <ActionLink
-              variant="secondary"
-              href="#projets"
-              icon={<ArrowDown aria-hidden="true" />}
+      <div className="clip-page__intro-scene" ref={introSceneRef}>
+        <div className="clip-page__intro-stage">
+          <section className="clip-page__hero" id="top">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/video.webp"
+              aria-hidden="true"
             >
-              Voir les réalisations
-            </ActionLink>
-          </div>
-          <small>{location}</small>
-        </Container>
-      </section>
-      <section
-        className="clip-page__section clip-page__section--showreel"
-        id="showreel"
-      >
-        <p className="clip-page__index">01 / Showreel</p>
-        <h2>Le film avant le discours.</h2>
-        <Showreel />
-      </section>
+              <source src="/overfloodedLight.mp4" type="video/mp4" />
+            </video>
+            <div className="clip-page__hero-overlay" />
+            <Container className="clip-page__hero-copy">
+              <p className="clip-page__eyebrow">{eyebrow}</p>
+              <h1>
+                {page ? (
+                  page.h1
+                ) : (
+                  <>
+                    Des clips pour les
+                    <br />
+                    musiques alternatives.
+                  </>
+                )}
+              </h1>
+              <p>{intro}</p>
+              <div className="clip-page__actions">
+                <ContactLink>Parler de mon clip</ContactLink>
+                <ActionLink
+                  variant="secondary"
+                  href="#projets"
+                  icon={<ArrowDown aria-hidden="true" />}
+                >
+                  Voir les réalisations
+                </ActionLink>
+              </div>
+              <small>{location}</small>
+            </Container>
+          </section>
+          <section
+            className="clip-page__section clip-page__section--showreel"
+            id="showreel"
+            aria-label="Showreel FERD Films"
+          >
+            <Showreel />
+          </section>
+        </div>
+      </div>
       <section
         className="clip-page__section clip-page__section--work"
         id="projets"

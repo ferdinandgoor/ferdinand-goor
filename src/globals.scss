@@ -2,10 +2,10 @@
 
 :root {
   /* FERD design system — use these tokens instead of local hard-coded values. */
-  --color-bg: #050505;
-  --color-bg-elevated: #111111;
-  --color-surface: rgba(17, 17, 17, 0.9);
-  --color-surface-strong: rgba(5, 5, 5, 0.9);
+  --color-bg: #181818;
+  --color-bg-elevated: var(--color-bg);
+  --color-surface: var(--color-bg);
+  --color-surface-strong: rgba(24, 24, 24, 0.9);
   --color-surface-soft: rgba(245, 245, 238, 0.07);
   --color-text: #f5f5ee;
   --color-text-muted: rgba(245, 245, 238, 0.72);
