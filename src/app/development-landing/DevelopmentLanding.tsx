@@ -4,7 +4,11 @@ import { ActionLink } from "@/components/action/Action";
 import Container from "@/components/container/Container";
 import DevelopmentFooter from "@/components/development-footer/DevelopmentFooter";
 import SiteHeader from "@/components/site-header/SiteHeader";
-import { developmentServices, genesiaProject } from "@/data/development";
+import {
+  developmentServices,
+  dislockersProject,
+  genesiaProject,
+} from "@/data/development";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import "./DevelopmentLanding.scss";
 
@@ -20,49 +24,54 @@ const DevelopmentLanding = () => {
       <SiteHeader universe="dev" />
       <section className="development-page__hero">
         <Container className="development-page__hero-inner">
-          <div className="development-page__hero-copy">
-            <h1 className="development-page__title">Développeur web freelance · Nantes / France</h1>
-            <p className="development-page__lead">
-              Je suis Ferdinand Goor, Lead Front-End et développeur freelance.
-              Depuis plus de dix ans, je conçois des interfaces et des produits
-              web pour des entreprises, des services publics et des plateformes
-              à grande échelle.
-            </p>
-            <p className="development-page__hero-detail">
-              Mon expérience technique et ma pratique de la réalisation visuelle
-              me permettent de construire des projets cohérents, de la direction
-              créative à la mise en production.
-            </p>
-            <dl className="development-page__profile-facts">
-              <div><dt>Expérience</dt><dd>Plus de 10 ans</dd></div>
-              <div><dt>Spécialité</dt><dd>Front-End · React</dd></div>
-              <div><dt>Langues</dt><dd>Français · Anglais</dd></div>
-            </dl>
-            <div className="development-page__actions">
-              <ActionLink variant="primary" href="#contact" icon={<ArrowRight />}>
-                Parler de votre projet
-              </ActionLink>
-              <ActionLink variant="secondary" href="#projets">
-                Voir les projets
+          <h1 className="development-page__title">Ferdinand Goor</h1>
+          <div className="development-page__hero-layout">
+            <div className="development-page__portrait development-page__portrait--hero">
+              <img
+                src="/ferdinand-goor-developpeur.webp"
+                alt="Ferdinand Goor, développeur web et créatif freelance"
+                width="1200"
+                height="1283"
+              />
+            </div>
+            <div className="development-page__hero-copy">
+              <p className="development-page__eyebrow">
+                Développeur web freelance · Nantes / France
+              </p>
+              <p className="development-page__lead">
+                Je suis Ferdinand Goor, Lead Front-End et développeur freelance.
+                Depuis plus de dix ans, je conçois des interfaces et des produits
+                web pour des entreprises, des services publics et des plateformes
+                à grande échelle.
+              </p>
+              <p className="development-page__hero-detail">
+                Mon expérience technique et ma pratique de la réalisation visuelle
+                me permettent de construire des projets cohérents, de la direction
+                créative à la mise en production.
+              </p>
+              <dl className="development-page__profile-facts">
+                <div><dt>Expérience</dt><dd>Plus de 10 ans</dd></div>
+                <div><dt>Spécialité</dt><dd>Front-End · React</dd></div>
+                <div><dt>Langues</dt><dd>Français · Anglais</dd></div>
+              </dl>
+              <div className="development-page__actions">
+                <ActionLink variant="primary" href="#contact" icon={<ArrowRight />}>
+                  Parler de votre projet
+                </ActionLink>
+                <ActionLink variant="secondary" href="#projets">
+                  Voir les projets
+                </ActionLink>
+              </div>
+              <ActionLink
+                className="development-page__linkedin"
+                variant="text"
+                href="https://www.linkedin.com/in/ferdinand-goor"
+                external
+                icon={<ArrowRight />}
+              >
+                Voir mon profil LinkedIn
               </ActionLink>
             </div>
-            <ActionLink
-              className="development-page__linkedin"
-              variant="text"
-              href="https://www.linkedin.com/in/ferdinand-goor"
-              external
-              icon={<ArrowRight />}
-            >
-              Voir mon profil LinkedIn
-            </ActionLink>
-          </div>
-          <div className="development-page__portrait development-page__portrait--hero">
-            <img
-              src="/ferdinand-goor-developpeur.webp"
-              alt="Ferdinand Goor, développeur web et créatif freelance"
-              width="1200"
-              height="1283"
-            />
           </div>
         </Container>
       </section>
@@ -91,35 +100,67 @@ const DevelopmentLanding = () => {
 
       <section className="development-page__section" id="projets">
         <Container>
-          <p className="development-page__index">02 / Projet sélectionné</p>
-          <h2>Conçu pour inspirer confiance.</h2>
-          <article className="development-page__project">
-            <Link
-              className="development-page__project-visual"
-              to="/developpeur-freelance/projets/genesia"
-              aria-label="Voir l’étude de cas GENESIA"
-            >
-              <img
-                src={genesiaProject.screenshot}
-                alt={genesiaProject.screenshotAlt}
-                width="1920"
-                height="1290"
-                loading="lazy"
-              />
-              <span className="development-page__project-overlay" aria-hidden="true">
-                Voir le projet <ArrowRight />
-              </span>
-            </Link>
-            <div className="development-page__project-copy">
-              <p>{genesiaProject.category}</p>
-              <h3>{genesiaProject.name}</h3>
-              <p>{genesiaProject.summary}</p>
-              <ul>{genesiaProject.technologies.slice(0, 5).map((technology) => <li key={technology}>{technology}</li>)}</ul>
-              <ActionLink variant="primary" to="/developpeur-freelance/projets/genesia" icon={<ArrowRight />}>
-                Lire l’étude de cas
-              </ActionLink>
-            </div>
-          </article>
+          <p className="development-page__index">02 / Projets sélectionnés</p>
+          <h2>Des sites conçus pour porter chaque identité.</h2>
+          <div className="development-page__projects">
+            <article className="development-page__project">
+              <Link
+                className="development-page__project-visual"
+                to="/developpeur-freelance/projets/genesia"
+                aria-label="Voir l’étude de cas GENESIA"
+              >
+                <img
+                  src={genesiaProject.screenshot}
+                  alt={genesiaProject.screenshotAlt}
+                  width="1920"
+                  height="1290"
+                  loading="lazy"
+                />
+                <span className="development-page__project-overlay" aria-hidden="true">
+                  Voir le projet <ArrowRight />
+                </span>
+              </Link>
+              <div className="development-page__project-copy">
+                <p>{genesiaProject.category}</p>
+                <h3>{genesiaProject.name}</h3>
+                <p>{genesiaProject.summary}</p>
+                <ul>{genesiaProject.technologies.slice(0, 5).map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                <ActionLink variant="primary" to="/developpeur-freelance/projets/genesia" icon={<ArrowRight />}>
+                  Lire l’étude de cas
+                </ActionLink>
+              </div>
+            </article>
+
+            <article className="development-page__project">
+              <a
+                className="development-page__project-visual"
+                href={dislockersProject.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visiter le site de The Dislockers (nouvel onglet)"
+              >
+                <img
+                  src={dislockersProject.screenshot}
+                  alt={dislockersProject.screenshotAlt}
+                  width="1589"
+                  height="990"
+                  loading="lazy"
+                />
+                <span className="development-page__project-overlay" aria-hidden="true">
+                  Visiter le site <ArrowRight />
+                </span>
+              </a>
+              <div className="development-page__project-copy">
+                <p>{dislockersProject.category}</p>
+                <h3>{dislockersProject.name}</h3>
+                <p>{dislockersProject.summary}</p>
+                <ul>{dislockersProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                <ActionLink variant="primary" href={dislockersProject.url} external icon={<ArrowRight />}>
+                  Visiter le site
+                </ActionLink>
+              </div>
+            </article>
+          </div>
         </Container>
       </section>
 

@@ -27,6 +27,18 @@ export const genesiaProject = {
   ],
 } as const;
 
+export const dislockersProject = {
+  name: "The Dislockers",
+  category: "Site officiel de groupe",
+  summary:
+    "Un site immersif et direct pour présenter l’univers du groupe, ses sorties, ses clips et ses prochaines dates sur une plateforme rapide et responsive.",
+  url: "https://thedislockers.com/",
+  screenshot: "/the-dislockers-site.webp",
+  screenshotAlt:
+    "The Dislockers, groupe français de modern hardcore présenté sur son site officiel",
+  technologies: ["React", "TypeScript", "Vite", "Sass", "SEO"],
+} as const;
+
 export const developmentServices = [
   {
     index: "01",
