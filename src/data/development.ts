@@ -39,6 +39,18 @@ export const dislockersProject = {
   technologies: ["React", "TypeScript", "Vite", "Sass", "SEO"],
 } as const;
 
+export const clubAthletiqueNantaisProject = {
+  name: "Club Athlétique Nantais",
+  category: "Site officiel de club sportif",
+  summary:
+    "Un site clair et énergique pour présenter le club nantais, ses disciplines de powerlifting, lutte et musculation, ainsi que les informations d’inscription.",
+  url: "https://club-athletique-nantais.fr/",
+  screenshot: "/club-athletique-nantais.png",
+  screenshotAlt:
+    "Page d’inscription du site du Club Athlétique Nantais présentant l’application MonClub",
+  technologies: ["React", "TypeScript", "Vite", "Sass", "SEO"],
+} as const;
+
 export const developmentServices = [
   {
     index: "01",

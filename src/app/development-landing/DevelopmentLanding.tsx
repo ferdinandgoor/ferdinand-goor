@@ -5,6 +5,7 @@ import Container from "@/components/container/Container";
 import DevelopmentFooter from "@/components/development-footer/DevelopmentFooter";
 import SiteHeader from "@/components/site-header/SiteHeader";
 import {
+  clubAthletiqueNantaisProject,
   developmentServices,
   dislockersProject,
   genesiaProject,
@@ -156,6 +157,24 @@ const DevelopmentLanding = () => {
                 <p>{dislockersProject.summary}</p>
                 <ul>{dislockersProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
                 <ActionLink variant="primary" href={dislockersProject.url} external icon={<ArrowRight />}>
+                  Visiter le site
+                </ActionLink>
+              </div>
+            </article>
+
+            <article className="development-page__project">
+              <a className="development-page__project-visual" href={clubAthletiqueNantaisProject.url} target="_blank" rel="noopener noreferrer" aria-label="Visiter le site du Club Athlétique Nantais (nouvel onglet)">
+                <img src={clubAthletiqueNantaisProject.screenshot} alt={clubAthletiqueNantaisProject.screenshotAlt} width="2970" height="1832" loading="lazy" />
+                <span className="development-page__project-overlay" aria-hidden="true">
+                  Visiter le site <ArrowRight />
+                </span>
+              </a>
+              <div className="development-page__project-copy">
+                <p>{clubAthletiqueNantaisProject.category}</p>
+                <h3>{clubAthletiqueNantaisProject.name}</h3>
+                <p>{clubAthletiqueNantaisProject.summary}</p>
+                <ul>{clubAthletiqueNantaisProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                <ActionLink variant="primary" href={clubAthletiqueNantaisProject.url} external icon={<ArrowRight />}>
                   Visiter le site
                 </ActionLink>
               </div>
